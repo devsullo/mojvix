@@ -1,7 +1,211 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<div id="center-area">
+  <header class="main-header center-area-cont">
+    <a onclick=" window.location.href = '/'" class="logo"></a>
+    <div class="right upcoming">
+      <p>
+        Upcoming show <span class="at">@17:00</span> in
+        <span class="time">:25 <i>min</i> </span>
+      </p>
+    </div>
+  </header>
+  <section id="box-office-area">
+    <header class="box-office-header center-area-cont">
+      <div id="first-header">
+        <div class="left">
+          <h2>Discover</h2>
+          <div class="sort">
+            <ul>
+              <li ng-click="sortTitles('audience')">
+                <a>Audience</a>
+              </li>
+              <li ng-click="sortTitles('trending')">
+                <a>Trending</a>
+              </li>
+              <li ng-click="sortTitles('green')">
+                <a>Green</a>
+              </li>
+              <li class="choose-mood">
+                <a id="moods">Choose Moods</a>
+                <div class="mood-change-cont">
+                  <form name="emotionsForm" ng-submit="" class="mood-icons">
+                    <input type='checkbox' id="icon-scary">
+                    <label for="icon-scary" class="icon-scary"></label>
+                    <input type='checkbox' id="icon-cool">
+                    <label for="icon-cool" class="icon-cool"></label>
+                    <input type='checkbox' id="icon-happy">
+                    <label for="icon-happy" class="icon-happy"></label>
+                    <input type='checkbox' id="icon-excite">
+                    <label for="icon-excite" class="icon-excite"></label>
+                    <input type='checkbox' id="icon-evil">
+                    <label for="icon-evil" class="icon-evil"></label>
+                    <input type='checkbox' id="icon-angry">
+                    <label for="icon-angry" class="icon-angry"></label>
+                    <input class="submit-ok" value="OK" type="submit">
+                  </form>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="right">
+          <a class="search-btn"></a>
+        </div>
+      </div>
+      <div id="search-area">
+        <div class="form-style-a light">
+          <div class="inp-group">
+            <a class="back-home">Back to home
+              <i class="icon-a close"></i>
+            </a>
+            <input id="search-input" class="md" placeholder="Search" name="search" type="text">
+          </div>
+        </div>
+        <ul class="sort-of-search">
+          <li>
+            <a class="active">All</a>
+          </li>
+          <li>
+            <a>Movies</a>
+          </li>
+          <li>
+            <a>Actors</a>
+          </li>
+          <li>
+            <a>Blarbs</a>
+          </li>
+          <li>
+            <a>Users</a>
+          </li>
+          <li>
+            <a>Director</a>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <div id="box-office">
+      <div class="titles center-area-cont sort-3">
+        <div id="title_1" class="title">
+          <div class="title-wrapper">
+            <i class="title-status" data-toggle="tooltip" data-placement="right" title="FirstDay"></i>
+            <img class="poster" src="assets/images/titles/poster1.jpg">
+          </div>
+          <div class="hover_1 hover">
+            <div class="cont">
+              <span class="time right">131 min</span>
+              <h3 class="hover-title">THE SEARCH (2014)</h3>
+              <h5 class="hover-genre">
+                <span> genre, genre, genre </span>
+              </h5>
+              <ul>
+                <li>
+                  <span>Direcor: </span>
+                  <a href="#">title.cast.director</a>
+                </li>
+                <li>
+                  <span>Stars: </span>
+                  <a href="#">star.name</a>
+                </li>
+              </ul>
+              <p class="plain-text description">
+                title.story
+              </p>
+              <div class="footer blurb-style-a">
+                <div class="tags">
+                  <span> #Awesome #the search #questioning #important #Trials </span>
+                </div>
+                <div class="blurb-body left-bordered red">
+                  <div class="plain-text">
+                    <div class="warning">
+                      "it's fine to selebrate <span class="f-tag">#LandmineGoesClick</span> success but it is more
+                      <i class="tag">#important</i> to heed lessons of <i class="tag">#failure</i>"
+                    </div>
+                  </div>
+                </div>
+                <div class="mojvixer right">
+                  <span class="prefix">-</span>
+                  <img class="profile-pic" src="assets/images/profile/profile1.jpg">
+    							<span class="mojvixer-name"></span>
+    						</div>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+  </section>
 </div>
-
+<div id="right-area">
+  <header>
+    Want to get more opportunities?
+    <a ui-sref="mojvix.join" class="btn btn-green btn-sm">Join now</a>
+  </header>
+  <section id="right-content">
+    <section id="blurbs">
+      <div class="single-blurb-wrapper">
+        <div class="number">
+          <i>1</i>
+          <span class="icon icon-arrow-down"></span>
+        </div>
+        <div class="blurb-style-a">
+          <img class="cover" src="assets/images/movies/cover-blurb.jpg">
+          <div class="blurb-body left-bordered red">
+            <div class="plain-text">
+              "it's fine to selebrate #LandmineGoesClick success but it is more #important to heed lessons of #failure"
+            </div>
+            <div class="info">
+              <abbr>&nbsp;</abbr>
+              <div class="mojvixer right">
+                <span class="prefix">-</span>
+                <img class="profile-pic" src="assets/images/profile/profile2.jpg">
+                <span class="mojvixer-name">blurb.vixname</span>
+              </div>
+            </div>
+            <div class="meta">
+              <span class="agrees">12 Agrees</span>
+              <span class="disagrees">1 disagrees</span>
+              <span class="comments">24 comments</span>
+            </div>
+          </div>
+          <div ng-if="user.isLogged" class="blurb-footer">
+            <a class="trigger-agree left">
+              <span class="icon icon-nav icon-nav-agree"></span>
+              <span class="text">Agree</span>
+            </a>
+            <a class="trigger-disagree left">
+              <span class="icon icon-nav icon-nav-disagree"></span>
+              <span class="text">Disagree</span>
+            </a>
+            <a class="trigger-blurb left">
+              <span class="icon icon-nav icon-nav-blurb"></span>
+              <span class="text">Blurb</span>
+            </a>
+            <a class="trigger-menu" left>
+              <span class="icon icon-nav icon-nav-menu"></span>
+            </a>
+          </div>
+          <div class="user-comments">
+            <div class="comment">
+              <img class="profile-pic" src="assets/images/profile/profile1.jpg">
+              <div class="comment-content">
+                <a href="#reblurb.vixname">
+                  <b>reblurb.vixname</b>
+                </a>
+                “okay”
+                <div class="info">
+                  <abbr>13 mins ago</abbr>
+                </div>
+              </div>
+            </div>
+            <a result-per-page="0" class="load-more">Load more Comments</a>
+          </div>
+          <div class="type-comment">
+            <img src="assets/images/profile/profile1.jpg">
+            <form name="reblurbForm">
+              <textarea placeholder="Type reblurb text here" class=""></textarea>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+</div>
