@@ -74,49 +74,45 @@
   </header>
   <div id="box-office">
     <div class="titles center-area-cont sort-3">
-      <div id="title_1" class="title">
+      <div *ngFor="let title of titles" class="title">
         <div class="title-wrapper">
           <i class="title-status" data-toggle="tooltip" data-placement="right" title="FirstDay"></i>
-          <img class="poster" src="assets/images/titles/poster1.jpg">
+          <img class="poster" [src]="title.poster">
         </div>
         <div class="hover_1 hover">
           <div class="cont">
             <span class="time right">131 min</span>
-            <h3 class="hover-title">THE SEARCH (2014)</h3>
+            <h3 class="hover-title">{{ title.title }}</h3>
             <h5 class="hover-genre">
-              <span> genre, genre, genre </span>
+              <span>{{ title.genre }}</span>
             </h5>
             <ul>
               <li>
                 <span>Direcor: </span>
-                <a href="#">title.cast.director</a>
+                <a href="#">{{ title.director }}</a>
               </li>
               <li>
                 <span>Stars: </span>
-                <a href="#">star.name</a>
+                <a href="#">{{ title.stars }}</a>
               </li>
             </ul>
             <p class="plain-text description">
-              title.story
+              {{ title.story }}
             </p>
             <div class="footer blurb-style-a">
               <div class="tags">
-                <span> #Awesome #the search #questioning #important #Trials </span>
+                <span>{{ title.tags }}</span>
               </div>
               <div class="blurb-body left-bordered red">
                 <div class="plain-text">
-                  <div class="warning">
-                    "it's fine to selebrate
-                    <span class="f-tag">#LandmineGoesClick</span> success but it is more
-                    <i class="tag">#important</i> to heed lessons of
-                    <i class="tag">#failure</i>"
+                  <div class="warning" [innerHTML]="title.blurb.content | escapeHtml">
                   </div>
                 </div>
               </div>
               <div class="mojvixer right">
                 <span class="prefix">-</span>
-                <img class="profile-pic" src="assets/images/profile/profile1.jpg">
-                <span class="mojvixer-name">ioo</span>
+                <img class="profile-pic" [src]="title.blurb.mojvixerPic">
+                <span class="mojvixer-name">{{ title.blurb.mojvixerName }}</span>
               </div>
             </div>
           </div>

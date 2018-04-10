@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BlurbsComponent } from './list/blurbs.component';
-import { BlurbComponent } from './single/blurb.component';
 
 @NgModule({
   imports: [
@@ -11,8 +10,7 @@ import { BlurbComponent } from './single/blurb.component';
     BlurbsComponent
   ],
   declarations: [
-    BlurbsComponent,
-    BlurbComponent
+    BlurbsComponent
   ]
 })
 export class BlurbsModule { }
