@@ -1,0 +1,67 @@
+<section id="blurbs">
+  <div class="single-blurb-wrapper">
+    <div class="number">
+      <i>1</i>
+      <span class="icon icon-arrow-down"></span>
+    </div>
+    <div class="blurb-style-a">
+      <img class="cover" src="assets/images/movies/cover-blurb.jpg">
+      <div class="blurb-body left-bordered red">
+        <div class="plain-text">
+          "it's fine to selebrate #LandmineGoesClick success but it is more #important to heed lessons of #failure"
+        </div>
+        <div class="info">
+          <abbr>&nbsp;</abbr>
+          <div class="mojvixer right">
+            <span class="prefix">-</span>
+            <img class="profile-pic" src="assets/images/profile/profile2.jpg">
+            <span class="mojvixer-name">blurb.vixname</span>
+          </div>
+        </div>
+        <div class="meta">
+          <span class="agrees">12 Agrees</span>
+          <span class="disagrees">1 disagrees</span>
+          <span class="comments">24 comments</span>
+        </div>
+      </div>
+      <div ng-if="user.isLogged" class="blurb-footer">
+        <a class="trigger-agree left">
+          <span class="icon icon-nav icon-nav-agree"></span>
+          <span class="text">Agree</span>
+        </a>
+        <a class="trigger-disagree left">
+          <span class="icon icon-nav icon-nav-disagree"></span>
+          <span class="text">Disagree</span>
+        </a>
+        <a class="trigger-blurb left">
+          <span class="icon icon-nav icon-nav-blurb"></span>
+          <span class="text">Blurb</span>
+        </a>
+        <a class="trigger-menu" left>
+          <span class="icon icon-nav icon-nav-menu"></span>
+        </a>
+      </div>
+      <div class="user-comments">
+        <div class="comment">
+          <img class="profile-pic" src="assets/images/profile/profile1.jpg">
+          <div class="comment-content">
+            <a href="#reblurb.vixname">
+              <b>reblurb.vixname</b>
+            </a>
+            “okay”
+            <div class="info">
+              <abbr>13 mins ago</abbr>
+            </div>
+          </div>
+        </div>
+        <a result-per-page="0" class="load-more">Load more Comments</a>
+      </div>
+      <div class="type-comment">
+        <img src="assets/images/profile/profile1.jpg">
+        <form name="reblurbForm">
+          <textarea placeholder="Type reblurb text here" class=""></textarea>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
