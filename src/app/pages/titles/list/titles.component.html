@@ -103,7 +103,7 @@
               <div class="tags">
                 <span>{{ title.tags }}</span>
               </div>
-              <div class="blurb-body left-bordered red">
+              <div class="blurb-body left-bordered {{ title.blurb.color }}">
                 <div class="plain-text">
                   <div class="warning" [innerHTML]="title.blurb.content | escapeHtml">
                   </div>
