@@ -1,3 +1,4 @@
+import { ScrollService } from './../../../shared/scroll.service';
 import { Component, OnInit } from '@angular/core';
 import { ITitle } from '../title';
 import { TitlesService } from '../titles.service';
@@ -11,12 +12,17 @@ export class TitlesComponent implements OnInit {
   titles: ITitle[];
 
   constructor(
-    private titleService: TitlesService
+    private titleService: TitlesService,
+    private scrollService: ScrollService
   ) { }
 
   ngOnInit() {
     this.titles = this.titleService.getTitles();
-    console.log( this.titles );
+    this.scrollService.initScroll('#box-office');
+  }
+
+  getElHeight(): number {
+    return 860;
   }
 
 }

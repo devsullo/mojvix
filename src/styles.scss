@@ -751,7 +751,7 @@ textarea {
 // 	&:hover{
 // 	.name{
 // 		padding:0;
-// 		margin:0;		
+// 		margin:0;
 // 		&:before,&:after{
 // 		display: none;
 // 		}
@@ -1025,6 +1025,7 @@ textarea {
 }
 
 #box-office {
+  position: relative;
   .titles {
     @extend .cf;
     margin-left: -2.3%;

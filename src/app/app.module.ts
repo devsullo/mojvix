@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TitlesModule } from './pages/titles/titles.module';
 import { BlurbsModule } from './sidebar/blurbs/blurbs.module';
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core.module';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { AppRoutingModule } from './app-routing.module';
     TitlesModule,
     BlurbsModule,
     AppRoutingModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
