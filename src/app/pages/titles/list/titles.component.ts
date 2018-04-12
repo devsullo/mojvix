@@ -1,5 +1,5 @@
 import { ScrollService } from './../../../shared/scroll.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { ITitle } from '../title';
 import { TitlesService } from '../titles.service';
 
@@ -11,6 +11,7 @@ import { TitlesService } from '../titles.service';
 export class TitlesComponent implements OnInit {
   titles: ITitle[];
   pageHeight: number;
+  scrollSelector = '#box-office';
 
   constructor(
     private titleService: TitlesService,
@@ -19,10 +20,17 @@ export class TitlesComponent implements OnInit {
 
   ngOnInit() {
     this.titles = this.titleService.getTitles();
-    this.scrollService.initScroll('#box-office');
-    this.scrollService.els['#box-office'].heightChanges.subscribe(
-      val => this.pageHeight = val - 120
-    );
+    this.scrollService.initScroll(this.scrollSelector);
+    this.calcScrollHeight();
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.calcScrollHeight();
+    this.scrollService.updateScroll(this.scrollSelector);
+  }
+
+  calcScrollHeight() {
+    this.pageHeight = window.innerHeight - 120;
+  }
 }

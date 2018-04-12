@@ -15,8 +15,4 @@ export class AppComponent {
   constructor(
     private scrollService: ScrollService
   ) {}
-  @HostListener('window:resize', ['$event'])
-  onResize(event) {
-    this.scrollService.onWindowResize();
-  }
 }
