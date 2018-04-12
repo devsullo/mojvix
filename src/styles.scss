@@ -3170,7 +3170,8 @@ a.moods {
 }
 
 #blurbs {
-  margin: 6% 6%;
+  padding: 6% 6%;
+  position: relative;
   .single-blurb-wrapper {
     .cover {
       display: block;

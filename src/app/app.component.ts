@@ -1,4 +1,3 @@
-import { ScrollService } from './shared/scroll.service';
 import { Component, ViewEncapsulation, HostListener } from '@angular/core';
 
 @Component({
@@ -13,6 +12,6 @@ import { Component, ViewEncapsulation, HostListener } from '@angular/core';
 export class AppComponent {
   title = 'app';
   constructor(
-    private scrollService: ScrollService
+
   ) {}
 }

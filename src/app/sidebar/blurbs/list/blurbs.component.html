@@ -1,4 +1,4 @@
-<section id="blurbs">
+<section id="blurbs" [style.height.px]="pageHeight">
   <div *ngFor="let blurb of blurbs"  class="single-blurb-wrapper">
     <div class="number">
       <i>{{ blurb.id }}</i>

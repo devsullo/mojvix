@@ -31,6 +31,6 @@ export class TitlesComponent implements OnInit {
   }
 
   calcScrollHeight() {
-    this.pageHeight = window.innerHeight - 120;
+    this.pageHeight = window.innerHeight - 116;
   }
 }
