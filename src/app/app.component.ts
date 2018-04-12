@@ -1,4 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { ScrollService } from './shared/scroll.service';
+import { Component, ViewEncapsulation, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +12,11 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  constructor(
+    private scrollService: ScrollService
+  ) {}
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.scrollService.onWindowResize();
+  }
 }

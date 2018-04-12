@@ -10,19 +10,19 @@ import { TitlesService } from '../titles.service';
 })
 export class TitlesComponent implements OnInit {
   titles: ITitle[];
+  pageHeight: number;
 
   constructor(
     private titleService: TitlesService,
     private scrollService: ScrollService
-  ) { }
+  ) {}
 
   ngOnInit() {
     this.titles = this.titleService.getTitles();
     this.scrollService.initScroll('#box-office');
-  }
-
-  getElHeight(): number {
-    return 860;
+    this.scrollService.els['#box-office'].heightChanges.subscribe(
+      val => this.pageHeight = val - 120
+    );
   }
 
 }
