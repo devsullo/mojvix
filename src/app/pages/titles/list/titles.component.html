@@ -74,51 +74,53 @@
   </header>
   <div id="box-office" [style.height.px]="pageHeight">
     <div class="titles center-area-cont sort-3">
-      <div *ngFor="let title of titles" class="title">
-        <div class="title-wrapper">
-          <i class="title-status" data-toggle="tooltip" data-placement="right" title="FirstDay"></i>
-          <img class="poster" [src]="title.poster">
-        </div>
-        <div class="hover_1 hover">
-          <div class="cont">
-            <span class="time right">131 min</span>
-            <h3 class="hover-title">{{ title.title }}</h3>
-            <h5 class="hover-genre">
-              <span>{{ title.genre }}</span>
-            </h5>
-            <ul>
-              <li>
-                <span>Direcor: </span>
-                <a href="#">{{ title.director }}</a>
-              </li>
-              <li>
-                <span>Stars: </span>
-                <a href="#">{{ title.stars }}</a>
-              </li>
-            </ul>
-            <p class="plain-text description">
-              {{ title.story }}
-            </p>
-            <div class="footer blurb-style-a">
-              <div class="tags">
-                <span>{{ title.tags }}</span>
-              </div>
-              <div class="blurb-body left-bordered {{ title.blurb.color }}">
-                <div class="plain-text">
-                  <div class="warning" [innerHTML]="title.blurb.content | escapeHtml">
+      <div *ngFor="let title of titles; let i = index" (click)="expandTitle(i+1)">
+        <div class="title">
+          <div class="title-wrapper">
+            <i class="title-status" data-toggle="tooltip" data-placement="right" title="FirstDay"></i>
+            <img class="poster" [src]="title.poster">
+          </div>
+          <div class="hover_1 hover">
+            <div class="cont">
+              <span class="time right">131 min</span>
+              <h3 class="hover-title">{{ title.title }}</h3>
+              <h5 class="hover-genre">
+                <span>{{ title.genre }}</span>
+              </h5>
+              <ul>
+                <li>
+                  <span>Direcor: </span>
+                  <a href="#">{{ title.director }}</a>
+                </li>
+                <li>
+                  <span>Stars: </span>
+                  <a href="#">{{ title.stars }}</a>
+                </li>
+              </ul>
+              <p class="plain-text description">
+                {{ title.story }}
+              </p>
+              <div class="footer blurb-style-a">
+                <div class="tags">
+                  <span>{{ title.tags }}</span>
+                </div>
+                <div class="blurb-body left-bordered {{ title.blurb.color }}">
+                  <div class="plain-text">
+                    <div class="warning" [innerHTML]="title.blurb.content | escapeHtml">
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="mojvixer right">
-                <span class="prefix">-</span>
-                <img class="profile-pic" [src]="title.blurb.mojvixerPic">
-                <span class="mojvixer-name">{{ title.blurb.mojvixerName }}</span>
+                <div class="mojvixer right">
+                  <span class="prefix">-</span>
+                  <img class="profile-pic" [src]="title.blurb.mojvixerPic">
+                  <span class="mojvixer-name">{{ title.blurb.mojvixerName }}</span>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <app-title *ngIf="expandOrNot(i+1, titles.length)"></app-title>
       </div>
-      <app-title></app-title>
     </div>
   </div>
 </section>

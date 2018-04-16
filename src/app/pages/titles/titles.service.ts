@@ -35,7 +35,8 @@ export class TitlesService {
       { id: 7, title: 'THE SEARCH (2014)', poster: 'assets/images/titles/poster7.jpg', genre: 'genre, genre, genre', director: 'Levan Bakhia', stars: 'Lorem, blurs, test', story: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in apiece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia', tags: '#Awesome #the search #questioning #important #Trials', blurb: {color: 'green', content: `"it's fine to selebrate
                     <span class="f-tag">#LandmineGoesClick</span> success but it is more
                     <i class="tag">#important</i> to heed lessons of
-                    <i class="tag">#failure</i>"`, mojvixerPic: 'assets/images/profile/profile1.jpg', mojvixerName: 'ioo' } }];
+                    <i class="tag">#failure</i>"`, mojvixerPic: 'assets/images/profile/profile1.jpg', mojvixerName: 'ioo' } }
+                  ];
 
     return titles;
   }

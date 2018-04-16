@@ -1331,6 +1331,7 @@ textarea {
   }
   .expanded-title {
     position: relative;
+    float: left;
     z-index: 1;
     margin-bottom: 3%;
     min-width: 759px;
@@ -1338,7 +1339,7 @@ textarea {
     padding: 2.3%;
     color: #fff;
     width: 102.4%;
-    display: none;
+    // display: none;
     .top-arrow {
       border-bottom: 10px solid #161B1F;
       border-left: 10px solid transparent;

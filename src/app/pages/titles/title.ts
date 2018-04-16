@@ -9,4 +9,5 @@ export interface ITitle {
   story: string;
   tags: string;
   blurb: IBlurb;
+  expand?: boolean;
 }
