@@ -3848,3 +3848,16 @@ a.moods {
   @include font-size(16);
   font-weight: 600;
 }
+
+
+vg-player{
+  .icon {
+    &:before {
+      width: auto;
+      height: inherit;
+      background: none;
+      position: inherit;
+      top: inherit;
+    }
+  }
+}

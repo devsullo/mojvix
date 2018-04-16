@@ -1,3 +1,4 @@
+import { SeanceModule } from './pages/seance/seance.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -13,6 +14,7 @@ import { CoreModule } from './core.module';
     AppComponent,
   ],
   imports: [
+    SeanceModule,
     BrowserModule,
     TitlesModule,
     BlurbsModule,
