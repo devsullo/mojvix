@@ -1,6 +1,6 @@
 import { TitleComponent } from './../single/title.component';
 import { ScrollService } from './../../../shared/scroll.service';
-import { Component, OnInit, HostListener, ViewChild } from '@angular/core';
+import { Component, OnInit, HostListener, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { ITitle } from '../title';
 import { TitlesService } from '../titles.service';
 
@@ -13,7 +13,7 @@ export class TitlesComponent implements OnInit {
   titles: ITitle[];
   pageHeight: number;
   scrollSelector = '#box-office';
-  expandedTitleIndex: number;
+  @ViewChildren('expandArea') expandArea: QueryList<TitleComponent>;
 
   constructor(
     private titleService: TitlesService,
@@ -36,11 +36,25 @@ export class TitlesComponent implements OnInit {
     this.pageHeight = window.innerHeight - 116;
   }
 
-  expandTitle(i: number) {
-    this.expandedTitleIndex = i;
+  expandTitle(i: number): void {
+    let row = 0;
+    const T = (i + 1) / 3;
+    if (Number.isInteger(T)) {
+      row = T - 1;
+    } else {
+      row = Math.floor(T);
+    }
+    this.closeAllExpandAreas();
+    const expandArea = this.expandArea.toArray()[row];
+    expandArea.title = this.titles[i];
+    expandArea.show();
   }
 
-  expandOrNot(i: number, length: number): boolean {
+  closeAllExpandAreas() {
+    this.expandArea.forEach( el => el.close() );
+  }
+
+  detectExpandArea(i: number, length: number): boolean {
     if (length % 3 !== 0) {
       if (i === length) {
         return true;

@@ -74,8 +74,8 @@
   </header>
   <div id="box-office" [style.height.px]="pageHeight">
     <div class="titles center-area-cont sort-3">
-      <div *ngFor="let title of titles; let i = index" (click)="expandTitle(i+1)">
-        <div class="title">
+      <div *ngFor="let title of titles; let i = index">
+        <div class="title" (click)="expandTitle(i)">
           <div class="title-wrapper">
             <i class="title-status" data-toggle="tooltip" data-placement="right" title="FirstDay"></i>
             <img class="poster" [src]="title.poster">
@@ -119,7 +119,7 @@
             </div>
           </div>
         </div>
-        <app-title *ngIf="expandOrNot(i+1, titles.length)"></app-title>
+        <app-title #expandArea *ngIf="detectExpandArea(i+1, titles.length)"></app-title>
       </div>
     </div>
   </div>

@@ -1,73 +1,67 @@
-<section class="expanded-title">
+<section class="expanded-title" *ngIf="expanded">
   <i class="top-arrow"></i>
-  <a class="close"></a>
+  <a class="close" (click)="close()"></a>
   <div class="left-show">
     <div class="videoWrapper">
-      <iframe src="https://www.youtube.com/watch?v=UmqljPeImGw&t=617s" frameborder="0" allowfullscreen="" style="pointer-events: auto;"></iframe>
+      <iframe src="https://www.youtube.com/watch?v=DMehBmBJsMM" frameborder="0" allowfullscreen="" style="pointer-events: auto;"></iframe>
     </div>
   </div>
   <div class="film-overview">
-    <h4>title.name</h4>
+    <h4>{{ title.title }}</h4>
     <div class="genre">
-      <span ng-repeat="genre in title.genres"> genre </span>
+      <span ng-repeat="genre in title.genres">{{ title.genre }}</span>
     </div>
     <div class="tags">
       <ul>
-        <li ng-repeat="hashtag in title.hashtags">
-          <a href="hashtag"> hashtag </a>
+        <li *ngFor="let hashtag of title.hashtags">
+          <a href="#"> {{ hashtag }} </a>
         </li>
       </ul>
     </div>
     <div class="divider"></div>
     <ul class="meta">
       <li>
-        <i class="value">title.properties.resolution</i>
+        <i class="value">{{ title.propResolution }}</i>
       </li>
       <li>
         <i class="key">Runtime:</i>
-        <i class="value">title.properties.length | getRuntime</i>
+        <i class="value">{{ title.propRuntime }}</i>
         <i class="key">Min</i>
       </li>
-      <li class="title.properties.soundQuality"></li>
-      <li ng-if="title.properties.threeD == 1">
+      <li class="{{ title.propSoundQuality }}"></li>
+      <li *ngIf="title.propThreeD">
         <i class="value">3D</i>
       </li>
-      <li ng-if="title.properties.colored == 1">
+      <li *ngIf="title.propColored">
         <i class="value">Colored</i>
       </li>
     </ul>
     <p class="story">
-      title.story
+      {{ title.story }}
     </p>
     <div class="cast">
       <div class="own-line">
         <div class="key">Director:</div>
-        <div class="value">
-          <a href="# title.cast.director "> title.cast.director </a>
-        </div>
+        <div class="value">{{ title.director }}</div>
       </div>
       <div class="own-line">
         <div class="key">Stars:</div>
-        <div class="value">
-          <a ng-repeat="star in title.cast.stars" href="# star.name ">
-            star.name
-          </a>
-        </div>
+        <div class="value">{{ title.stars }}</div>
       </div>
     </div>
     <a [routerLink]="['/seance']" class="attend-to-show btn btn-sky-blue">Attend To Show</a>
     <div class="divider"></div>
     <div class="left">
       <ul class="socials">
-        <li ng-repeat="social in title.socials" class="social.name">
-          <a target="_blank" href="social.url"></a>
+        <li *ngFor="let social of title.socials" class="{{ social.name }}">
+          <a target="_blank" [href]="social.url"></a>
         </li>
       </ul>
       <span class="copy">title.copy</span>
     </div>
     <div class="right">
       <ul class="mood-icons">
-        <li ng-repeat="mood in title.moods" class="icon-mood.name"></li>
+        <li *ngFor="let mood of title.moods" class="icon-{{ mood }}"></li>
       </ul>
     </div>
   </div>
