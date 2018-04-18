@@ -1,5 +1,5 @@
 import { ITitle } from './../title';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 
 @Component({
@@ -7,13 +7,16 @@ import { Title } from '@angular/platform-browser';
   templateUrl: './title.component.html',
   styleUrls: ['./title.component.scss']
 })
-export class TitleComponent implements OnInit {
+export class TitleComponent implements OnInit, AfterViewInit {
   title: ITitle;
   expanded = false;
   constructor() {}
 
   ngOnInit() {
     console.log();
+  }
+
+  ngAfterViewInit() {
   }
 
   show() {

@@ -1,3 +1,4 @@
+import { element } from 'protractor';
 import { TitleComponent } from './../single/title.component';
 import { ScrollService } from './../../../shared/scroll.service';
 import { Component, OnInit, HostListener, ViewChild, ViewChildren, QueryList } from '@angular/core';
@@ -12,7 +13,7 @@ import { TitlesService } from '../titles.service';
 export class TitlesComponent implements OnInit {
   titles: ITitle[];
   pageHeight: number;
-  scrollSelector = '#box-office';
+  scroll: any;
   @ViewChildren('expandArea') expandArea: QueryList<TitleComponent>;
 
   constructor(
@@ -22,14 +23,14 @@ export class TitlesComponent implements OnInit {
 
   ngOnInit() {
     this.titles = this.titleService.getTitles();
-    this.scrollService.initScroll(this.scrollSelector);
+    this.scroll = this.scrollService.init('#box-office');
     this.calcScrollHeight();
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.calcScrollHeight();
-    this.scrollService.updateScroll(this.scrollSelector);
+    this.scroll.update();
   }
 
   calcScrollHeight() {
@@ -48,6 +49,12 @@ export class TitlesComponent implements OnInit {
     const expandArea = this.expandArea.toArray()[row];
     expandArea.title = this.titles[i];
     expandArea.show();
+    setTimeout(() => {
+      const top = document
+          .querySelector('#expanded-title')
+          .documentOffsetTop() - window.innerHeight / 2 + 116;
+      this.scroll.element.scrollTo({ top: top, behavior: 'smooth' });
+    });
   }
 
   closeAllExpandAreas() {

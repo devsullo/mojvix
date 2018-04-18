@@ -7,12 +7,9 @@ export class ScrollService {
   els = {};
   constructor() {}
 
-  initScroll(selector: string): void {
+  init(selector: string) {
     this.els[selector] = new PerfectScrollbar(selector);
-  }
-
-  updateScroll(selector: string): void {
-    this.els[selector].update();
+    return this.els[selector];
   }
 
 }

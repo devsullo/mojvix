@@ -1,7 +1,7 @@
+import { ScrollService } from './../../../shared/scroll.service';
 import { BlurbsService } from './../blurbs.service';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { IBlurb } from '../blurb';
-import { ScrollService } from '../../../shared/scroll.service';
 
 @Component({
   selector: 'app-blurbs',
@@ -11,7 +11,7 @@ import { ScrollService } from '../../../shared/scroll.service';
 export class BlurbsComponent implements OnInit {
   blurbs: IBlurb[];
   pageHeight: number;
-  scrollSelector = '#blurbs';
+  scroll: any;
 
   constructor(
     private blurbsService: BlurbsService,
@@ -20,14 +20,14 @@ export class BlurbsComponent implements OnInit {
 
   ngOnInit() {
     this.blurbs = this.blurbsService.getBlurbs();
-    this.scrollService.initScroll(this.scrollSelector);
+    this.scroll = this.scrollService.init('#blurbs');
     this.calcScrollHeight();
   }
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
     this.calcScrollHeight();
-    this.scrollService.updateScroll(this.scrollSelector);
+    this.scroll.update();
   }
 
   calcScrollHeight() {
