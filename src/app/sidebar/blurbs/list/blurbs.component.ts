@@ -20,8 +20,8 @@ export class BlurbsComponent implements OnInit {
 
   ngOnInit() {
     this.blurbs = this.blurbsService.getBlurbs();
-    this.scroll = this.scrollService.init('#blurbs');
     this.calcScrollHeight();
+    this.scroll = this.scrollService.init('#blurbs');
   }
 
   @HostListener('window:resize', ['$event'])
@@ -31,6 +31,6 @@ export class BlurbsComponent implements OnInit {
   }
 
   calcScrollHeight() {
-    this.pageHeight = window.innerHeight - 85;
+    this.pageHeight = window.innerHeight - 80;
   }
 }

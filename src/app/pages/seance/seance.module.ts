@@ -14,7 +14,9 @@ import { SeanceComponent } from './seance/seance.component';
 @NgModule({
   imports: [
     SharedModule,
-    RouterModule.forChild([{ path: 'seance', component: SeanceComponent }]),
+    RouterModule.forChild([
+      { path: 'seance', component: SeanceComponent }
+    ]),
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,

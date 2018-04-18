@@ -23,8 +23,8 @@ export class TitlesComponent implements OnInit {
 
   ngOnInit() {
     this.titles = this.titleService.getTitles();
-    this.scroll = this.scrollService.init('#box-office');
     this.calcScrollHeight();
+    this.scroll = this.scrollService.init('#box-office');
   }
 
   @HostListener('window:resize', ['$event'])
@@ -34,7 +34,7 @@ export class TitlesComponent implements OnInit {
   }
 
   calcScrollHeight() {
-    this.pageHeight = window.innerHeight - 116;
+    this.pageHeight = window.innerHeight - 112;
   }
 
   expandTitle(i: number): void {
@@ -52,7 +52,7 @@ export class TitlesComponent implements OnInit {
     setTimeout(() => {
       const top = document
           .querySelector('#expanded-title')
-          .documentOffsetTop() - window.innerHeight / 2 + 116;
+          .documentOffsetTop() - window.innerHeight / 2 + 112;
       this.scroll.element.scrollTo({ top: top, behavior: 'smooth' });
     });
   }
