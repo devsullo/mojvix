@@ -1,3 +1,4 @@
+import { JoinFormComponent } from './../../components/join-form/join-form.component';
 import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
@@ -15,7 +16,17 @@ import { SeanceComponent } from './seance/seance.component';
   imports: [
     SharedModule,
     RouterModule.forChild([
-      { path: 'seance', component: SeanceComponent }
+      {
+        path: 'seance',
+        component: SeanceComponent,
+        children: [
+          {
+            path: '',
+            component: JoinFormComponent,
+            outlet: 'seance-body'
+          }
+        ]
+      }
     ]),
     VgCoreModule,
     VgControlsModule,

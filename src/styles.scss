@@ -2113,6 +2113,7 @@ a.moods {
 }
 
 #seance-body-area {
+  position: relative;
   @extend .cf;
   .post-blurb-btn {
     width: 250px;

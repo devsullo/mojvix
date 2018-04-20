@@ -1,0 +1,66 @@
+<section class="page-style-a fixed">
+  <section class="center-area-cont">
+    <div class="page-wrap dark page-padding">
+      <section class="join-template">
+        <h2 [innerHTML]="'join-form-heading' | trans"></h2>
+        <form [formGroup]="joinForm" (ngSubmit)="join($event)" class="pay-form form-style-a dark">
+          <!-- <h-error-box></h-error-box> -->
+          <div [ngClass]="{'has-error' : joinForm.controls.vixname.invalid && joinForm.controls.vixname.touched}" class="inp-group">
+            <span class="status"></span>
+            <input formControlName="vixname" (keyup)="checkVixname()" strong-lang="en" id="vixname-inp" name="vixname" class="ex-lg" type="text" [placeholder]="'vixname' | trans" autocomplete="off">
+            <span [hidden]="!joinForm.controls.vixname.invalid || (!joinForm.controls.vixname.touched)" class="has-error-caption" [innerHTML]="'form-error-vixname-minlength' | trans"></span>
+          </div>
+
+          <div class="cf">
+            <div class="step1 inp-group radio-group col-md-7">
+              <span class="left" [innerHTML]="'join-form-iam' | trans"></span>
+              <div class="radio-a">
+                <input formControlName="age" type="radio" id="labelId_4" value="13-17" name="age">
+                <label (click)="step(2)" for="labelId_4">13-17</label>
+                <i class="divider"></i>
+              </div>
+              <div class="radio-a">
+                <input formControlName="age" type="radio" id="labelId_5" value="18-23" name="age">
+                <label (click)="step(2)" for="labelId_5">18-23</label>
+                <i class="divider"></i>
+              </div>
+              <div class="radio-a">
+                <input formControlName="age" type="radio" id="labelId_6" value="24+" name="age">
+                <label (click)="step(2)" for="labelId_6">24+</label>
+              </div>
+              <span class="left" [innerHTML]="'join-form-years-old' | trans"></span>
+            </div>
+            <div class="step2 inp-group radio-group col-md-4 right">
+              <div class="radio-a">
+                <input formControlName="sex" type="radio" id="labelId_7" value="Female" name="sex">
+                <label (click)="step(3)" for="labelId_7" [innerHTML]="'input-female' | trans"></label>
+                <i class="divider"></i>
+              </div>
+              <div class="radio-a">
+                <input formControlName="sex" type="radio" id="labelId_8" value="Male" name="sex">
+                <label (click)="step(3)" for="labelId_8" [innerHTML]="'input-male' | trans"></label>
+              </div>
+            </div>
+          </div>
+          <div [ngClass]="{'has-error' : joinForm.controls.email.invalid && joinForm.controls.email.touched}" class="sign-up-next inp-group">
+            <input formControlName="email" (keyup)="formErrors.email.taken = false" strong-lang="en" name="email" class="ex-lg" type="email" [placeholder]="'input-email' | trans">
+            <span [hidden]="!joinForm.controls.email.invalid || (!joinForm.controls.email.touched)" class="has-error-caption" [innerHTML]="'form-error-invalid-email' | trans"></span>
+          </div>
+          <div [ngClass]="{'has-error' : joinForm.controls.password.invalid && joinForm.controls.password.touched, 'has-addon-link' : hasAddonLink}"
+            class="sign-up-next lap inp-group">
+            <input formControlName="password" (keyup)="formErrors.password.invalid = false" strong-lang="en" name="password" class="ex-lg" type="password" [placeholder]="'input-password' | trans">
+            <span [hidden]="!joinForm.controls.password.invalid || !joinForm.controls.password.touched" class="has-error-caption" [innerHTML]="'form-error-password-minlength' | trans"></span>
+            <!-- <ng2-password-strength-bar *ngIf="passwordStrength" [passwordToCheck]="joinForm.value.password"> </ng2-password-strength-bar> -->
+            <a (click)="passRecover()" *ngIf="hasAddonLink" class="has-addon-caption" [innerHTML]="'join-form-pass-recover' | trans"></a>
+          </div>
+          <div class="step3 remember checkbox left">
+            <input formControlName="anonymus" (click)="takeName()" name="anonymus" type="checkbox" id="labelId_1">
+            <label class="bold" for="labelId_1" [innerHTML]="'join-form-want-nickname' | trans"></label>
+          </div>
+          <button [disabled]="!joinForm.valid" type="submit" class="btn btn-join ex-lg right" [innerHTML]="'button-join' | trans"></button>
+          <a (click)="fbConnectFn()" id="facebook-connect" class="btn right"></a>
+        </form>
+      </section>
+    </div>
+  </section>
+</section>

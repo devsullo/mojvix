@@ -8,7 +8,11 @@
       <a class="btn btn-nav more">More</a>
     </div>
   </header>
-  <section [style.height.px]="pageHeight" id="seance-body-area" class="center-area-cont">
-    <app-player></app-player>
+  <section [style.height.px]="pageHeight" id="seance-body-area">
+    <div class="center-area-cont">
+      <app-player></app-player>
+
+      <router-outlet name="seance-body"></router-outlet>
+    </div>
   </section>
 </section>

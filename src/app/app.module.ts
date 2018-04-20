@@ -8,6 +8,7 @@ import { TitlesModule } from './pages/titles/titles.module';
 import { BlurbsModule } from './sidebar/blurbs/blurbs.module';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './core.module';
+import { ComponentsModule } from './components/components.module';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { CoreModule } from './core.module';
     BlurbsModule,
     AppRoutingModule,
     CoreModule,
+    ComponentsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
