@@ -6,6 +6,6 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     SharedModule
   ],
-  declarations: [JoinFormComponent]
+  declarations: [JoinFormComponent],
 })
 export class ComponentsModule { }
