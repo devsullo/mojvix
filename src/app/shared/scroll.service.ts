@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import PerfectScrollbar from 'perfect-scrollbar';
+import { ElementRef } from '@angular/core';
 
 @Injectable()
 export class ScrollService {
@@ -11,4 +12,9 @@ export class ScrollService {
     return this.els[selector];
   }
 
+  scrollBottom(selector: string) {
+    const el = this.els[selector].element;
+    const top = el.scrollHeight;
+    el.scrollTo({ top: top, behavior: 'smooth' });
+  }
 }

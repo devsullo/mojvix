@@ -4,7 +4,6 @@ import { VgControlsModule } from 'videogular2/controls';
 import { VgOverlayPlayModule } from 'videogular2/overlay-play';
 import { VgBufferingModule } from 'videogular2/buffering';
 
-
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -17,7 +16,11 @@ import { SeanceComponent } from './seance/seance.component';
     SharedModule,
     RouterModule.forChild([
       {
-        path: 'seance',
+        path: 'seance/:slug',
+        component: SeanceComponent
+      },
+      {
+        path: 'seance/:slug/join',
         component: SeanceComponent,
         children: [
           {

@@ -4,8 +4,6 @@
       <section class="join-template">
         <h2 [innerHTML]="'join-form-heading' | trans"></h2>
         <form [formGroup]="joinForm" (ngSubmit)="join()" class="pay-form form-style-a dark">
-          <!-- <h-error-box></h-error-box> -->
-          {{ formState.value }}
           <div [ngClass]="{'has-error' : joinForm.controls.vixname.invalid && joinForm.controls.vixname.touched}" class="inp-group">
             <span class="status"></span>
             <input formControlName="vixname" id="vixname-inp" name="vixname" class="ex-lg" type="text" [placeholder]="'input-vixname' | trans" autocomplete="off">
@@ -49,7 +47,7 @@
           <div *ngIf="formState.value === -1 || joinForm.controls.anonymus.value" [ngClass]="{'has-error' : joinForm.controls.password.invalid && joinForm.controls.password.touched, 'has-addon-link' : hasAddonLink}" class="lap inp-group">
             <input formControlName="password" name="password" class="ex-lg" type="password" [placeholder]="'input-password' | trans">
             <span [hidden]="!joinForm.controls.password.invalid || !joinForm.controls.password.touched" class="has-error-caption" [innerHTML]="'form-error-password-minlength' | trans"></span>
-            <!-- <ng2-password-strength-bar *ngIf="passwordStrength" [passwordToCheck]="joinForm.value.password"> </ng2-password-strength-bar> -->
+            <ng2-password-strength-bar *ngIf="joinForm.controls.anonymus.value" [passwordToCheck]="joinForm.controls.password.value"> </ng2-password-strength-bar>
             <a (click)="passRecover()" *ngIf="hasAddonLink" class="has-addon-caption" [innerHTML]="'join-form-pass-recover' | trans"></a>
           </div>
           <div *ngIf="formState.value === 3" class="remember checkbox left">

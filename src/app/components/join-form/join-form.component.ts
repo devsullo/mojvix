@@ -1,5 +1,6 @@
+import { ScrollService } from './../../shared/scroll.service';
 import { JoinFormService } from './join-form.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -13,12 +14,13 @@ import {
   templateUrl: './join-form.component.html',
   styleUrls: ['./join-form.component.scss']
 })
-export class JoinFormComponent implements OnInit {
+export class JoinFormComponent implements OnInit, AfterViewInit {
   joinForm: FormGroup;
   vixnamePattern = '^[a-zA-Z0-9]{3,15}$';
   constructor(
     private fb: FormBuilder,
-    private joinFormService: JoinFormService
+    private joinFormService: JoinFormService,
+    private scrollService: ScrollService
   ) {}
 
   get formState(): AbstractControl {
@@ -32,6 +34,10 @@ export class JoinFormComponent implements OnInit {
       anonymus: false,
       state: 0
     });
+  }
+
+  ngAfterViewInit() {
+    this.scrollService.scrollBottom('#seance-body-area');
   }
 
   formChanges(): void {
@@ -60,8 +66,14 @@ export class JoinFormComponent implements OnInit {
       });
       fild.anonymus.valueChanges.subscribe(val => {
         if (val) {
-          this.joinForm.addControl('email', new FormControl('', Validators.required));
-          this.joinForm.addControl('password', new FormControl('', Validators.required));
+          this.joinForm.addControl(
+            'email',
+            new FormControl('', [Validators.required, Validators.email])
+          );
+          this.joinForm.addControl(
+            'password',
+            new FormControl('', [Validators.required, Validators.minLength(6)])
+          );
         }
       });
     }
@@ -91,7 +103,12 @@ export class JoinFormComponent implements OnInit {
     if (this.joinForm) {
       vixname = this.joinForm.controls.vixname.value;
     }
-    const fixControls = { vixname: [vixname, [Validators.required, Validators.pattern(this.vixnamePattern)]] };
+    const fixControls = {
+      vixname: [
+        vixname,
+        [Validators.required, Validators.pattern(this.vixnamePattern)]
+      ]
+    };
     const newControls = Object.assign(fixControls, controls);
     this.joinForm = this.fb.group(newControls);
     this.formChanges();

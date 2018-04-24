@@ -33,7 +33,7 @@ export class TitlesComponent implements OnInit {
     this.scroll.update();
   }
 
-  calcScrollHeight() {
+  calcScrollHeight(): void {
     this.pageHeight = window.innerHeight - 112;
   }
 
@@ -57,7 +57,7 @@ export class TitlesComponent implements OnInit {
     });
   }
 
-  closeAllExpandAreas() {
+  closeAllExpandAreas(): void {
     this.expandArea.forEach( el => el.close() );
   }
 

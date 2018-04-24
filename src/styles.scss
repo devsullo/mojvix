@@ -4022,7 +4022,6 @@ a.moods {
   font-weight: 600;
 }
 
-
 vg-player{
   .icon {
     &:before {
@@ -4033,4 +4032,17 @@ vg-player{
       top: inherit;
     }
   }
+}
+
+ng2-password-strength-bar{
+	#strengthBar{
+		position: absolute;
+		bottom: 0;
+		left: -15px;
+	}
+	.point{
+		height: 1px !important;
+		margin-right: 5px !important;
+		width: 50px !important;
+	}
 }

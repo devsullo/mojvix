@@ -24,7 +24,7 @@ export class SeanceComponent implements OnInit {
     this.scroll.update();
   }
 
-  calcScrollHeight() {
+  calcScrollHeight(): void {
     this.pageHeight = window.innerHeight - 114;
   }
 }

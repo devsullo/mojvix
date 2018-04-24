@@ -101,10 +101,10 @@ window.__VIX_MESSAGES__ = {
   'link-attend': 'Attend',
   'link-subscribe': 'Subscribe',
 
-  'form-error-vixname-pattern': 'vixname must be 3-15 chars long',
-  'form-error-invalid-email': 'wrong email',
-  'form-error-email-notFound': 'email notFound',
-  'form-error-password-minlength': 'password minlength',
+  'form-error-vixname-pattern': 'Vixname must be 3-15 chars long',
+  'form-error-invalid-email': 'Wrong email',
+  'form-error-email-notFound': 'Email notFound',
+  'form-error-password-minlength': 'Password minlength',
 
   'directive-seance-chat-get-nickname': 'Get Vixname',
   'directive-seance-chat-pary-general': 'General',
