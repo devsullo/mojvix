@@ -1,3 +1,4 @@
+import { TransPipe } from './../../shared/pipes/trans.pipe';
 import { ScrollService } from './../../shared/scroll.service';
 import { JoinFormService } from './join-form.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
@@ -16,11 +17,13 @@ import {
 })
 export class JoinFormComponent implements OnInit, AfterViewInit {
   joinForm: FormGroup;
+  vixnameStatus: string;
   vixnamePattern = '^[a-zA-Z0-9]{3,15}$';
   constructor(
     private fb: FormBuilder,
     private joinFormService: JoinFormService,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private transPipe: TransPipe
   ) {}
 
   get formState(): AbstractControl {
@@ -47,6 +50,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
       if (RegExp(this.vixnamePattern).test(val)) {
         this.checkVixname(val);
       } else {
+        this.vixnameStatus = '';
         fild.anonymus.setValue(false);
         if (formState.value !== 0) {
           formState.setValue(0);
@@ -81,6 +85,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
 
   checkVixname(val): void {
     if (this.joinFormService.checkVixname(val)) {
+      this.vixnameStatus = this.transPipe.transform('vixname-available');
       if (this.formState.value < 1) {
         this.formInit({
           age: ['', Validators.required],
@@ -90,6 +95,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
         });
       }
     } else {
+      this.vixnameStatus = '';
       this.formInit({
         password: ['', Validators.required],
         anonymus: false,

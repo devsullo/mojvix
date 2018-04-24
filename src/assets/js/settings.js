@@ -11,9 +11,9 @@ window.__VIX_SETTINGS__ = {
 
 window.__VIX_MESSAGES__ = {
   vixname: 'vixname',
-  'vixname-available': 'vixname available',
-  'vixname-unavailable': 'vixname unavailable',
-  'vixname-temp-unavailable': 'vixname temp. unavailable',
+  'vixname-available': 'Vixname available',
+  'vixname-unavailable': 'Vixname has benn taken',
+  'vixname-temp-unavailable': 'Vixname temp. unavailable',
 
   'password-change-heading': 'Change password',
 

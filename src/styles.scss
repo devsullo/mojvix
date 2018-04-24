@@ -3048,8 +3048,8 @@ a.moods {
       top: 0;
       right: 20px;
       top: 50%;
-      font-size: 20px;
-      margin-top: -10px;
+      font-size: 17px;
+      margin-top: -5px;
       color: #7789b3;
       +input {
         padding-right: 35%;
@@ -3113,6 +3113,9 @@ a.moods {
   }
   .radio-group {
     padding: 28px 24px 23px 24px;
+    &.lap {
+      padding: 29px 24px 24px 24px;
+    }
     span {
       font-size: 18px;
     }
