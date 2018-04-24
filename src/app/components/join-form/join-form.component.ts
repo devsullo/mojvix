@@ -26,8 +26,12 @@ export class JoinFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.formInit();
-    this.formChanges();
+    this.formInit({
+      age: ['', [Validators.required]],
+      sex: ['', [Validators.required]],
+      anonymus: false,
+      state: 0
+    });
   }
 
   formChanges(): void {
@@ -43,48 +47,54 @@ export class JoinFormComponent implements OnInit {
         }
       }
     });
-    fild.age.valueChanges.subscribe(val => {
-      if (val && formState.value !== 3) {
-        formState.setValue(2);
-      }
-    });
-    fild.sex.valueChanges.subscribe(val => {
-      if (val) {
-        formState.setValue(3);
-      }
-    });
-    formState.valueChanges.subscribe(val => {});
-  }
-
-  checkVixname(val): void {
-    const fild = this.joinForm.controls;
-    const formState = this.formState;
-    if (this.joinFormService.checkVixname(val)) {
-      if (formState.value < 1) {
-        formState.setValue(1);
-        fild.age.setValue('');
-        fild.sex.setValue('');
-      }
-    } else {
-      formState.setValue(-1);
-      fild.password.setValue('');
-      fild.anonymus.setValue(false);
+    if (formState.value >= 0) {
+      fild.age.valueChanges.subscribe(val => {
+        if (val && formState.value !== 3) {
+          formState.setValue(2);
+        }
+      });
+      fild.sex.valueChanges.subscribe(val => {
+        if (val) {
+          formState.setValue(3);
+        }
+      });
+      fild.anonymus.valueChanges.subscribe(val => {
+        if (val) {
+          this.joinForm.addControl('email', new FormControl('', Validators.required));
+          this.joinForm.addControl('password', new FormControl('', Validators.required));
+        }
+      });
     }
   }
 
-  formInit(): void {
-    this.joinForm = this.fb.group({
-      vixname: [
-        '',
-        [Validators.required, Validators.pattern(this.vixnamePattern)]
-      ],
-      age: ['', [Validators.required]],
-      sex: ['', [Validators.required]],
-      email: [''],
-      password: '',
-      anonymus: false,
-      state: 0
-    });
+  checkVixname(val): void {
+    if (this.joinFormService.checkVixname(val)) {
+      if (this.formState.value < 1) {
+        this.formInit({
+          age: ['', Validators.required],
+          sex: ['', Validators.required],
+          anonymus: false,
+          state: 1
+        });
+      }
+    } else {
+      this.formInit({
+        password: ['', Validators.required],
+        anonymus: false,
+        state: -1
+      });
+    }
+  }
+
+  formInit(controls: any): void {
+    let vixname = '';
+    if (this.joinForm) {
+      vixname = this.joinForm.controls.vixname.value;
+    }
+    const fixControls = { vixname: [vixname, [Validators.required, Validators.pattern(this.vixnamePattern)]] };
+    const newControls = Object.assign(fixControls, controls);
+    this.joinForm = this.fb.group(newControls);
+    this.formChanges();
   }
 
   join() {
