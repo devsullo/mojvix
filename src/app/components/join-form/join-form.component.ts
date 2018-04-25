@@ -9,6 +9,8 @@ import {
   FormControl,
   AbstractControl,
 } from '@angular/forms';
+import { SeanceService } from '../../pages/seance/seance.service';
+import { IMediaSubscriptions } from 'videogular2/src/core/vg-media/i-playable';
 
 @Component({
   selector: 'app-join-form',
@@ -23,7 +25,8 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private joinFormService: JoinFormService,
     private scrollService: ScrollService,
-    private transPipe: TransPipe
+    private transPipe: TransPipe,
+    private seanceService: SeanceService
   ) {}
 
   get formState(): AbstractControl {
@@ -37,11 +40,15 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
       anonymus: false,
       state: 0
     });
+    this.seanceService.playerReady().then(api => {
+      const subscriptions: IMediaSubscriptions = api.subscriptions;
+      subscriptions.canPlay.subscribe(val => {
+        this.scrollService.scrollBottom('#seance-body-area');
+      });
+    });
   }
 
-  ngAfterViewInit() {
-    this.scrollService.scrollBottom('#seance-body-area');
-  }
+  ngAfterViewInit() { }
 
   formChanges(): void {
     const fild = this.joinForm.controls;
