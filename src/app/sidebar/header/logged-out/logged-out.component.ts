@@ -7,14 +7,16 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./logged-out.component.scss']
 })
 export class LoggedOutComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router
+  ) {}
 
   ngOnInit() {}
 
   joinNow() {
     const url = this.router.url.split('/');
     if (url[1] === 'seance') {
-      this.router.navigate(['seance/' + url[2] + '/join']);
+      this.router.navigate(['seance/' + url[2] + '/join', ]);
     } else {
       this.router.navigate(['join']);
     }

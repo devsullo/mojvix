@@ -48,7 +48,9 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     });
   }
 
-  ngAfterViewInit() { }
+  ngAfterViewInit() {
+    this.scrollService.scrollBottom('#seance-body-area');
+  }
 
   formChanges(): void {
     const fild = this.joinForm.controls;

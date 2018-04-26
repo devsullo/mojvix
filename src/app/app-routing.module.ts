@@ -4,14 +4,15 @@ import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(([
-      { path: '', component: TitlesComponent, pathMatch: 'full' },
-      { path: '**', redirectTo: '/', pathMatch: 'full' },
-    ])),
+    RouterModule.forRoot(
+      [
+        { path: '', component: TitlesComponent, pathMatch: 'full' },
+        { path: '**', redirectTo: '/', pathMatch: 'full' }
+      ],
+      { enableTracing: true }
+    )
   ],
-  exports: [
-    RouterModule
-  ],
+  exports: [RouterModule],
   declarations: []
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -1,3 +1,4 @@
+import { EmptyComponent } from './../../components/empty/empty.component';
 import { JoinFormComponent } from './../../components/join-form/join-form.component';
 import { VgCoreModule } from 'videogular2/core';
 import { VgControlsModule } from 'videogular2/controls';
@@ -17,16 +18,15 @@ import { SeanceComponent } from './seance/seance.component';
     RouterModule.forChild([
       {
         path: 'seance/:slug',
-        component: SeanceComponent
-      },
-      {
-        path: 'seance/:slug/join',
         component: SeanceComponent,
         children: [
           {
             path: '',
-            component: JoinFormComponent,
-            outlet: 'seance-body'
+            component: EmptyComponent
+          },
+          {
+            path: 'join',
+            component: JoinFormComponent
           }
         ]
       }
