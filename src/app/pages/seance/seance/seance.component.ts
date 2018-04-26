@@ -1,5 +1,6 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { ScrollService } from '../../../shared/scroll.service';
+import { ScrollService } from '../../../shared/services/scroll.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-seance',
@@ -10,12 +11,17 @@ export class SeanceComponent implements OnInit {
   pageHeight: number;
   scroll: any;
   constructor(
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private location: Location
   ) {}
 
   ngOnInit() {
     this.calcScrollHeight();
     this.scroll = this.scrollService.init('#seance-body-area');
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 
   @HostListener('window:resize', ['$event'])

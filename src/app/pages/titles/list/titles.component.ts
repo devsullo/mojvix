@@ -1,6 +1,6 @@
 import { element } from 'protractor';
 import { TitleComponent } from './../single/title.component';
-import { ScrollService } from './../../../shared/scroll.service';
+import { ScrollService } from './../../../shared/services/scroll.service';
 import { Component, OnInit, HostListener, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { ITitle } from '../title';
 import { TitlesService } from '../titles.service';

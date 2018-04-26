@@ -1,5 +1,5 @@
+import { RouteService } from './../../../shared/services/route.service';
 import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-logged-out',
@@ -8,17 +8,12 @@ import { Router, NavigationEnd } from '@angular/router';
 })
 export class LoggedOutComponent implements OnInit {
   constructor(
-    private router: Router
+    private routeService: RouteService
   ) {}
 
   ngOnInit() {}
 
   joinNow() {
-    const url = this.router.url.split('/');
-    if (url[1] === 'seance') {
-      this.router.navigate(['seance/' + url[2] + '/join']);
-    } else {
-      this.router.navigate(['join']);
-    }
+    this.routeService.navigateSeanceOrMain('join');
   }
 }

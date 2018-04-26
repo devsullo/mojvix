@@ -1,4 +1,4 @@
-import { ScrollService } from './../../../shared/scroll.service';
+import { ScrollService } from './../../../shared/services/scroll.service';
 import { BlurbsService } from './../blurbs.service';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { IBlurb } from '../blurb';

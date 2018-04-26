@@ -1,5 +1,6 @@
+import { RouteService } from './../../shared/services/route.service';
 import { TransPipe } from './../../shared/pipes/trans.pipe';
-import { ScrollService } from './../../shared/scroll.service';
+import { ScrollService } from './../../shared/services/scroll.service';
 import { JoinFormService } from './join-form.service';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import {
@@ -11,7 +12,7 @@ import {
 } from '@angular/forms';
 import { SeanceService } from '../../pages/seance/seance.service';
 import { IMediaSubscriptions } from 'videogular2/src/core/vg-media/i-playable';
-import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-join-form',
@@ -28,7 +29,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     private scrollService: ScrollService,
     private transPipe: TransPipe,
     private seanceService: SeanceService,
-    private router: Router
+    private routeService: RouteService
   ) {}
 
   get formState(): AbstractControl {
@@ -138,11 +139,6 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   fbConnect() {}
 
   loadPassRecoverFrom() {
-    const url = this.router.url.split('/');
-    if (url[1] === 'seance') {
-      this.router.navigate(['seance/' + url[2] + '/password-recover']);
-    } else {
-      this.router.navigate(['password-recover']);
-    }
+    this.routeService.navigateSeanceOrMain('password-recover');
   }
 }

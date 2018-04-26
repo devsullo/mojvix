@@ -1,7 +1,7 @@
 <section id="seance-area" ng-class="{fixed: fixedPage}" class="page-style-a">
   <header class="center-area-cont">
     <div class="left">
-      <span [routerLink]="['/']" class="btn btn-nav back"></span>
+      <span (click)="goBack()" class="btn btn-nav back"></span>
     </div>
     <div class="right">
       <!-- <a ng-click="template = templates[0]" class="btn btn-nav buy">Buy ticket on this movie</a> -->
@@ -11,7 +11,6 @@
   <section [style.height.px]="pageHeight" id="seance-body-area">
     <div class="center-area-cont">
       <app-player></app-player>
-
       <router-outlet></router-outlet>
     </div>
   </section>
