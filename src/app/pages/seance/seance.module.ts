@@ -1,3 +1,4 @@
+import { PassRecoverFormComponent } from './../../components/pass-recover-form/pass-recover-form.component';
 import { EmptyComponent } from './../../components/empty/empty.component';
 import { JoinFormComponent } from './../../components/join-form/join-form.component';
 import { VgCoreModule } from 'videogular2/core';
@@ -27,6 +28,10 @@ import { SeanceComponent } from './seance/seance.component';
           {
             path: 'join',
             component: JoinFormComponent
+          },
+          {
+            path: 'password-recover',
+            component: PassRecoverFormComponent
           }
         ]
       }

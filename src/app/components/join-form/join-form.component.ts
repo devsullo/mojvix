@@ -11,6 +11,7 @@ import {
 } from '@angular/forms';
 import { SeanceService } from '../../pages/seance/seance.service';
 import { IMediaSubscriptions } from 'videogular2/src/core/vg-media/i-playable';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-join-form',
@@ -26,7 +27,8 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     private joinFormService: JoinFormService,
     private scrollService: ScrollService,
     private transPipe: TransPipe,
-    private seanceService: SeanceService
+    private seanceService: SeanceService,
+    private router: Router
   ) {}
 
   get formState(): AbstractControl {
@@ -134,4 +136,13 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   }
 
   fbConnect() {}
+
+  loadPassRecoverFrom() {
+    const url = this.router.url.split('/');
+    if (url[1] === 'seance') {
+      this.router.navigate(['seance/' + url[2] + '/password-recover']);
+    } else {
+      this.router.navigate(['password-recover']);
+    }
+  }
 }

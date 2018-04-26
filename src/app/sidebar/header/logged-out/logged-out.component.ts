@@ -16,7 +16,7 @@ export class LoggedOutComponent implements OnInit {
   joinNow() {
     const url = this.router.url.split('/');
     if (url[1] === 'seance') {
-      this.router.navigate(['seance/' + url[2] + '/join', ]);
+      this.router.navigate(['seance/' + url[2] + '/join']);
     } else {
       this.router.navigate(['join']);
     }

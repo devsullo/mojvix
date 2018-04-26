@@ -8,8 +8,7 @@ import { RouterModule } from '@angular/router';
       [
         { path: '', component: TitlesComponent, pathMatch: 'full' },
         { path: '**', redirectTo: '/', pathMatch: 'full' }
-      ],
-      { enableTracing: true }
+      ]
     )
   ],
   exports: [RouterModule],

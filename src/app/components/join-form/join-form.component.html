@@ -48,7 +48,7 @@
             <input formControlName="password" name="password" class="ex-lg" type="password" [placeholder]="'input-password' | trans">
             <span [hidden]="!joinForm.controls.password.invalid || !joinForm.controls.password.touched" class="has-error-caption" [innerHTML]="'form-error-password-minlength' | trans"></span>
             <ng2-password-strength-bar *ngIf="joinForm.controls.anonymus.value" [passwordToCheck]="joinForm.controls.password.value"> </ng2-password-strength-bar>
-            <a (click)="passRecover()" *ngIf="hasAddonLink" class="has-addon-caption" [innerHTML]="'join-form-pass-recover' | trans"></a>
+            <a (click)="loadPassRecoverFrom()" *ngIf="formState.value === -1" class="has-addon-caption" [innerHTML]="'join-form-pass-recover' | trans"></a>
           </div>
           <div *ngIf="formState.value === 3" class="remember checkbox left">
             <input formControlName="anonymus" name="anonymus" type="checkbox" id="labelId_1">

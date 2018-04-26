@@ -3135,7 +3135,7 @@ a.moods {
 }
 
 // Sign in and join
-.join-template{
+.join-template {
 	color:#5a6378;
   h2 {
     font-size: 36px;
@@ -3144,8 +3144,12 @@ a.moods {
     font-family: 'Helvetica-Light';
   }
 	.btn-join{
-		margin: 40px 0 40px 8px;
-	}
+    margin: 40px 0 40px 8px;
+  }
+  .btn-back {
+    margin: 40px 0 40px 0;
+    opacity: 0.8;
+  }
 	.btn-close-from{
 		margin-top: 40px;
 		margin-left: 8px;

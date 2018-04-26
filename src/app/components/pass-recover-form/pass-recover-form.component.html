@@ -1,0 +1,20 @@
+<section class="page-style-a fixed">
+  <section class="center-area-cont">
+    <div class="page-wrap dark page-padding">
+      <section class="join-template">
+        <h2 [innerHTML]="'pass-recover-heading' | trans"></h2>
+        <form [formGroup]="passRecoverForm" (ngSubmit)="passRecover()" class="pay-form form-style-a dark">
+          <div [ngClass]="{ 'has-error' : email.errors && (email.dirty || email.touched) || formErrors.email.notFound }" class="inp-group">
+            <input formControlName="email" name="email" class="ex-lg" type="email" [placeholder]="'input-email' | trans">
+            <span *ngIf="email.errors && (email.dirty || email.touched)" [hidden]="!email.errors.email" class="has-error-caption" [innerHTML]="'form-error-invalid-email' | trans"></span>
+            <span *ngIf="formErrors.email.notFound && !email.errors" class="has-error-caption" [innerHTML]="'form-error-email-notFound' | trans"> </span>
+          </div>
+          <div class="cf">
+            <a (click)="goBack()" class="btn btn-back lg left" [innerHTML]="'button-back' | trans"></a>
+            <button [disabled]="passRecoverForm.invalid" type="submit" class="btn btn-join lg right" [innerHTML]="'button-recover' | trans"></button>
+          </div>
+        </form>
+      </section>
+    </div>
+  </section>
+</section>
