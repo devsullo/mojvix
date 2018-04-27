@@ -8,7 +8,9 @@ export class ScrollService {
   constructor() {}
 
   init(selector: string) {
-    this.els[selector] = new PerfectScrollbar(selector);
+    this.els[selector] = new PerfectScrollbar(selector, {
+      suppressScrollX: true
+    });
     return this.els[selector];
   }
 

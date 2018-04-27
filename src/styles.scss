@@ -979,6 +979,8 @@ textarea {
   padding-bottom: 56.25%;
   padding-top: 25px;
   height: 0;
+  background: black;
+  opacity: 0.8;
 }
 
 .videoWrapper iframe,
@@ -1416,11 +1418,26 @@ textarea {
       margin-left: 2%;
       width: 46%;
       float: left;
+      margin-bottom: 34px;
       @media screen and (max-width: 1080px) {
         width: 98%;
-        margin: auto;
+        margin-left: auto;
+        margin-right: auto;
         float: none;
         margin-top: 20px;
+        padding-bottom: 2.3%;
+      }
+      .bottom-meta{
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        width: 46%;
+        padding-right: 2%;
+        padding-bottom: 2.3%;
+        @media screen and (max-width: 1080px) {
+          width: 100%;
+          padding-right: 6%;
+        }
       }
       h4 {
         font-weight: bold;
@@ -1534,7 +1551,7 @@ textarea {
       .left,
       .right {
         margin-top: 12px;
-        margin-bottom: 17px;
+        // margin-bottom: 17px;
       }
       .right {
         padding-left: 26px;

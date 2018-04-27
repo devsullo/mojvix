@@ -3,7 +3,8 @@
   <a class="close" (click)="close()"></a>
   <div class="left-show">
     <div class="videoWrapper">
-      <iframe src="https://www.youtube.com/watch?v=DMehBmBJsMM" frameborder="0" allowfullscreen="" style="pointer-events: auto;"></iframe>
+      <!-- <iframe src="https://www.youtube.com/watch?v=DMehBmBJsMM" frameborder="0" allowfullscreen="" style="pointer-events: auto;"></iframe> -->
+      <youtube-player (ready)="savePlayer($event)" (change)="onPlayerStateChange($event)"></youtube-player>
     </div>
   </div>
   <div class="film-overview">
@@ -50,19 +51,21 @@
       </div>
     </div>
     <a [routerLink]="['/seance/the-search']" class="attend-to-show btn btn-sky-blue">Attend To Show</a>
-    <div class="divider"></div>
-    <div class="left">
-      <ul class="socials">
-        <li *ngFor="let social of title.socials" class="{{ social.name }}">
-          <a target="_blank" [href]="social.url"></a>
-        </li>
-      </ul>
-      <span class="copy">title.copy</span>
-    </div>
-    <div class="right">
-      <ul class="mood-icons">
-        <li *ngFor="let mood of title.moods" class="icon-{{ mood }}"></li>
-      </ul>
+    <div class="bottom-meta">
+      <div class="divider"></div>
+      <div class="left">
+        <ul class="socials">
+          <li *ngFor="let social of title.socials" class="{{ social.name }}">
+            <a target="_blank" [href]="social.url"></a>
+          </li>
+        </ul>
+        <span class="copy">title.copy</span>
+      </div>
+      <div class="right">
+        <ul class="mood-icons">
+          <li *ngFor="let mood of title.moods" class="icon-{{ mood }}"></li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>

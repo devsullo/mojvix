@@ -4,6 +4,7 @@ import { EscapeHtmlPipe } from './pipes/escape-html.pipe';
 import { TransPipe } from './pipes/trans.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
+import { YoutubePlayerModule } from 'ng2-youtube-player';
 
 @NgModule({
   imports: [CommonModule],
@@ -14,7 +15,8 @@ import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
     ReactiveFormsModule,
     EscapeHtmlPipe,
     TransPipe,
-    PasswordStrengthBarModule
+    PasswordStrengthBarModule,
+    YoutubePlayerModule
   ]
 })
 export class SharedModule {}

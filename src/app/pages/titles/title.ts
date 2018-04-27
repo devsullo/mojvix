@@ -3,6 +3,7 @@ export interface ITitle {
   id?: number;
   title: string;
   poster: string;
+  videoSrc: string;
   genre: string;
   hashtags: string[];
   director: string;
