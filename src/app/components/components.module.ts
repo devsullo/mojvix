@@ -10,8 +10,16 @@ import { PassRecoverFormComponent } from './pass-recover-form/pass-recover-form.
   imports: [
     SharedModule,
     RouterModule.forChild([
-      { path: 'join', component: JoinFormComponent },
-      { path: 'password-recover', component: PassRecoverFormComponent }
+      {
+        path: 'join',
+        component: JoinFormComponent,
+        data: { formStyle: 'light' }
+      },
+      {
+        path: 'password-recover',
+        component: PassRecoverFormComponent,
+        data: { formStyle: 'light' }
+      }
     ])
   ],
   declarations: [JoinFormComponent, EmptyComponent, PassRecoverFormComponent],

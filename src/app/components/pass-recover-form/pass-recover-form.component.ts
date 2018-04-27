@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { Location } from '@angular/common';
@@ -12,9 +13,11 @@ export class PassRecoverFormComponent implements OnInit {
     email: { notFound: false }
   };
   passRecoverForm: FormGroup;
+  formStyle: 'dark';
   constructor(
     private fb: FormBuilder,
-    private location: Location
+    private location: Location,
+    private route: ActivatedRoute
   ) {}
 
   get email(): AbstractControl {
@@ -28,6 +31,9 @@ export class PassRecoverFormComponent implements OnInit {
       if (val) {
         this.formErrors.email.notFound = false;
       }
+    });
+    this.route.data.subscribe(data => {
+      this.formStyle = data.formStyle;
     });
   }
 

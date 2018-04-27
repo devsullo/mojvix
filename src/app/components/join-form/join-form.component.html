@@ -1,9 +1,9 @@
 <section class="page-style-a fixed">
   <section class="center-area-cont">
-    <div class="page-wrap dark page-padding">
+    <div class="page-wrap {{ formStyle }} page-padding">
       <section class="join-template">
         <h2 [innerHTML]="'join-form-heading' | trans"></h2>
-        <form [formGroup]="joinForm" (ngSubmit)="join()" class="pay-form form-style-a dark">
+        <form [formGroup]="joinForm" (ngSubmit)="join()" class="pay-form form-style-a {{ formStyle }}">
           <div [ngClass]="{'has-error' : joinForm.controls.vixname.invalid && joinForm.controls.vixname.touched}" class="inp-group">
             <span class="status">{{ vixnameStatus }}</span>
             <input formControlName="vixname" id="vixname-inp" name="vixname" class="ex-lg" type="text" [placeholder]="'input-vixname' | trans" autocomplete="off">

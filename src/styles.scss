@@ -3090,7 +3090,7 @@ a.moods {
 			margin-bottom: 23px;
 		}
 		&.has-error{
-			border-bottom:1px solid #c0392b;
+			border-bottom:1px solid #c0392b !important;
 			color:#c0392b;
 			margin-bottom: 23px;
 			input{
@@ -3126,7 +3126,7 @@ a.moods {
       color: #5a6378;
     }
     .radio-a label {
-      color: #d3d6df;
+      color: #6d6e73;
     }
     .inp-group {
       border-bottom: 1px solid #d5d9e0;

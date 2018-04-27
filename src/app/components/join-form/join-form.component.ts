@@ -12,6 +12,7 @@ import {
 } from '@angular/forms';
 import { SeanceService } from '../../pages/seance/seance.service';
 import { IMediaSubscriptions } from 'videogular2/src/core/vg-media/i-playable';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -22,6 +23,7 @@ import { IMediaSubscriptions } from 'videogular2/src/core/vg-media/i-playable';
 export class JoinFormComponent implements OnInit, AfterViewInit {
   joinForm: FormGroup;
   vixnameStatus: string;
+  formStyle: 'dark';
   vixnamePattern = '^[a-zA-Z0-9]{3,15}$';
   constructor(
     private fb: FormBuilder,
@@ -29,7 +31,8 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     private scrollService: ScrollService,
     private transPipe: TransPipe,
     private seanceService: SeanceService,
-    private routeService: RouteService
+    private routeService: RouteService,
+    private route: ActivatedRoute
   ) {}
 
   get formState(): AbstractControl {
@@ -48,6 +51,9 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
       subscriptions.canPlay.subscribe(val => {
         this.scrollService.scrollBottom('#seance-body-area');
       });
+    });
+    this.route.data.subscribe(data => {
+      this.formStyle = data.formStyle;
     });
   }
 
@@ -90,6 +96,9 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
             'password',
             new FormControl('', [Validators.required, Validators.minLength(6)])
           );
+        } else {
+          this.joinForm.removeControl('email');
+          this.joinForm.removeControl('password');
         }
       });
     }
