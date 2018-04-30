@@ -11,6 +11,7 @@ export class TitleComponent implements OnInit, AfterViewInit {
   title: ITitle;
   expanded = false;
   player: YT.Player;
+  arrowMarginLeft = 0;
   constructor() {}
 
   ngOnInit() {}
@@ -27,7 +28,13 @@ export class TitleComponent implements OnInit, AfterViewInit {
     // console.log('player state', event.data);
   }
 
-  show() {
+  show(i: number) {
+    const boxOffice = document.querySelector('#box-office');
+    const title = document.querySelector('.title').clientWidth;
+    const rowNum = i % 3 || 3;
+    const titlePadding = boxOffice.clientWidth * 2.3 / 100;
+    const halfPoster = title / 2;
+    this.arrowMarginLeft = rowNum * title - halfPoster - 10 + rowNum * titlePadding - titlePadding;
     this.expanded = true;
     if (this.player) {
       this.player.loadVideoById(this.title.videoSrc);

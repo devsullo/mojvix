@@ -1,5 +1,5 @@
 <section id="expanded-title" *ngIf="expanded">
-  <i class="top-arrow"></i>
+  <i class="top-arrow" [style.margin-left.px]="arrowMarginLeft"></i>
   <a class="close" (click)="close()"></a>
   <div class="left-show">
     <div class="videoWrapper">

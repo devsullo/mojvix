@@ -48,7 +48,7 @@ export class TitlesComponent implements OnInit {
     this.closeAllExpandAreas();
     const expandArea = this.expandArea.toArray()[row];
     expandArea.title = this.titles[i];
-    expandArea.show();
+    expandArea.show(i + 1);
     setTimeout(() => {
       const top = document
           .querySelector('#expanded-title')
