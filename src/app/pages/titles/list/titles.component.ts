@@ -14,6 +14,7 @@ export class TitlesComponent implements OnInit {
   titles: ITitle[];
   pageHeight: number;
   scroll: any;
+  colls = 3;
   @ViewChildren('expandArea') expandArea: QueryList<TitleComponent>;
 
   constructor(
@@ -35,11 +36,18 @@ export class TitlesComponent implements OnInit {
 
   calcScrollHeight(): void {
     this.pageHeight = window.innerHeight - 112;
+    const boxOfficeEl =  document.querySelector('#box-office');
+    console.log(boxOfficeEl.clientWidth);
+    if (boxOfficeEl.clientWidth > 1240) {
+      this.colls = 4;
+    } else {
+      this.colls = 3;
+    }
   }
 
   expandTitle(i: number): void {
     let row = 0;
-    const T = (i + 1) / 3;
+    const T = (i + 1) / this.colls;
     if (Number.isInteger(T)) {
       row = T - 1;
     } else {
@@ -48,7 +56,7 @@ export class TitlesComponent implements OnInit {
     this.closeAllExpandAreas();
     const expandArea = this.expandArea.toArray()[row];
     expandArea.title = this.titles[i];
-    expandArea.show(i + 1);
+    expandArea.show(i + 1, this.colls);
     setTimeout(() => {
       const top = document
           .querySelector('#expanded-title')
@@ -62,12 +70,12 @@ export class TitlesComponent implements OnInit {
   }
 
   detectExpandArea(i: number, length: number): boolean {
-    if (length % 3 !== 0) {
+    if (length % this.colls !== 0) {
       if (i === length) {
         return true;
       }
     }
-    if (i % 3 === 0) {
+    if (i % this.colls === 0) {
       return true;
     }
   }

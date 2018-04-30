@@ -73,7 +73,7 @@
     </div>
   </header>
   <div id="box-office" [style.height.px]="pageHeight">
-    <div class="titles center-area-cont sort-3">
+    <div class="titles center-area-cont sort-{{ colls }}">
       <div *ngFor="let title of titles; let i = index">
         <div class="title" (click)="expandTitle(i)">
           <div class="title-wrapper">
