@@ -42,7 +42,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.formInit({
       age: ['', [Validators.required]],
-      sex: ['', [Validators.required]],
+      gender: ['', [Validators.required]],
       anonymus: false,
       state: 0
     });
@@ -81,7 +81,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
           formState.setValue(2);
         }
       });
-      fild.sex.valueChanges.subscribe(val => {
+      fild.gender.valueChanges.subscribe(val => {
         if (val) {
           formState.setValue(3);
         }
@@ -110,7 +110,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
       if (this.formState.value < 1) {
         this.formInit({
           age: ['', Validators.required],
-          sex: ['', Validators.required],
+          gender: ['', Validators.required],
           anonymus: false,
           state: 1
         });
@@ -141,8 +141,35 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     this.formChanges();
   }
 
-  join() {
-    console.log(this.joinForm);
+  join(): void {
+    console.log(this.joinForm.value);
+    if (this.joinForm.value.state === -1) {
+      this.login();
+    } else {
+      this.register();
+    }
+  }
+
+  login() {
+    this.joinFormService.login(this.joinForm.value).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  register() {
+    this.joinFormService.register(this.joinForm.value).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log(err);
+      }
+    );
   }
 
   fbConnect() {}

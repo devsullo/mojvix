@@ -5,6 +5,7 @@ import { TransPipe } from './pipes/trans.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { YoutubePlayerModule } from 'ng2-youtube-player';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [CommonModule],
@@ -16,7 +17,8 @@ import { YoutubePlayerModule } from 'ng2-youtube-player';
     EscapeHtmlPipe,
     TransPipe,
     PasswordStrengthBarModule,
-    YoutubePlayerModule
+    YoutubePlayerModule,
+    HttpClientModule
   ]
 })
 export class SharedModule {}

@@ -37,7 +37,6 @@ export class TitlesComponent implements OnInit {
   calcScrollHeight(): void {
     this.pageHeight = window.innerHeight - 112;
     const boxOfficeEl =  document.querySelector('#box-office');
-    console.log(boxOfficeEl.clientWidth);
     if (boxOfficeEl.clientWidth > 1240) {
       this.colls = 4;
     } else {
