@@ -8,7 +8,11 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
+    "serve:ssr": "node dist/server.js",
+    "build:client-and-server-bundles": "ng build --prod && ng build --prod --app 1 --output-hashing=false",
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors"
   },
   "private": true,
   "dependencies": {
@@ -20,12 +24,16 @@
     "@angular/http": "^5.2.0",
     "@angular/platform-browser": "^5.2.0",
     "@angular/platform-browser-dynamic": "^5.2.0",
+    "@angular/platform-server": "^5.2.10",
     "@angular/router": "^5.2.0",
+    "@nguniversal/express-engine": "^5.0.0",
+    "@nguniversal/module-map-ngfactory-loader": "^5.0.0",
     "@types/youtube": "0.0.32",
     "core-js": "^2.4.1",
     "ng2-password-strength-bar": "^1.2.0",
     "perfect-scrollbar": "^1.3.0",
     "rxjs": "^5.5.6",
+    "ts-loader": "^3.5.0",
     "videogular2": "^6.0.8",
     "youtube": "^0.1.0",
     "zone.js": "^0.8.19"
