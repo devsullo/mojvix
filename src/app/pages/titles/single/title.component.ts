@@ -1,6 +1,7 @@
 import { ITitle } from './../title';
 import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-title',
@@ -29,15 +30,17 @@ export class TitleComponent implements OnInit, AfterViewInit {
   }
 
   show(i: number, calls: number) {
-    const boxOffice = document.querySelector('#box-office');
-    const title = document.querySelector('.title').clientWidth;
-    const rowNum = i % calls || calls;
-    const titlePadding = boxOffice.clientWidth * 2.3 / 100;
-    const halfPoster = title / 2;
-    this.arrowMarginLeft = rowNum * title - halfPoster - 10 + rowNum * titlePadding - titlePadding;
-    this.expanded = true;
-    if (this.player) {
-      this.player.loadVideoById(this.title.videoSrc);
+    if (isPlatformBrowser) {
+      const boxOffice = document.querySelector('#box-office');
+      const title = document.querySelector('.title').clientWidth;
+      const rowNum = i % calls || calls;
+      const titlePadding = boxOffice.clientWidth * 2.3 / 100;
+      const halfPoster = title / 2;
+      this.arrowMarginLeft = rowNum * title - halfPoster - 10 + rowNum * titlePadding - titlePadding;
+      this.expanded = true;
+      if (this.player) {
+        this.player.loadVideoById(this.title.videoSrc);
+      }
     }
   }
 

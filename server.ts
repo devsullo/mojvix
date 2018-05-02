@@ -1,3 +1,5 @@
+const domino = require('domino');
+
 // These are important and needed before anything else
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
@@ -22,6 +24,10 @@ const DIST_FOLDER = join(process.cwd(), 'dist');
 const template = readFileSync(
   join(DIST_FOLDER, 'browser', 'index.html')
 ).toString();
+
+const win = domino.createWindow(template);
+global['window'] = win;
+global['document'] = win.document;
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {

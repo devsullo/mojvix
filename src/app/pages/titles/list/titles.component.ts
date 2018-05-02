@@ -4,6 +4,7 @@ import { ScrollService } from './../../../shared/services/scroll.service';
 import { Component, OnInit, HostListener, ViewChild, ViewChildren, QueryList } from '@angular/core';
 import { ITitle } from '../title';
 import { TitlesService } from '../titles.service';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-titles',
@@ -45,23 +46,26 @@ export class TitlesComponent implements OnInit {
   }
 
   expandTitle(i: number): void {
-    let row = 0;
-    const T = (i + 1) / this.colls;
-    if (Number.isInteger(T)) {
-      row = T - 1;
-    } else {
-      row = Math.floor(T);
+    if (isPlatformBrowser) {
+      let row = 0;
+      const T = (i + 1) / this.colls;
+      if (Number.isInteger(T)) {
+        row = T - 1;
+      } else {
+        row = Math.floor(T);
+      }
+      this.closeAllExpandAreas();
+      const expandArea = this.expandArea.toArray()[row];
+      expandArea.title = this.titles[i];
+      expandArea.show(i + 1, this.colls);
+      // TO DO: wait el expand
+      setTimeout(() => {
+        const top = document
+            .querySelector('#expanded-title')
+            .documentOffsetTop() - window.innerHeight / 2 + 112;
+        this.scroll.element.scrollTo({ top: top, behavior: 'smooth' });
+      });
     }
-    this.closeAllExpandAreas();
-    const expandArea = this.expandArea.toArray()[row];
-    expandArea.title = this.titles[i];
-    expandArea.show(i + 1, this.colls);
-    setTimeout(() => {
-      const top = document
-          .querySelector('#expanded-title')
-          .documentOffsetTop() - window.innerHeight / 2 + 112;
-      this.scroll.element.scrollTo({ top: top, behavior: 'smooth' });
-    });
   }
 
   closeAllExpandAreas(): void {
