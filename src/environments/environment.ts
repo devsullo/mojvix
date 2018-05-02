@@ -6,6 +6,7 @@ const API_URL = 'http://localhost:3000';
 export const environment = {
   production: false,
   apiUrl: API_URL,
+  graphqlUrl: API_URL + '/graphql',
   loginUrl: API_URL + '/auth/login',
   registerUrl: API_URL + '/auth/register'
 };

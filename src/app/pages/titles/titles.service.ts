@@ -1,10 +1,24 @@
 import { Injectable } from '@angular/core';
 import { ITitle } from './title';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 
 @Injectable()
 export class TitlesService {
-
-  constructor() { }
+  constructor(apollo: Apollo) {
+    apollo
+      .query({ query: gql`
+          query {
+            movies {
+              id
+              poster
+              title
+              story
+            }
+          }
+        ` })
+      .subscribe(console.log);
+  }
 
   getTitles(): ITitle[] {
     const titles = [
@@ -25,10 +39,7 @@ export class TitlesService {
         propSoundQuality: 'test',
         propThreeD: true,
         propColored: true,
-        socials: [
-          {name: 'facebook', url: '#'},
-          {name: 'rotten', url: '#'}
-        ],
+        socials: [{ name: 'facebook', url: '#' }, { name: 'rotten', url: '#' }],
         moods: ['scary', 'cool', 'excite'],
         blurb: {
           color: 'red',
@@ -57,10 +68,7 @@ export class TitlesService {
         propSoundQuality: 'test',
         propThreeD: true,
         propColored: true,
-        socials: [
-          {name: 'facebook', url: '#'},
-          {name: 'rotten', url: '#'}
-        ],
+        socials: [{ name: 'facebook', url: '#' }, { name: 'rotten', url: '#' }],
         moods: ['scary', 'cool', 'excite'],
         blurb: {
           color: 'red',
@@ -89,10 +97,7 @@ export class TitlesService {
         propSoundQuality: 'test',
         propThreeD: true,
         propColored: true,
-        socials: [
-          {name: 'facebook', url: '#'},
-          {name: 'rotten', url: '#'}
-        ],
+        socials: [{ name: 'facebook', url: '#' }, { name: 'rotten', url: '#' }],
         moods: ['scary', 'cool', 'excite'],
         blurb: {
           color: 'red',
@@ -121,10 +126,7 @@ export class TitlesService {
         propSoundQuality: 'test',
         propThreeD: true,
         propColored: true,
-        socials: [
-          {name: 'facebook', url: '#'},
-          {name: 'rotten', url: '#'}
-        ],
+        socials: [{ name: 'facebook', url: '#' }, { name: 'rotten', url: '#' }],
         moods: ['scary', 'cool', 'excite'],
         blurb: {
           color: 'red',
@@ -153,10 +155,7 @@ export class TitlesService {
         propSoundQuality: 'test',
         propThreeD: true,
         propColored: true,
-        socials: [
-          {name: 'facebook', url: '#'},
-          {name: 'rotten', url: '#'}
-        ],
+        socials: [{ name: 'facebook', url: '#' }, { name: 'rotten', url: '#' }],
         moods: ['scary', 'cool', 'excite'],
         blurb: {
           color: 'red',
@@ -185,10 +184,7 @@ export class TitlesService {
         propSoundQuality: 'test',
         propThreeD: true,
         propColored: true,
-        socials: [
-          {name: 'facebook', url: '#'},
-          {name: 'rotten', url: '#'}
-        ],
+        socials: [{ name: 'facebook', url: '#' }, { name: 'rotten', url: '#' }],
         moods: ['scary', 'cool', 'excite'],
         blurb: {
           color: 'red',
@@ -217,10 +213,7 @@ export class TitlesService {
         propSoundQuality: 'test',
         propThreeD: true,
         propColored: true,
-        socials: [
-          {name: 'facebook', url: '#'},
-          {name: 'rotten', url: '#'}
-        ],
+        socials: [{ name: 'facebook', url: '#' }, { name: 'rotten', url: '#' }],
         moods: ['scary', 'cool', 'excite'],
         blurb: {
           color: 'red',
@@ -236,5 +229,4 @@ export class TitlesService {
 
     return titles;
   }
-
 }
