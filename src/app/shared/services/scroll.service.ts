@@ -4,19 +4,29 @@ import { ElementRef } from '@angular/core';
 
 @Injectable()
 export class ScrollService {
-  els = {};
+  scrollSelectors = {};
   constructor() {}
 
   init(selector: string) {
-    this.els[selector] = new PerfectScrollbar(selector, {
+    this.scrollSelectors[selector] = new PerfectScrollbar(selector, {
       suppressScrollX: true
     });
-    return this.els[selector];
+    return this.scrollSelectors[selector];
   }
 
-  scrollBottom(selector: string) {
-    const el = this.els[selector].element;
+  scrollBottom(selector: string, update = false) {
+    const scrollSelector = this.scrollSelectors[selector];
+    if (!scrollSelector) {
+      console.warn(`Scroll selector ${selector} does't exists`);
+      return;
+    }
+    if (update) {
+      scrollSelector.update();
+    }
+    const el = scrollSelector.element;
     const top = el.scrollHeight;
-    el.scrollTo({ top: top, behavior: 'smooth' });
+    setTimeout(() => {
+      el.scrollTo({ top: top, behavior: 'smooth' });
+    }, 1);
   }
 }

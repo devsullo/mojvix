@@ -1,3 +1,4 @@
+import { ScrollService } from './../../shared/services/scroll.service';
 import { Injectable } from '@angular/core';
 import { VgAPI } from 'videogular2/core';
 import {
@@ -11,7 +12,8 @@ export class SeanceService {
   preload = 'auto';
   api: VgAPI;
   playerReadyResolve: any;
-  constructor() {}
+  playerSubscriptions: IMediaSubscriptions;
+  constructor(private scrollService: ScrollService) {}
 
   get playerApi() {
     return this.api;
@@ -23,8 +25,23 @@ export class SeanceService {
     });
   }
 
-  initPlayer(api: VgAPI) {
+  initPlayerApi(api: VgAPI) {
     this.api = api;
-    this.playerReadyResolve(api);
+    if (this.playerReadyResolve) {
+      this.playerReadyResolve(api);
+    }
+  }
+
+  scrollBottom() {
+    if (this.playerSubscriptions) {
+      this.scrollService.scrollBottom('#seance-body-area');
+      return;
+    }
+    this.playerReady().then(api => {
+      this.playerSubscriptions = api.subscriptions;
+      this.playerSubscriptions.canPlay.subscribe(val => {
+        this.scrollService.scrollBottom('#seance-body-area');
+      });
+    });
   }
 }

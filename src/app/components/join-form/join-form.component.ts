@@ -46,20 +46,15 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
       anonymus: false,
       state: 0
     });
-    this.seanceService.playerReady().then(api => {
-      const subscriptions: IMediaSubscriptions = api.subscriptions;
-      subscriptions.canPlay.subscribe(val => {
-        this.scrollService.scrollBottom('#seance-body-area');
-      });
-    });
     this.route.data.subscribe(data => {
       this.formStyle = data.formStyle;
     });
   }
 
   ngAfterViewInit() {
-    this.scrollService.scrollBottom('#seance-body-area');
+    this.seanceService.scrollBottom();
   }
+
 
   formChanges(): void {
     const fild = this.joinForm.controls;
@@ -88,6 +83,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
       });
       fild.anonymus.valueChanges.subscribe(val => {
         if (val) {
+         this.seanceService.scrollBottom();
           this.joinForm.addControl(
             'email',
             new FormControl('', [Validators.required, Validators.email])
@@ -100,6 +96,9 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
           this.joinForm.removeControl('email');
           this.joinForm.removeControl('password');
         }
+      });
+      fild.state.valueChanges.subscribe(val => {
+
       });
     }
   }

@@ -8,7 +8,7 @@ export class TitlesService {
   constructor(apollo: Apollo) {
     apollo
       .query({ query: gql`
-          query {
+          query getMovies {
             movies {
               id
               poster

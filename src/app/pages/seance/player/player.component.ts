@@ -17,6 +17,6 @@ export class PlayerComponent implements OnInit {
   }
 
   onPlayerReady(api) {
-    this.seanceService.initPlayer(api);
+    this.seanceService.initPlayerApi(api);
   }
 }
