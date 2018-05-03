@@ -6,10 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logged-in.component.scss']
 })
 export class LoggedInComponent implements OnInit {
+  profileNavTab = 'seanceChat';
+  constructor() {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  changeProfileNavTab(tab: string) {
+    this.profileNavTab = tab;
   }
-
 }

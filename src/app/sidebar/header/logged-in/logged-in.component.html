@@ -1,3 +1,29 @@
-<p>
-  logged-in works!
-</p>
+<div class="registered">
+  <a ui-sref="mojvix.profile" class="left user-avatar profile-cont">
+    <img class="" src="assets/images/profile/profile3.jpg">
+  </a>
+  <div class="left nav-wrapper">
+    <div id="profile-nav" class="right-nav">
+      <div class="left-cont">
+        <a (click)="changeProfileNavTab('seanceChat')" [ngClass]="{'active': profileNavTab == 'seanceChat'}"
+          class="icon icon-chat"></a>
+        <a (click)="changeProfileNavTab('blurbs')" [ngClass]="{'active': profileNavTab == 'blurbs'}" class="icon icon-blarb"></a>
+        <!-- <a class="icon icon-msg"></a> -->
+        <a (click)="changeProfileNavTab('notifications')" [ngClass]="{'active': profileNavTab == 'notifications'}" class="icon icon-notifications"></a>
+      </div>
+      <div class="right-cont">
+        <a (click)="changeProfileNavTab('navigation')" [ngClass]="{'active': profileNavTab == 'navigation'}" class="icon icon-navigation"></a>
+      </div>
+    </div>
+    <span class="my-vixname">myvixname</span>
+    <!-- <div class="upcoming-movies">
+      <a class="upcoming-movie" data-toggle="tooltip" data-placement="bottom" title="Hello amelie!" href="#"><img src="assets/images/movies/up-movie1.jpg"></a>
+      <a class="upcoming-movie" data-toggle="tooltip" data-placement="bottom" title="Hello Amelie!" href="#"><img src="assets/images/movies/up-movie3.jpg"></a>
+      <a class="upcoming-movie" data-toggle="tooltip" data-placement="bottom" title="Hello Amelie!" href="#"><img src="assets/images/movies/up-movie2.jpg"></a>
+      <a class="upcoming-movie" data-toggle="tooltip" data-placement="bottom" title="Hello Amelie!" href="#"><img src="assets/images/movies/up-movie3.jpg"></a>
+      <a class="upcoming-movie" data-toggle="tooltip" data-placement="bottom" title="Hello Amelie!" href="#"><img src="assets/images/movies/up-movie2.jpg"></a>
+      <a class="upcoming-movie" data-toggle="tooltip" data-placement="bottom" title="Hello Amelie!" href="#"><img src="assets/images/movies/up-movie3.jpg"></a>
+      <span class="upcomming-movies-button" href="#"></span>
+		</div> -->
+  </div>
+</div>

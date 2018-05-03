@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { LoggedInComponent } from './logged-in/logged-in.component';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
 import { HeaderComponent } from './header/header.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
-  imports: [],
+  imports: [SharedModule],
   exports: [HeaderComponent],
   declarations: [LoggedInComponent, LoggedOutComponent, HeaderComponent]
 })
