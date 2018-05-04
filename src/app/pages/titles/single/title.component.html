@@ -3,8 +3,7 @@
   <a class="close" (click)="close()"></a>
   <div class="left-show">
     <div class="videoWrapper">
-      <!-- <iframe src="https://www.youtube.com/watch?v=DMehBmBJsMM" frameborder="0" allowfullscreen="" style="pointer-events: auto;"></iframe> -->
-      <youtube-player (ready)="savePlayer($event)" (change)="onPlayerStateChange($event)"></youtube-player>
+      <youtube-player *ngIf="playerIsReady" [videoId]="title.videoSrc" (ready)="savePlayer($event)" (change)="onPlayerStateChange($event)"></youtube-player>
     </div>
   </div>
   <div class="film-overview">

@@ -16,6 +16,8 @@ export class TitlesComponent implements OnInit {
   pageHeight: number;
   scroll: any;
   colls = 3;
+  scrollTopVal = 0;
+  expandedTitle: TitleComponent;
   @ViewChildren('expandArea') expandArea: QueryList<TitleComponent>;
 
   constructor(
@@ -27,6 +29,12 @@ export class TitlesComponent implements OnInit {
     this.titles = this.titleService.getTitles();
     this.calcScrollHeight();
     this.scroll = this.scrollService.init('#box-office');
+
+    this.scroll.element.addEventListener('ps-scroll-y', () => {
+      if (this.scroll.scrollbarYRail.offsetTop === this.scrollTopVal || this.scroll.reach.y) {
+        this.expandedTitle.initPlayer();
+      }
+    });
   }
 
   @HostListener('window:resize', ['$event'])
@@ -55,15 +63,21 @@ export class TitlesComponent implements OnInit {
         row = Math.floor(T);
       }
       this.closeAllExpandAreas();
-      const expandArea = this.expandArea.toArray()[row];
-      expandArea.title = this.titles[i];
-      expandArea.show(i + 1, this.colls);
+      this.expandedTitle = this.expandArea.toArray()[row];
+      this.expandedTitle.title = this.titles[i];
+      this.expandedTitle.show(i + 1, this.colls);
       // TO DO: wait el expand
       setTimeout(() => {
-        const top = document
+        this.scrollTopVal = Math.floor(document
             .querySelector('#expanded-title')
-            .documentOffsetTop() - window.innerHeight / 2 + 112;
-        this.scroll.element.scrollTo({ top: top, behavior: 'smooth' });
+            .documentOffsetTop() - window.innerHeight / 2 + 112);
+        this.scroll.element.scrollTo({
+          top: this.scrollTopVal,
+          behavior: 'smooth'
+        });
+        if (this.scroll.scrollbarYRail.offsetTop === this.scrollTopVal) {
+          this.expandedTitle.initPlayer();
+        }
       });
     }
   }
