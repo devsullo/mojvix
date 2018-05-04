@@ -1,3 +1,4 @@
+import { ComponentsModule } from './../../components/components.module';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -8,6 +9,7 @@ import { TitleComponent } from './single/title.component';
 @NgModule({
   imports: [
     SharedModule,
+    ComponentsModule,
     RouterModule.forChild([
       { path: 'box-office', component: TitlesComponent },
     ])

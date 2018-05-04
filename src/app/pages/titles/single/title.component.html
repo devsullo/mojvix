@@ -3,6 +3,7 @@
   <a class="close" (click)="close()"></a>
   <div class="left-show">
     <div class="videoWrapper">
+      <app-loading></app-loading>
       <youtube-player *ngIf="playerIsReady" [videoId]="title.videoSrc" (ready)="savePlayer($event)" (change)="onPlayerStateChange($event)"></youtube-player>
     </div>
   </div>

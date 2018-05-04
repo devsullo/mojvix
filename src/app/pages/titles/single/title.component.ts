@@ -2,6 +2,7 @@ import { ITitle } from './../title';
 import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
+import { ScrollService } from '../../../shared/services/scroll.service';
 
 @Component({
   selector: 'app-title',
@@ -14,7 +15,9 @@ export class TitleComponent implements OnInit, AfterViewInit {
   player: YT.Player;
   arrowMarginLeft = 0;
   playerIsReady = false;
-  constructor() {}
+  constructor(
+    private scrollService: ScrollService
+  ) {}
 
   ngOnInit() {}
 
@@ -23,7 +26,6 @@ export class TitleComponent implements OnInit, AfterViewInit {
   savePlayer(player): void {
     if (!this.player) {
       this.player = player;
-      this.player.mute();
     }
   }
 
@@ -49,5 +51,6 @@ export class TitleComponent implements OnInit, AfterViewInit {
   close(): void {
     this.expanded = false;
     this.playerIsReady = false;
+    this.scrollService.scrollSelectors['#box-office'].update();
   }
 }

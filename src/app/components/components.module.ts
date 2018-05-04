@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { TransPipe } from '../shared/pipes/trans.pipe';
 import { EmptyComponent } from './empty/empty.component';
 import { PassRecoverFormComponent } from './pass-recover-form/pass-recover-form.component';
+import { LoadingComponent } from './loading/loading.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { PassRecoverFormComponent } from './pass-recover-form/pass-recover-form.
       }
     ])
   ],
-  declarations: [JoinFormComponent, EmptyComponent, PassRecoverFormComponent],
+  exports: [LoadingComponent],
+  declarations: [JoinFormComponent, EmptyComponent, PassRecoverFormComponent, LoadingComponent],
   providers: [TransPipe]
 })
 export class ComponentsModule {}
