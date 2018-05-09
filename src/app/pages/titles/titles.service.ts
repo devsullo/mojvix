@@ -6,18 +6,18 @@ import gql from 'graphql-tag';
 @Injectable()
 export class TitlesService {
   constructor(apollo: Apollo) {
-    apollo
-      .query({ query: gql`
-          query getMovies {
-            movies {
-              id
-              poster
-              title
-              story
-            }
-          }
-        ` })
-      .subscribe(console.log);
+    // apollo
+    //   .query({ query: gql`
+    //       query getMovies {
+    //         movies {
+    //           id
+    //           poster
+    //           title
+    //           story
+    //         }
+    //       }
+    //     ` })
+    //   .subscribe(console.log);
   }
 
   getTitles(): ITitle[] {

@@ -5,14 +5,14 @@
   <div class="left nav-wrapper">
     <div id="profile-nav" class="right-nav">
       <div class="left-cont">
-        <a (click)="changeProfileNavTab('seanceChat')" [ngClass]="{'active': profileNavTab == 'seanceChat'}"
+        <a (click)="changeNavigationTab('chat')" [ngClass]="{'active': navigationTab == 'chat'}"
           class="icon icon-chat"></a>
-        <a (click)="changeProfileNavTab('blurbs')" [ngClass]="{'active': profileNavTab == 'blurbs'}" class="icon icon-blarb"></a>
+        <a (click)="changeNavigationTab('blurbs')" [ngClass]="{'active': navigationTab == 'blurbs'}" class="icon icon-blarb"></a>
         <!-- <a class="icon icon-msg"></a> -->
-        <a (click)="changeProfileNavTab('notifications')" [ngClass]="{'active': profileNavTab == 'notifications'}" class="icon icon-notifications"></a>
+        <a (click)="changeNavigationTab('notifications')" [ngClass]="{'active': navigationTab == 'notifications'}" class="icon icon-notifications"></a>
       </div>
       <div class="right-cont">
-        <a (click)="changeProfileNavTab('navigation')" [ngClass]="{'active': profileNavTab == 'navigation'}" class="icon icon-navigation"></a>
+        <a (click)="changeNavigationTab('navigation')" [ngClass]="{'active': navigationTab == 'navigation'}" class="icon icon-navigation"></a>
       </div>
     </div>
     <span class="my-vixname">myvixname</span>

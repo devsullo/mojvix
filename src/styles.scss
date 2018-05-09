@@ -3763,6 +3763,7 @@ a.moods {
       float: left;
       img {
         width: 82%;
+        // max-width: 50px;
         @include border-radius(50%);
       }
     }

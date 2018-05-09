@@ -1,4 +1,5 @@
 <app-header></app-header>
 <section id="right-content">
-  <app-blurbs></app-blurbs>
+  <app-blurbs *ngIf="navigationTab == 'blurbs'"></app-blurbs>
+  <app-chat *ngIf="navigationTab == 'chat'"></app-chat>
 </section>

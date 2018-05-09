@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeaderService } from '../header.service';
 
 @Component({
   selector: 'app-logged-in',
@@ -6,12 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./logged-in.component.scss']
 })
 export class LoggedInComponent implements OnInit {
-  profileNavTab = 'seanceChat';
-  constructor() {}
+  navigationTab: string;
 
-  ngOnInit() {}
+  constructor(private headerService: HeaderService) {}
 
-  changeProfileNavTab(tab: string) {
-    this.profileNavTab = tab;
+  ngOnInit() {
+    this.headerService.$navigationTab.subscribe(tab => {
+      this.navigationTab = tab;
+    });
+  }
+
+  changeNavigationTab(tab: string) {
+    this.headerService.changeNavigationTab(tab);
   }
 }

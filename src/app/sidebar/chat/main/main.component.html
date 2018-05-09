@@ -1,0 +1,50 @@
+<div id="vix-chat-cont">
+	<!-- <header class="link-area">
+		<span>Vix.ly/landminegoesclick20:30</span>
+		<i class="icon icon-copy"></i>
+	</header> -->
+	<section id="vix-chat-msgs">
+    <div class="msg group cl2">
+      <div class="avatar">
+        <img alt="avatar" src="assets/images/profile/profile1.jpg">
+      </div>
+      <div class="text ng-binding mood-icons">
+        <span ng-if="user.id != data.id" class="vix-name ng-binding ng-scope">Lasha</span>
+        <div ng-bind-html="data.message | sanitize">
+          This is my txt
+        </div>
+      </div>
+    </div>
+    <div class="msg group cl2">
+      <div class="avatar">
+        <img alt="avatar" src="assets/images/profile/profile2.jpg">
+      </div>
+      <div class="text ng-binding mood-icons">
+        <span ng-if="user.id != data.id" class="vix-name ng-binding ng-scope">Gio</span>
+        <div ng-bind-html="data.message | sanitize">
+          Lorem his is my txt
+        </div>
+      </div>
+    </div>
+	</section>
+	<div ng-controller="groupList" id="vix-chat-footer">
+		<ul class="chosen-groups">
+			<li class="All cl2">General</li>
+		</ul>
+		<form class="text-area"  ng-submit="sendMessage()">
+			<span id="chat-plus" class="closed">
+				<div class="wrap">
+					<div class="cont mood-icons">
+						<i class="icon-cool">:cool</i>
+						<i class="icon-happy">:happy</i>
+						<i class="icon-angry">:angry</i>
+						<i class="icon-evil">:evil</i>
+						<i class="icon-excite">:excite</i>
+						<i class="icon-scary">:scary</i>
+					</div>
+				</div>
+			</span>
+			<textarea id="chat-input" ng-model="message" name="message" ng-keyup="$event.keyCode == 13 && sendMessage()" placeholder="Chat something here"></textarea>
+		</form>
+	</div>
+</div>
