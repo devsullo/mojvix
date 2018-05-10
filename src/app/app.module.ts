@@ -6,6 +6,8 @@ import { CoreModule } from './core.module';
 import { SidebarModule } from './sidebar/sidebar.module';
 import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
+import { NgReduxModule, NgRedux } from 'ng2-redux';
+import { store, IAppState } from './store';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,8 +18,13 @@ import { PagesModule } from './pages/pages.module';
     CoreModule,
     ComponentsModule,
     AppRoutingModule,
+    NgReduxModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.provideStore(store);
+  }
+}
