@@ -14,5 +14,4 @@ const enhancer = composeEnhancers(
   // other store enhancers if any
 );
 
-
 export const store = createStore(reducer, enhancer);

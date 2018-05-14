@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from './header/header.service';
+import { NgRedux } from 'ng2-redux';
+import { IAppState } from '../store';
+import { INavigation } from '../store/interfaces/navigation';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,15 +9,13 @@ import { HeaderService } from './header/header.service';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  navigationTab: string;
+  navigation: INavigation;
   constructor(
-    private headerService: HeaderService
+    private ngRedux: NgRedux<IAppState>
   ) { }
 
   ngOnInit() {
-    this.headerService.$navigationTab.subscribe(tab => {
-      this.navigationTab = tab;
-    });
+    this.navigation = this.ngRedux.getState().navigation;
   }
 
 }

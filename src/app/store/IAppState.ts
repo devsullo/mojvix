@@ -1,3 +1,7 @@
+import { INavigation } from './interfaces/navigation';
+import { IUser } from './interfaces/user';
+
 export interface IAppState {
-  init: boolean;
+  user: IUser;
+  navigation: INavigation;
 }

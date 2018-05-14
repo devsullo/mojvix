@@ -1,5 +1,9 @@
+import { INavigation } from './../../../store/interfaces/navigation';
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../header.service';
+// import { LoggedInActions } from './logged-in.actions';
+import { NgRedux } from 'ng2-redux';
+import { IAppState } from '../../../store';
 
 @Component({
   selector: 'app-logged-in',
@@ -7,17 +11,18 @@ import { HeaderService } from '../header.service';
   styleUrls: ['./logged-in.component.scss']
 })
 export class LoggedInComponent implements OnInit {
-  navigationTab: string;
-
-  constructor(private headerService: HeaderService) {}
+  navigation: INavigation;
+  constructor(
+    // private loggedInActions: LoggedInActions,
+    private ngRedux: NgRedux<IAppState>
+  ) {}
 
   ngOnInit() {
-    this.headerService.$navigationTab.subscribe(tab => {
-      this.navigationTab = tab;
-    });
+    this.navigation = this.ngRedux.getState().navigation;
   }
 
   changeNavigationTab(tab: string) {
-    this.headerService.changeNavigationTab(tab);
+    this.ngRedux.dispatch({ type: 'CHANGE_ACTIVE_TAB', tab });
+    // this.loggedInActions.changeNavigationTab(tab);
   }
 }

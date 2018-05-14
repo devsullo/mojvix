@@ -5,14 +5,7 @@
   <div class="left nav-wrapper">
     <div id="profile-nav" class="right-nav">
       <div class="left-cont">
-        <a (click)="changeNavigationTab('chat')" [ngClass]="{'active': navigationTab == 'chat'}"
-          class="icon icon-chat"></a>
-        <a (click)="changeNavigationTab('blurbs')" [ngClass]="{'active': navigationTab == 'blurbs'}" class="icon icon-blarb"></a>
-        <!-- <a class="icon icon-msg"></a> -->
-        <a (click)="changeNavigationTab('notifications')" [ngClass]="{'active': navigationTab == 'notifications'}" class="icon icon-notifications"></a>
-      </div>
-      <div class="right-cont">
-        <a (click)="changeNavigationTab('navigation')" [ngClass]="{'active': navigationTab == 'navigation'}" class="icon icon-navigation"></a>
+        <a *ngFor="let nav of navigation.tabs" (click)="changeNavigationTab(nav.name)" [ngClass]="{'active': navigation.activeTab === nav.name}" class="icon icon-{{ nav.name }} nav-{{ nav.name }}"></a>
       </div>
     </div>
     <span class="my-vixname">myvixname</span>
