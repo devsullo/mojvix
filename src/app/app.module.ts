@@ -8,6 +8,7 @@ import { ComponentsModule } from './components/components.module';
 import { PagesModule } from './pages/pages.module';
 import { NgReduxModule, NgRedux } from 'ng2-redux';
 import { store, IAppState } from './store';
+import { NavigationModule } from './sidebar/navigation/navigation.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -18,7 +19,8 @@ import { store, IAppState } from './store';
     CoreModule,
     ComponentsModule,
     AppRoutingModule,
-    NgReduxModule
+    NgReduxModule,
+    NavigationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

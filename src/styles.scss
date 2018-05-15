@@ -615,7 +615,7 @@ textarea {
 
 .icon-menu {
   width: 25px;
-  height: 17px;
+  height: 21px;
 }
 
 .icon-cup {
@@ -638,10 +638,6 @@ textarea {
   }
 }
 
-.icon-menu-other {
-  width: 25px;
-  height: 20px;
-}
 
 .icon-profile {
   &:before {
@@ -3921,15 +3917,40 @@ a.moods {
   }
 }
 
-#options {
+.sidebar-navigation-section {
   padding-top: 10px;
   margin: 0 4% 0 3%;
-  your-movies {
-    margin-top: 20px;
+  .section-title {
+
+  }
+  .menu-cont {
+    margin-top: 15px;
+    a {
+      cursor: pointer;
+      transition: 0.1s;
+      padding: 10px 23px;
+      @include border-radius(5px);
+      margin-bottom: 7px;
+      display: block;
+      height: 40px;
+      span {
+        float: left;
+      }
+      b {
+        float: left;
+        padding-left: 17px;
+        @include font-size(15);
+        margin-top: 3px;
+        font-weight: 400;
+      }
+      &:hover {
+        background: #1c242b;
+        transition: 0.1s;
+      }
+    }
   }
   #your-movies {
     .section-title {
-      text-transform: uppercase;
       @include font-size(15);
     }
     .movies-cont {
@@ -3976,54 +3997,11 @@ a.moods {
       }
     }
   }
-  #profile-updates {
-    // margin: 0 10px;
-    padding-top: 13px;
-    border-top: 1px solid $hLine;
-    margin-bottom: 12px;
-  }
-  #other {
-    .others-menu {
-      margin-top: 5px;
-      margin-top: 10px;
-      a {
-        padding: 5px 30px;
-        b {
-          padding-left: 10px;
-          vertical-align: top;
-        }
-      }
-    }
-  }
-  .section-title {
-    text-transform: capitalize;
-  }
-  .menu-cont {
-    margin-top: 15px;
-    a {
-      cursor: pointer;
-      transition: 0.1s;
-      padding: 10px 23px;
-      @include border-radius(5px);
-      margin-bottom: 7px;
-      display: block;
-      b {
-        padding-left: 17px;
-        text-transform: capitalize;
-        @include font-size(15);
-      }
-      &:hover {
-        background: #1c242b;
-        transition: 0.1s;
-      }
-    }
-  }
-  &.settings-section {
-    #your-movies {
-      margin-top: 20px;
-    }
-  }
 }
+
+
+
+
 
 #right-area {
   width: 25.9%;

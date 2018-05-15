@@ -1,5 +1,6 @@
 <app-header></app-header>
 <section id="right-content">
   <app-blurbs *ngIf="navigation.activeTab === 'blurbs'"></app-blurbs>
-  <app-chat *ngIf="navigation.activeTab === 'chat'"></app-chat>
+  <app-chat-index *ngIf="navigation.activeTab === 'chat'"></app-chat-index>
+  <app-navigation-index *ngIf="navigation.activeTab === 'navigation'"></app-navigation-index>
 </section>

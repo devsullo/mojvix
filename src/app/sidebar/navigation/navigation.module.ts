@@ -1,10 +1,12 @@
+import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
 import { IndexComponent } from './index/index.component';
 
 @NgModule({
-  imports: [SharedModule],
+  imports: [
+    SharedModule
+  ],
   exports: [IndexComponent],
   declarations: [IndexComponent]
 })
-export class ChatModule {}
+export class NavigationModule { }

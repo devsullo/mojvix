@@ -4,11 +4,12 @@ import { BlurbsModule } from './blurbs/blurbs.module';
 import { SidebarComponent } from './sidebar.component';
 import { HeaderModule } from './header/header.module';
 import { ChatModule } from './chat/chat.module';
-import { MainComponent } from './chat/main/main.component';
+import { NavigationModule } from './navigation/navigation.module';
+
 
 @NgModule({
-  imports: [SharedModule, BlurbsModule, HeaderModule, ChatModule],
+  imports: [SharedModule, BlurbsModule, HeaderModule, ChatModule, NavigationModule],
   exports: [SidebarComponent],
-  declarations: [SidebarComponent, MainComponent]
+  declarations: [SidebarComponent]
 })
 export class SidebarModule {}
