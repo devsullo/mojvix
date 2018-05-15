@@ -1,9 +1,9 @@
-import { IAppState } from './../../../store/IAppState';
+import { IAppState } from './../../store/IAppState';
 import { NgRedux } from 'ng2-redux';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class LoggedInActions {
+export class HeaderNavigationActions {
   constructor(private ngRedux: NgRedux<IAppState>) {}
 
   changeNavigationTab(tab: string) {
