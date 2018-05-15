@@ -11,7 +11,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PlayerComponent } from './player/player.component';
 import { SeanceService } from './seance.service';
-import { SeanceComponent } from './seance/seance.component';
+import { IndexComponent } from './index/index.component';
 
 @NgModule({
   imports: [
@@ -19,7 +19,7 @@ import { SeanceComponent } from './seance/seance.component';
     RouterModule.forChild([
       {
         path: 'seance/:slug',
-        component: SeanceComponent,
+        component: IndexComponent,
         children: [
           {
             path: '',
@@ -41,7 +41,7 @@ import { SeanceComponent } from './seance/seance.component';
     VgOverlayPlayModule,
     VgBufferingModule
   ],
-  declarations: [PlayerComponent, SeanceComponent],
+  declarations: [PlayerComponent, IndexComponent],
   providers: [SeanceService]
 })
 export class SeanceModule {}

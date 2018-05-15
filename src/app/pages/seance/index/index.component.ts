@@ -3,11 +3,11 @@ import { ScrollService } from '../../../shared/services/scroll.service';
 import { Location } from '@angular/common';
 
 @Component({
-  selector: 'app-seance',
-  templateUrl: './seance.component.html',
-  styleUrls: ['./seance.component.scss']
+  selector: 'app-seance-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss']
 })
-export class SeanceComponent implements OnInit {
+export class IndexComponent implements OnInit {
   pageHeight: number;
   scroll: any;
   constructor(
