@@ -2,7 +2,7 @@ import { INavigation } from './../../../store/interfaces/navigation';
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../header.service';
 import { NgRedux } from 'ng2-redux';
-import { IAppState, store, HeaderNavigationActions } from '../../../store';
+import { IAppState, store } from '../../../store';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +13,7 @@ export class NavigationComponent implements OnInit {
   navigation: INavigation;
   constructor(
     private ngRedux: NgRedux<IAppState>,
-    private headerNavigationActions: HeaderNavigationActions
+    private headerService: HeaderService
   ) {}
 
   ngOnInit() {
@@ -21,6 +21,6 @@ export class NavigationComponent implements OnInit {
   }
 
   changeNavigationTab(tab: string) {
-    this.headerNavigationActions.changeNavigationTab(tab);
+    this.headerService.changeNavigationTab(tab);
   }
 }

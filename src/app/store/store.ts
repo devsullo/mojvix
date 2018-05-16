@@ -1,6 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import { reducer } from './reducer';
-import { IAppState } from './IAppState';
+import { reducer } from './reducers';
 
 const composeEnhancers =
   typeof window === 'object' &&

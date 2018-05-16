@@ -1,5 +1,4 @@
 import { IndexComponent } from './index/index.component';
-// import { LoggedInActions } from './logged-in/logged-in.actions';
 import { NgModule } from '@angular/core';
 import { NavigationComponent } from './navigation/navigation.component';
 import { LoggedOutComponent } from './logged-out/logged-out.component';
