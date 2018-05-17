@@ -3347,7 +3347,7 @@ a.moods {
   }
 }
 
-#blurbs {
+#blurbs-list {
   padding: 6% 6%;
   position: relative;
   .single-blurb-wrapper {
@@ -3667,8 +3667,9 @@ a.moods {
   }
 }
 
-#vix-chat-cont {
+#vix-chat {
   position: relative;
+  margin-top: 44px;
   .link-area {
     padding: 19px 15px;
     font-size: 13px;
@@ -3903,9 +3904,10 @@ a.moods {
   }
 }
 
-.sidebar-navigation-section {
-  padding-top: 10px;
-  margin: 0 4% 0 3%;
+#sidebar-navigation-section {
+  margin-top: 10px;
+  padding: 0 4% 0 3%;
+  position: relative;
   .section-title {
 
   }

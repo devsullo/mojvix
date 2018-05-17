@@ -1,9 +1,53 @@
-<div id="vix-chat-cont">
+<div [style.height.px]="_scrollHeight" id="vix-chat">
 	<div class="link-area">
 		<span>Vix.ly/landminegoesclick20:30</span>
 		<i class="icon icon-copy"></i>
 	</div>
 	<section id="vix-chat-msgs">
+    <div class="msg group cl2">
+      <div class="avatar">
+        <img alt="avatar" src="assets/images/profile/profile1.jpg">
+      </div>
+      <div class="text ng-binding mood-icons">
+        <span ng-if="user.id != data.id" class="vix-name ng-binding ng-scope">Lasha</span>
+        <div ng-bind-html="data.message | sanitize">
+          This is my txt
+        </div>
+      </div>
+    </div>
+    <div class="msg group cl2">
+      <div class="avatar">
+        <img alt="avatar" src="assets/images/profile/profile1.jpg">
+      </div>
+      <div class="text ng-binding mood-icons">
+        <span ng-if="user.id != data.id" class="vix-name ng-binding ng-scope">Lasha</span>
+        <div ng-bind-html="data.message | sanitize">
+          This is my txt
+        </div>
+      </div>
+    </div>
+    <div class="msg group cl2">
+      <div class="avatar">
+        <img alt="avatar" src="assets/images/profile/profile1.jpg">
+      </div>
+      <div class="text ng-binding mood-icons">
+        <span ng-if="user.id != data.id" class="vix-name ng-binding ng-scope">Lasha</span>
+        <div ng-bind-html="data.message | sanitize">
+          This is my txt
+        </div>
+      </div>
+    </div>
+    <div class="msg group cl2">
+      <div class="avatar">
+        <img alt="avatar" src="assets/images/profile/profile1.jpg">
+      </div>
+      <div class="text ng-binding mood-icons">
+        <span ng-if="user.id != data.id" class="vix-name ng-binding ng-scope">Lasha</span>
+        <div ng-bind-html="data.message | sanitize">
+          This is my txt
+        </div>
+      </div>
+    </div>
     <div class="msg group cl2">
       <div class="avatar">
         <img alt="avatar" src="assets/images/profile/profile1.jpg">

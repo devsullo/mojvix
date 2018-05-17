@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ScrollService } from './../../../shared/services/scroll.service';
+import { Component, OnInit, Input, SimpleChange } from '@angular/core';
 
 @Component({
   selector: 'app-chat-index',
@@ -6,10 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  scrollEl: any;
+  _scrollHeight: number;
+  @Input() set scrollHeight(value: number) {
+    this._scrollHeight = value - 126;
+    this.scrollEl
+      ? this.scrollEl.update()
+      : (this.scrollEl = this.scrollService.init('#vix-chat'));
   }
+
+  constructor(private scrollService: ScrollService) {}
+
+  ngOnInit() {}
+
 
 }

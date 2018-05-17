@@ -24,7 +24,7 @@ export class SidebarComponent implements OnInit {
   }
 
   calcScrollHeight() {
-    this.scrollHeight = window.innerHeight - 51;
+    this.scrollHeight = window.innerHeight - 61;
   }
 
 }

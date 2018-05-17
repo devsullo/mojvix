@@ -23,6 +23,6 @@ export class BlurbsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    this.scrollEl ? this.scrollEl.update() : this.scrollEl = this.scrollService.init('#blurbs');
+    this.scrollEl ? this.scrollEl.update() : (this.scrollEl = this.scrollService.init('#blurbs-list'));
   }
 }
