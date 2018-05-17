@@ -2,5 +2,6 @@
 <section id="right-content">
   <app-blurbs [scrollHeight]="scrollHeight" *ngIf="navigation.activeTab === 'blurbs'"></app-blurbs>
   <app-chat-index [scrollHeight]="scrollHeight" *ngIf="navigation.activeTab === 'chat'"></app-chat-index>
+  <app-notifications-index [scrollHeight]="scrollHeight" *ngIf="navigation.activeTab === 'notifications'"></app-notifications-index>
   <app-navigation-index [scrollHeight]="scrollHeight" *ngIf="navigation.activeTab === 'navigation'"></app-navigation-index>
 </section>

@@ -3604,9 +3604,10 @@ a.moods {
   }
 }
 
-#notifications {
-  padding-top: 10px;
-  margin: 0 4% 0 3%;
+#sidebar-notifications {
+  padding: 10px 4% 10px 3%;
+  position: relative;
+  margin: 0;
   .notifications-cont {
     margin-top: 13px;
     .notifications-single {

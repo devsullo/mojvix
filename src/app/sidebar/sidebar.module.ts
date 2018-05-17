@@ -5,10 +5,11 @@ import { SidebarComponent } from './sidebar.component';
 import { HeaderModule } from './header/header.module';
 import { ChatModule } from './chat/chat.module';
 import { NavigationModule } from './navigation/navigation.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 
 @NgModule({
-  imports: [SharedModule, BlurbsModule, HeaderModule, ChatModule, NavigationModule],
+  imports: [SharedModule, BlurbsModule, HeaderModule, ChatModule, NavigationModule, NotificationsModule],
   exports: [SidebarComponent],
   declarations: [SidebarComponent]
 })
