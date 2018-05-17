@@ -31,6 +31,6 @@ export class BlurbsComponent implements OnInit {
   }
 
   calcScrollHeight() {
-    this.pageHeight = window.innerHeight - 80;
+    this.pageHeight = window.innerHeight - 51;
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux } from 'ng2-redux';
 import { IAppState } from '../store';
-import { INavigation } from '../store/interfaces/navigation';
+import { INavigation } from '../store/model/navigation';
 
 @Component({
   selector: 'app-sidebar',

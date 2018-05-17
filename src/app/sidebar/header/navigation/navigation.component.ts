@@ -1,4 +1,4 @@
-import { INavigation } from './../../../store/interfaces/navigation';
+import { INavigation } from './../../../store/model/navigation';
 import { Component, OnInit } from '@angular/core';
 import { HeaderService } from '../header.service';
 import { NgRedux } from 'ng2-redux';

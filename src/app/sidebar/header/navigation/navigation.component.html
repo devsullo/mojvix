@@ -1,14 +1,14 @@
-<div class="registered">
-  <a ui-sref="mojvix.profile" class="left user-avatar profile-cont">
+<div class="registered full-nav-bar">
+  <!-- <a class="left user-avatar profile-cont">
     <img class="" src="assets/images/profile/profile3.jpg">
-  </a>
+  </a> -->
   <div class="left nav-wrapper">
     <div id="profile-nav" class="right-nav">
       <div class="left-cont">
         <a *ngFor="let nav of navigation.tabs" (click)="changeNavigationTab(nav.name)" [ngClass]="{'active': navigation.activeTab === nav.name}" class="icon icon-{{ nav.name }} nav-{{ nav.name }}"></a>
       </div>
     </div>
-    <span class="my-vixname">myvixname</span>
+    <!-- <span class="my-vixname">myvixname</span> -->
     <!-- <div class="upcoming-movies">
       <a class="upcoming-movie" data-toggle="tooltip" data-placement="bottom" title="Hello amelie!" href="#"><img src="assets/images/movies/up-movie1.jpg"></a>
       <a class="upcoming-movie" data-toggle="tooltip" data-placement="bottom" title="Hello Amelie!" href="#"><img src="assets/images/movies/up-movie3.jpg"></a>

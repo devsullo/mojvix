@@ -1,5 +1,5 @@
-import { INavigation } from './interfaces/navigation';
-import { IUser } from './interfaces/user';
+import { INavigation } from './model/navigation';
+import { IUser } from './model/user';
 
 export interface IAppState {
   user: IUser;
