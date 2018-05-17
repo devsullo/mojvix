@@ -10,7 +10,7 @@ export class IndexComponent implements OnInit {
   scrollEl: any;
   _scrollHeight: number;
   @Input() set scrollHeight(value: number) {
-    this._scrollHeight = value - 126;
+    this._scrollHeight = value - 130;
     this.scrollEl
       ? this.scrollEl.update()
       : (this.scrollEl = this.scrollService.init('#vix-chat'));
