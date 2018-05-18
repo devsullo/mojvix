@@ -78,7 +78,7 @@
         <div class="title" (click)="expandTitle(i)">
           <div class="title-wrapper">
             <i class="title-status" data-toggle="tooltip" data-placement="right" title="FirstDay"></i>
-            <img class="poster" [src]="title.poster">
+            <img class="poster" [src]="'assets/images/titles/'+ title.poster">
           </div>
           <div class="hover_1 hover">
             <div class="cont">
@@ -100,7 +100,7 @@
               <p class="plain-text description">
                 {{ title.story }}
               </p>
-              <div class="footer blurb-style-a">
+              <!-- <div class="footer blurb-style-a">
                 <div class="tags">
                   <span>{{ title.tags }}</span>
                 </div>
@@ -115,7 +115,7 @@
                   <img class="profile-pic" [src]="title.blurb.mojvixerPic">
                   <span class="mojvixer-name">{{ title.blurb.mojvixerName }}</span>
                 </div>
-              </div>
+              </div> -->
             </div>
           </div>
         </div>

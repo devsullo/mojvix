@@ -26,7 +26,12 @@ export class TitlesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.titles = this.titleService.getTitles();
+    this.titleService.getTitles()
+      .subscribe(({data}) => {
+        console.log(data);
+        this.titles = data.movies;
+      });
+
     this.calcScrollHeight();
     this.scroll = this.scrollService.init('#box-office');
 
