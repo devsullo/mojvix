@@ -1,4 +1,4 @@
-import { TitlesComponent } from './pages/titles/list/titles.component';
+import { MoviesComponent } from './pages/movies/list/movies.component';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     RouterModule.forRoot(
       [
-        { path: '', component: TitlesComponent, pathMatch: 'full' },
+        { path: '', component: MoviesComponent, pathMatch: 'full' },
         { path: '**', redirectTo: '/', pathMatch: 'full' }
       ]
     )

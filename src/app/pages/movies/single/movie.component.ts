@@ -1,16 +1,15 @@
-import { ITitle } from './../title';
+import { IMovie } from './../movie';
 import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { Title } from '@angular/platform-browser';
 import { isPlatformBrowser } from '@angular/common';
 import { ScrollService } from '../../../shared/services/scroll.service';
 
 @Component({
-  selector: 'app-title',
-  templateUrl: './title.component.html',
-  styleUrls: ['./title.component.scss']
+  selector: 'app-movie',
+  templateUrl: './movie.component.html',
+  styleUrls: ['./movie.component.scss']
 })
-export class TitleComponent implements OnInit, AfterViewInit {
-  title: ITitle;
+export class MovieComponent implements OnInit, AfterViewInit {
+  movie: IMovie;
   expanded = false;
   player: YT.Player;
   arrowMarginLeft = 0;
@@ -35,12 +34,12 @@ export class TitleComponent implements OnInit, AfterViewInit {
 
   show(i: number, calls: number): void {
     const boxOffice = document.querySelector('#box-office');
-    const title = document.querySelector('.title').clientWidth;
+    const movie = document.querySelector('.movie').clientWidth;
     const rowNum = i % calls || calls;
-    const titlePadding = boxOffice.clientWidth * 2.3 / 100;
-    const halfPoster = title / 2;
+    const moviePadding = boxOffice.clientWidth * 2.3 / 100;
+    const halfPoster = movie / 2;
     this.arrowMarginLeft =
-      rowNum * title - halfPoster - 10 + rowNum * titlePadding - titlePadding;
+      rowNum * movie - halfPoster - 10 + rowNum * moviePadding - moviePadding;
     this.expanded = true;
   }
 

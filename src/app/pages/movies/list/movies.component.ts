@@ -1,35 +1,35 @@
 import { element } from 'protractor';
-import { TitleComponent } from './../single/title.component';
+import { MovieComponent } from './../single/movie.component';
 import { ScrollService } from './../../../shared/services/scroll.service';
 import { Component, OnInit, HostListener, ViewChild, ViewChildren, QueryList } from '@angular/core';
-import { ITitle } from '../title';
-import { TitlesService } from '../titles.service';
+import { IMovie } from '../movie';
+import { MoviesService } from '../movies.service';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
-  selector: 'app-titles',
-  templateUrl: './titles.component.html',
-  styleUrls: ['./titles.component.scss']
+  selector: 'app-movies',
+  templateUrl: './movies.component.html',
+  styleUrls: ['./movies.component.scss']
 })
-export class TitlesComponent implements OnInit {
-  titles: ITitle[];
+export class MoviesComponent implements OnInit {
+  movies: IMovie[];
   pageHeight: number;
   scroll: any;
   colls = 3;
   scrollTopVal = 0;
-  expandedTitle: TitleComponent;
-  @ViewChildren('expandArea') expandArea: QueryList<TitleComponent>;
+  expandedMovie: MovieComponent;
+  @ViewChildren('expandArea') expandArea: QueryList<MovieComponent>;
 
   constructor(
-    private titleService: TitlesService,
+    private moviesService: MoviesService,
     private scrollService: ScrollService
   ) {}
 
   ngOnInit() {
-    this.titleService.getTitles()
+    this.moviesService.getMovies()
       .subscribe(({data}) => {
         console.log(data);
-        this.titles = data.movies;
+        this.movies = data.movies;
       });
 
     this.calcScrollHeight();
@@ -37,7 +37,7 @@ export class TitlesComponent implements OnInit {
 
     this.scroll.element.addEventListener('ps-scroll-y', () => {
       if (this.scroll.scrollbarYRail.offsetTop === this.scrollTopVal || this.scroll.reach.y) {
-        this.expandedTitle.initPlayer();
+        this.expandedMovie.initPlayer();
       }
     });
   }
@@ -58,7 +58,7 @@ export class TitlesComponent implements OnInit {
     }
   }
 
-  expandTitle(i: number): void {
+  expandMovie(i: number): void {
     if (isPlatformBrowser) {
       let row = 0;
       const T = (i + 1) / this.colls;
@@ -68,20 +68,20 @@ export class TitlesComponent implements OnInit {
         row = Math.floor(T);
       }
       this.closeAllExpandAreas();
-      this.expandedTitle = this.expandArea.toArray()[row];
-      this.expandedTitle.title = this.titles[i];
-      this.expandedTitle.show(i + 1, this.colls);
+      this.expandedMovie = this.expandArea.toArray()[row];
+      this.expandedMovie.movie = this.movies[i];
+      this.expandedMovie.show(i + 1, this.colls);
       // TO DO: wait el expand
       setTimeout(() => {
         this.scrollTopVal = Math.floor(document
-            .querySelector('#expanded-title')
+            .querySelector('#expanded-movie')
             .documentOffsetTop() - window.innerHeight / 2 + 112);
         this.scroll.element.scrollTo({
           top: this.scrollTopVal,
           behavior: 'smooth'
         });
         if (this.scroll.scrollbarYRail.offsetTop === this.scrollTopVal) {
-          this.expandedTitle.initPlayer();
+          this.expandedMovie.initPlayer();
         }
       });
     }

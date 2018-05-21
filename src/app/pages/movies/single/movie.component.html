@@ -1,20 +1,20 @@
-<section id="expanded-title" *ngIf="expanded">
+<section id="expanded-movie" *ngIf="expanded">
   <i class="top-arrow" [style.margin-left.px]="arrowMarginLeft"></i>
   <a class="close" (click)="close()"></a>
   <div class="left-show">
     <div class="videoWrapper">
       <app-loading></app-loading>
-      <youtube-player *ngIf="playerIsReady" [videoId]="title.videoSrc" (ready)="savePlayer($event)" (change)="onPlayerStateChange($event)"></youtube-player>
+      <youtube-player *ngIf="playerIsReady" [videoId]="movie.videoSrc" (ready)="savePlayer($event)" (change)="onPlayerStateChange($event)"></youtube-player>
     </div>
   </div>
   <div class="film-overview">
-    <h4>{{ title.title }}</h4>
+    <h4>{{ movie.title }}</h4>
     <div class="genre">
-      <span ng-repeat="genre in title.genres">{{ title.genre }}</span>
+      <span ng-repeat="genre in movie.genres">{{ movie.genre }}</span>
     </div>
     <div class="tags">
       <ul>
-        <li *ngFor="let hashtag of title.hashtags">
+        <li *ngFor="let hashtag of movie.hashtags">
           <a href="#"> {{ hashtag }} </a>
         </li>
       </ul>
@@ -22,32 +22,32 @@
     <div class="divider"></div>
     <ul class="meta">
       <li>
-        <i class="value">{{ title.propResolution }}</i>
+        <i class="value">{{ movie.propResolution }}</i>
       </li>
       <li>
         <i class="key">Runtime:</i>
-        <i class="value">{{ title.propRuntime }}</i>
+        <i class="value">{{ movie.propRuntime }}</i>
         <i class="key">Min</i>
       </li>
-      <li class="{{ title.propSoundQuality }}"></li>
-      <li *ngIf="title.propThreeD">
+      <li class="{{ movie.propSoundQuality }}"></li>
+      <li *ngIf="movie.propThreeD">
         <i class="value">3D</i>
       </li>
-      <li *ngIf="title.propColored">
+      <li *ngIf="movie.propColored">
         <i class="value">Colored</i>
       </li>
     </ul>
     <p class="story">
-      {{ title.story }}
+      {{ movie.story }}
     </p>
     <div class="cast">
       <div class="own-line">
         <div class="key">Director:</div>
-        <div class="value">{{ title.director }}</div>
+        <div class="value">{{ movie.director }}</div>
       </div>
       <div class="own-line">
         <div class="key">Stars:</div>
-        <div class="value">{{ title.stars }}</div>
+        <div class="value">{{ movie.stars }}</div>
       </div>
     </div>
     <a [routerLink]="['/seance/the-search']" class="attend-to-show btn btn-sky-blue">Attend To Show</a>
@@ -55,15 +55,15 @@
       <div class="divider"></div>
       <div class="left">
         <ul class="socials">
-          <li *ngFor="let social of title.socials" class="{{ social.name }}">
+          <li *ngFor="let social of movie.socials" class="{{ social.name }}">
             <a target="_blank" [href]="social.url"></a>
           </li>
         </ul>
-        <span class="copy">title.copy</span>
+        <span class="copy">movie.copy</span>
       </div>
       <div class="right">
         <ul class="mood-icons">
-          <li *ngFor="let mood of title.moods" class="icon-{{ mood }}"></li>
+          <li *ngFor="let mood of movie.moods" class="icon-{{ mood }}"></li>
         </ul>
       </div>
     </div>

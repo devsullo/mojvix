@@ -5,13 +5,13 @@
         <h2>Discover</h2>
         <div class="sort">
           <ul>
-            <li ng-click="sortTitles('audience')">
+            <li ng-click="sortMovies('audience')">
               <a>Audience</a>
             </li>
-            <li ng-click="sortTitles('trending')">
+            <li ng-click="sortMovies('trending')">
               <a>Trending</a>
             </li>
-            <li ng-click="sortTitles('green')">
+            <li ng-click="sortMovies('green')">
               <a>Green</a>
             </li>
             <li class="choose-mood">
@@ -73,53 +73,53 @@
     </div>
   </header>
   <div id="box-office" [style.height.px]="pageHeight">
-    <div class="titles center-area-cont sort-{{ colls }}">
-      <div *ngFor="let title of titles; let i = index">
-        <div class="title" (click)="expandTitle(i)">
-          <div class="title-wrapper">
-            <i class="title-status" data-toggle="tooltip" data-placement="right" title="FirstDay"></i>
-            <img class="poster" [src]="'assets/images/titles/'+ title.poster">
+    <div class="movies center-area-cont sort-{{ colls }}">
+      <div *ngFor="let movie of movies; let i = index">
+        <div class="movie" (click)="expandMovie(i)">
+          <div class="movie-wrapper">
+            <i class="movie-status" data-toggle="tooltip" data-placement="right" title="FirstDay"></i>
+            <img class="poster" [src]="'assets/images/movie/'+ movie.poster">
           </div>
           <div class="hover_1 hover">
             <div class="cont">
               <span class="time right">131 min</span>
-              <h3 class="hover-title">{{ title.title }}</h3>
+              <h3 class="hover-movie">{{ movie.title }}</h3>
               <h5 class="hover-genre">
-                <span>{{ title.genre }}</span>
+                <span>{{ movie.genre }}</span>
               </h5>
               <ul>
                 <li>
                   <span>Direcor: </span>
-                  <a href="#">{{ title.director }}</a>
+                  <a href="#">{{ movie.director }}</a>
                 </li>
                 <li>
                   <span>Stars: </span>
-                  <a href="#">{{ title.stars }}</a>
+                  <a href="#">{{ movie.stars }}</a>
                 </li>
               </ul>
               <p class="plain-text description">
-                {{ title.story }}
+                {{ movie.story }}
               </p>
               <!-- <div class="footer blurb-style-a">
                 <div class="tags">
-                  <span>{{ title.tags }}</span>
+                  <span>{{ movie.tags }}</span>
                 </div>
-                <div class="blurb-body left-bordered {{ title.blurb.color }}">
+                <div class="blurb-body left-bordered {{ movie.blurb.color }}">
                   <div class="plain-text">
-                    <div class="warning" [innerHTML]="title.blurb.content | escapeHtml">
+                    <div class="warning" [innerHTML]="movie.blurb.content | escapeHtml">
                     </div>
                   </div>
                 </div>
                 <div class="mojvixer right">
                   <span class="prefix">-</span>
-                  <img class="profile-pic" [src]="title.blurb.mojvixerPic">
-                  <span class="mojvixer-name">{{ title.blurb.mojvixerName }}</span>
+                  <img class="profile-pic" [src]="movie.blurb.mojvixerPic">
+                  <span class="mojvixer-name">{{ movie.blurb.mojvixerName }}</span>
                 </div>
               </div> -->
             </div>
           </div>
         </div>
-        <app-title #expandArea *ngIf="detectExpandArea(i+1, titles.length)"></app-title>
+        <app-movie #expandArea *ngIf="detectExpandArea(i+1, movies.length)"></app-movie>
       </div>
     </div>
   </div>

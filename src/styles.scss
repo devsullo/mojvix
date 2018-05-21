@@ -1070,16 +1070,16 @@ textarea {
 
 #box-office {
   position: relative;
-  .titles {
+  .movies {
     @extend .cf;
     margin-left: -2.3%;
-    &.sort-4 .title {
+    &.sort-4 .movie {
       width: 22.7%;
     }
-    &.sort-3 .title {
+    &.sort-3 .movie {
       width: 31%;
     }
-    .title {
+    .movie {
       // cursor: pointer;
       float: left;
       margin-left: 2.3%;
@@ -1088,10 +1088,10 @@ textarea {
       &:hover .hover{
         display: block;
       }
-      .title-wrapper {
+      .movie-wrapper {
         cursor: pointer;
         position: relative;
-        .title-status {
+        .movie-status {
           width: 13px;
           height: 13px;
           top: 6px;
@@ -1134,7 +1134,7 @@ textarea {
       .time {
         @include font-size(12);
       }
-      .hover-title {
+      .hover-movie {
         @include font-size(15);
       }
       .hover-genre {
@@ -1161,7 +1161,7 @@ textarea {
       }
       @media screen and (max-width: 1150px) {
         .time,
-        .hover-title,
+        .hover-movie,
         .hover-genre {
           display: none;
         }
@@ -1202,7 +1202,7 @@ textarea {
           top: 32%;
         }
         .time,
-        .hover-title,
+        .hover-movie,
         .hover-genre,
         .description,
         {
@@ -1236,7 +1236,7 @@ textarea {
       }
       @media screen and (max-width: 1120px) {
         .time,
-        .hover-title {
+        .hover-movie {
           display: none;
         }
       }
@@ -1285,7 +1285,7 @@ textarea {
         font-size: 12px;
         color: #bdcad2;
       }
-      .hover-title {
+      .hover-movie {
         font-size: 15px;
       }
       .hover-genre {
@@ -1374,7 +1374,7 @@ textarea {
       }
     }
   }
-  #expanded-title {
+  #expanded-movie {
     position: relative;
     float: left;
     z-index: 1;
@@ -1805,7 +1805,7 @@ textarea {
     }
   }
   #result-movies {
-    .title {
+    .movie {
       @extend .cf;
       margin-bottom: 20px;
     }

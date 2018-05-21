@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ITitle } from './title';
+import { IMovie } from './movie';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Observable } from 'rxjs/Observable';
 import { ApolloQueryResult } from 'apollo-client';
 interface Response {
-  movies: ITitle[];
+  movies: IMovie[];
 }
 
 @Injectable()
-export class TitlesService {
+export class MoviesService {
   constructor(private apollo: Apollo) { }
 
-  getTitles(): Observable<ApolloQueryResult<Response>> {
+  getMovies(): Observable<ApolloQueryResult<Response>> {
     const QUERY = gql`
       query getMovies {
         movies(orderBy:{column:"id" order:ASC}) {
