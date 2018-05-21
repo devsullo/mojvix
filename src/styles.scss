@@ -3133,11 +3133,16 @@ a.moods {
 
 // Sign in and join
 .join-template {
-	color:#5a6378;
+  color:#5a6378;
+  &.light {
+    h2 {
+      margin: 36px;
+    }
+  }
   h2 {
     font-size: 36px;
     text-align: center;
-    margin: 36px 0;
+    margin-bottom: 36px;
     font-family: 'Helvetica-Light';
   }
 	.btn-join{
@@ -3246,7 +3251,7 @@ a.moods {
   .page-wrap {
     @extend .cf;
     position: relative;
-    margin-bottom: 50px;
+    margin: 50px 0;
     &.light {
       background: rgb(244, 248, 251);
       @include border-radius(4px);

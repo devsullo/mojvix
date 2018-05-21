@@ -1,0 +1,83 @@
+<section class="page-style-a fixed">
+  <section class="center-area-cont">
+    <div class="page-wrap page-padding">
+      <div id="seance-post-blurb">
+        <form class="post-blurb-form">
+          <textarea ng-model="text" class="post-blurb-input" placeholder="Type here your blurb"></textarea>
+          <div class="rate-movie">
+            <span>Rate this movie</span>
+            <input type="radio" id="rate-good" ng-model="color" value="green" name="color">
+            <label for="rate-good">Good</label>
+            <input type="radio" id="rate-normal" ng-model="color" value="yellow" name="color">
+            <label for="rate-normal">Normal</label>
+            <input type="radio" id="rate-bad" ng-model="color" value="red" name="color">
+            <label for="rate-bad">Bad</label>
+          </div>
+          <!-- <div class="seance-gallary">
+            <img ng-repeat="img in movieData.gallery.images" img-url="{{img}}" ng-src="{{ config.mediaUrl + img }}">
+          </div> -->
+          <div class="controls">
+            <button ng-click="cancelPostBlurb()" class="btn blurb-btn btn-cancel">Cancel</button>
+            <button ng-click="postBlurb()" class="btn blurb-btn btn-blue">Post Blurb</button>
+          </div>
+        </form>
+        <div class="analytics">
+          <div class="blurb-seance-nums">
+            <div class="blurb-posted indicator">
+              <span class="num">25</span>
+              <span class="label">Blurbs posted</span>
+            </div>
+            <div class="divider"></div>
+            <div class="Seance-watched indicator">
+              <span class="num">259</span>
+              <span class="label">Seance Watched</span>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="last-blarbs">
+          <h2>Last Blurbs</h2>
+          <div class="blurb-style-b">
+            <div class="blurb-body light left-bordered yellow">
+              <p class="plain-text light">
+                “It's fine to celebrate  <a>#Landmine GoesClick</a>  success but it is more <a>#important</a> to heed the lessons of <a>#failure</a>.”
+              </p>
+              <div class="info">
+                <abbr>13 mins ago</abbr>
+                <div class="mojvixer right">
+                  <span class="prefix">-</span>
+                  <img class="profile-pic" src="assets/images/profile/profile3.jpg">
+                  <span class="mojvixer-name">Bill Gates</span>
+                </div>
+              </div>
+              <div class="meta light">
+                <span class="agrees">154 Agrees</span>
+                <span class="disagrees">28 disagrees</span>
+                <span class="comments">8 comments</span>
+              </div>
+            </div>
+          </div>
+          <div class="blurb-style-b">
+            <div class="blurb-body light left-bordered green">
+              <p class="plain-text light">
+                “It's fine to celebrate  <a>#Landmine GoesClick</a>  success but it is more <a>#important</a> to heed the lessons of <a>#failure</a>.”
+              </p>
+              <div class="info">
+                <abbr>13 mins ago</abbr>
+                <div class="mojvixer right">
+                  <span class="prefix">-</span>
+                  <img class="profile-pic" src="assets/images/profile/profile3.jpg">
+                  <span class="mojvixer-name">Bill Gates</span>
+                </div>
+              </div>
+              <div class="meta light">
+                <span class="agrees">154 Agrees</span>
+                <span class="disagrees">28 disagrees</span>
+                <span class="comments">8 comments</span>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </section>
+</section>

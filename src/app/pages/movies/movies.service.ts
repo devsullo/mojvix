@@ -27,7 +27,7 @@ export class MoviesService {
             threeD
             colored
           }
-          links { name }
+          links { name, url }
           directors { name }
           actors { name }
           genres { name }

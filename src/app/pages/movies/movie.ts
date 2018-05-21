@@ -1,10 +1,14 @@
 import { IBlurb } from '../../sidebar/blurbs/blurb';
+export interface IGenre {
+  id?: number;
+  name: string;
+}
 export interface IMovie {
   id?: number;
   title: string;
   poster: string;
   videoSrc: string;
-  genre: string;
+  genres: IGenre[];
   hashtags: string[];
   director: string;
   stars: string;

@@ -12,6 +12,7 @@ import { RouterModule } from '@angular/router';
 import { PlayerComponent } from './player/player.component';
 import { SeanceService } from './seance.service';
 import { IndexComponent } from './index/index.component';
+import { PostBlurbComponent } from './post-blurb/post-blurb.component';
 
 @NgModule({
   imports: [
@@ -32,6 +33,10 @@ import { IndexComponent } from './index/index.component';
           {
             path: 'password-recover',
             component: PassRecoverFormComponent
+          },
+          {
+            path: 'post-blurb',
+            component: PostBlurbComponent
           }
         ]
       }
@@ -41,7 +46,7 @@ import { IndexComponent } from './index/index.component';
     VgOverlayPlayModule,
     VgBufferingModule
   ],
-  declarations: [PlayerComponent, IndexComponent],
+  declarations: [PlayerComponent, IndexComponent, PostBlurbComponent],
   providers: [SeanceService]
 })
 export class SeanceModule {}

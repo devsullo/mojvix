@@ -1,7 +1,7 @@
 <section class="page-style-a fixed">
   <section class="center-area-cont">
     <div class="page-wrap {{ formStyle }} page-padding">
-      <section class="join-template">
+      <section class="join-template {{ formStyle }}">
         <h2 [innerHTML]="'join-form-heading' | trans"></h2>
         <form [formGroup]="joinForm" (ngSubmit)="join()" class="pay-form form-style-a {{ formStyle }}">
           <div [ngClass]="{'has-error' : joinForm.controls.vixname.invalid && joinForm.controls.vixname.touched}" class="inp-group">

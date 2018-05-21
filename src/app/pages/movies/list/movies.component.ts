@@ -26,10 +26,12 @@ export class MoviesComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.moviesService.getMovies()
-      .subscribe(({data}) => {
-        console.log(data);
-        this.movies = data.movies;
+    this.moviesService
+      .getMovies()
+      .map(r => r.data.movies)
+      .subscribe(movies => {
+        console.log(movies);
+        this.movies = movies;
       });
 
     this.calcScrollHeight();
