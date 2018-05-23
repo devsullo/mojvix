@@ -7,7 +7,8 @@ import { ApolloQueryResult } from 'apollo-client';
 
 @Injectable()
 export class MoviesService {
-  constructor(private apollo: Apollo) { }
+  constructor(private apollo: Apollo) {
+  }
 
   getMovies(): Observable<ApolloQueryResult<IMoviesResponse>> {
     const QUERY = gql`
