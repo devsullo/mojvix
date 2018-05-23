@@ -1,25 +1,26 @@
 import { IBlurb } from '../../sidebar/blurbs/blurb';
-export interface IGenre {
-  id?: number;
-  name: string;
+export interface IMoviesResponse {
+  movies: IMovie[];
 }
 export interface IMovie {
   id?: number;
   title: string;
+  story: string;
   poster: string;
   videoSrc: string;
-  genres: IGenre[];
+  genreNames: string[];
   hashtags: string[];
-  director: string;
-  stars: string;
-  story: string;
-  tags: string;
-  propResolution: string;
-  propRuntime: number;
-  propSoundQuality: string;
-  propThreeD: boolean;
-  propColored: boolean;
-  socials: {
+  directorNames: string[];
+  actorNames: string[];
+  tagNames: string[];
+  properties: {
+    resolution: string;
+    runtime: number;
+    soundQuality: string;
+    threeD: boolean;
+    colored: boolean;
+  };
+  links: {
     name: string;
     url: string;
   }[];

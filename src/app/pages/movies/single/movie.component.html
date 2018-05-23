@@ -10,11 +10,11 @@
   <div class="film-overview">
     <h4>{{ movie.title }}</h4>
     <div class="genre">
-      <span ng-repeat="genre in movie.genres">{{ movie.genre }}</span>
+      <span ng-repeat="genre in movie.genres">{{ movie.genreNames.join(', ') }}</span>
     </div>
     <div class="tags">
       <ul>
-        <li *ngFor="let hashtag of movie.hashtags">
+        <li *ngFor="let hashtag of movie.tagNames">
           <a href="#"> {{ hashtag }} </a>
         </li>
       </ul>
@@ -22,18 +22,18 @@
     <div class="divider"></div>
     <ul class="meta">
       <li>
-        <i class="value">{{ movie.propResolution }}</i>
+        <i class="value">{{ movie.properties.resolution }}</i>
       </li>
       <li>
         <i class="key">Runtime:</i>
-        <i class="value">{{ movie.propRuntime }}</i>
+        <i class="value">{{ movie.properties.duration }}</i>
         <i class="key">Min</i>
       </li>
-      <li class="{{ movie.propSoundQuality }}"></li>
-      <li *ngIf="movie.propThreeD">
+      <li class="{{ movie.properties.soundQuality }}"></li>
+      <li *ngIf="movie.properties.threeD">
         <i class="value">3D</i>
       </li>
-      <li *ngIf="movie.propColored">
+      <li *ngIf="movie.properties.colored">
         <i class="value">Colored</i>
       </li>
     </ul>
@@ -43,11 +43,11 @@
     <div class="cast">
       <div class="own-line">
         <div class="key">Director:</div>
-        <div class="value">{{ movie.director }}</div>
+        <div class="value">{{ movie.directorNames.join(', ') }}</div>
       </div>
       <div class="own-line">
         <div class="key">Stars:</div>
-        <div class="value">{{ movie.stars }}</div>
+        <div class="value">{{ movie.actorNames.join(', ') }}</div>
       </div>
     </div>
     <a [routerLink]="['/seance/the-search']" class="attend-to-show btn btn-sky-blue">Attend To Show</a>
@@ -55,8 +55,8 @@
       <div class="divider"></div>
       <div class="left">
         <ul class="socials">
-          <li *ngFor="let social of movie.socials" class="{{ social.name }}">
-            <a target="_blank" [href]="social.url"></a>
+          <li *ngFor="let link of movie.links" class="{{ link.name }}">
+            <a target="_blank" [href]="link.url"></a>
           </li>
         </ul>
         <span class="copy">movie.copy</span>

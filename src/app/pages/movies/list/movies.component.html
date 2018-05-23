@@ -85,16 +85,16 @@
               <span class="time right">131 min</span>
               <h3 class="hover-movie">{{ movie.title }}</h3>
               <h5 class="hover-genre">
-                <span>{{ movie.genre }}</span>
+                <span>{{ movie.genreNames.join(', ') }}</span>
               </h5>
               <ul>
                 <li>
                   <span>Direcor: </span>
-                  <a href="#">{{ movie.director }}</a>
+                  <a href="#">{{ movie.directorNames.join(', ') }}</a>
                 </li>
                 <li>
                   <span>Stars: </span>
-                  <a href="#">{{ movie.stars }}</a>
+                  <a href="#">{{ movie.actorNames.join(', ') }}</a>
                 </li>
               </ul>
               <p class="plain-text description">
