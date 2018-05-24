@@ -13,9 +13,17 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { AuthService } from './services/auth.service';
+import { JwtModule } from '@auth0/angular-jwt';
 
 @NgModule({
-  imports: [CommonModule, HttpLinkModule],
+  imports: [CommonModule, HttpLinkModule,
+    JwtModule.forRoot({
+    config: {
+      // tokenGetter: tokenGetter,
+      whitelistedDomains: ['localhost:3001'],
+      blacklistedRoutes: ['localhost:3001/auth/']
+    }
+  })],
   declarations: [EscapeHtmlPipe, TransPipe],
   exports: [
     CommonModule,
@@ -31,7 +39,6 @@ import { AuthService } from './services/auth.service';
   ],
   providers: [AuthService]
 })
-
 export class SharedModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {
     const baseLink = httpLink.create({ uri: environment.graphqlUrl });
@@ -46,7 +53,9 @@ export class SharedModule {
       if (networkError) {
         networkError.error.errors.map(({ message, locations, path }) =>
           console.warn(
-            `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(locations)}`
+            `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
+              locations
+            )}`
           )
         );
       }
