@@ -1,3 +1,4 @@
+import { AuthService } from './../../shared/services/auth.service';
 import { RouteService } from './../../shared/services/route.service';
 import { TransPipe } from './../../shared/pipes/trans.pipe';
 import { ScrollService } from './../../shared/services/scroll.service';
@@ -32,7 +33,8 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     private transPipe: TransPipe,
     private seanceService: SeanceService,
     private routeService: RouteService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   get formState(): AbstractControl {
@@ -150,14 +152,20 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   }
 
   login() {
-    this.joinFormService.login(this.joinForm.value).subscribe(
-      res => {
-        console.log(res);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    // Temp
+    if (this.joinForm.value.password === '1') {
+      this.authService.logIn('dasdsa');
+    } else {
+
+    }
+    // this.joinFormService.login(this.joinForm.value).subscribe(
+    //   res => {
+    //     console.log(res);
+    //   },
+    //   err => {
+    //     console.log(err);
+    //   }
+    // );
   }
 
   register() {

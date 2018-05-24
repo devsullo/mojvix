@@ -12,6 +12,7 @@ import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   imports: [CommonModule, HttpLinkModule],
@@ -27,7 +28,8 @@ import { onError } from 'apollo-link-error';
     HttpClientModule,
     ApolloModule,
     HttpLinkModule
-  ]
+  ],
+  providers: [AuthService]
 })
 
 export class SharedModule {

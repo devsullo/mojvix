@@ -1,3 +1,4 @@
+import { AuthService } from './../../../shared/services/auth.service';
 import { ScrollService } from './../../../shared/services/scroll.service';
 import { Component, OnInit, Input, OnChanges } from '@angular/core';
 
@@ -11,14 +12,21 @@ export class IndexComponent implements OnInit, OnChanges {
   @Input() scrollHeight: number;
 
   constructor(
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private authService: AuthService
   ) {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
-    this.scrollEl ? this.scrollEl.update() : (this.scrollEl = this.scrollService.init('#sidebar-navigation-section'));
+    this.scrollEl
+      ? this.scrollEl.update()
+      : (this.scrollEl = this.scrollService.init(
+          '#sidebar-navigation-section'
+        ));
+  }
+
+  logOut() {
+    this.authService.logOut();
   }
 }
