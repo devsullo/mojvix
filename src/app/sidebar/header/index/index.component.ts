@@ -13,6 +13,7 @@ export class IndexComponent implements OnInit {
   constructor(private ngRedux: NgRedux<IAppState>) {}
 
   ngOnInit() {
+    this.user = this.ngRedux.getState().user;
     this.ngRedux.subscribe(() => {
       this.user = this.ngRedux.getState().user;
     });

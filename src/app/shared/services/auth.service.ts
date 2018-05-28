@@ -23,6 +23,7 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.setUser(null);
     this.routeService.navigateSeanceOrMain('join');
   }
@@ -31,5 +32,14 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
     const action = { type: SET_USER, user };
     this.ngRedux.dispatch(action);
+  }
+
+  isAuthenticated(): boolean {
+    const token = localStorage.getItem('token');
+    // TODO : this.jwtHelperService.isTokenExpired(token)
+    if (token) {
+      return true;
+    }
+    return false;
   }
 }

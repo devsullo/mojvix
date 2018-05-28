@@ -1,3 +1,4 @@
+import { LoggedOutGuardService as LoggedOutGuard } from './../shared/guards/logged-out-guard.service';
 import { NgModule } from '@angular/core';
 import { JoinFormComponent } from './join-form/join-form.component';
 import { SharedModule } from '../shared/shared.module';
@@ -14,17 +15,24 @@ import { LoadingComponent } from './loading/loading.component';
       {
         path: 'join',
         component: JoinFormComponent,
-        data: { formStyle: 'light' }
+        data: { formStyle: 'light' },
+        canActivate: [LoggedOutGuard]
       },
       {
         path: 'password-recover',
         component: PassRecoverFormComponent,
-        data: { formStyle: 'light' }
+        data: { formStyle: 'light' },
+        canActivate: [LoggedOutGuard]
       }
     ])
   ],
   exports: [LoadingComponent],
-  declarations: [JoinFormComponent, EmptyComponent, PassRecoverFormComponent, LoadingComponent],
+  declarations: [
+    JoinFormComponent,
+    EmptyComponent,
+    PassRecoverFormComponent,
+    LoadingComponent
+  ],
   providers: [TransPipe]
 })
 export class ComponentsModule {}

@@ -14,6 +14,8 @@ import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { AuthService } from './services/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';
+import { LoggedInGuardService } from './guards/logged-in-guard.service';
+import { LoggedOutGuardService } from './guards/logged-out-guard.service';
 
 @NgModule({
   imports: [CommonModule, HttpLinkModule,
@@ -39,7 +41,7 @@ import { JwtModule } from '@auth0/angular-jwt';
     ApolloModule,
     HttpLinkModule
   ],
-  providers: [AuthService]
+  providers: [AuthService, LoggedInGuardService, LoggedOutGuardService]
 })
 export class SharedModule {
   constructor(apollo: Apollo, httpLink: HttpLink) {

@@ -1,7 +1,7 @@
 <section class="page-style-a fixed">
   <section class="center-area-cont">
     <div class="page-wrap {{ formStyle }} page-padding">
-      <section class="join-template">
+      <section class="join-template {{ formStyle }}">
         <h2 [innerHTML]="'pass-recover-heading' | trans"></h2>
         <form [formGroup]="passRecoverForm" (ngSubmit)="passRecover()" class="pay-form form-style-a {{ formStyle }}">
           <div [ngClass]="{ 'has-error' : email.errors && (email.dirty || email.touched) || formErrors.email.notFound }" class="inp-group">

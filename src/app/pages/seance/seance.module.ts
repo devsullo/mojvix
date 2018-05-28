@@ -1,3 +1,5 @@
+import { LoggedInGuardService as LoggedInGuard } from './../../shared/guards/logged-in-guard.service';
+import { LoggedOutGuardService as LoggedOutGuard } from './../../shared/guards/logged-out-guard.service';
 import { PassRecoverFormComponent } from './../../components/pass-recover-form/pass-recover-form.component';
 import { EmptyComponent } from './../../components/empty/empty.component';
 import { JoinFormComponent } from './../../components/join-form/join-form.component';
@@ -14,6 +16,7 @@ import { SeanceService } from './seance.service';
 import { IndexComponent } from './index/index.component';
 import { PostBlurbComponent } from './post-blurb/post-blurb.component';
 
+
 @NgModule({
   imports: [
     SharedModule,
@@ -28,15 +31,18 @@ import { PostBlurbComponent } from './post-blurb/post-blurb.component';
           },
           {
             path: 'join',
-            component: JoinFormComponent
+            component: JoinFormComponent,
+            canActivate: [LoggedOutGuard]
           },
           {
             path: 'password-recover',
-            component: PassRecoverFormComponent
+            component: PassRecoverFormComponent,
+            canActivate: [LoggedOutGuard]
           },
           {
             path: 'post-blurb',
-            component: PostBlurbComponent
+            component: PostBlurbComponent,
+            canActivate: [LoggedInGuard]
           }
         ]
       }
