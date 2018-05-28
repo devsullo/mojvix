@@ -1,7 +1,8 @@
 import { IAppState } from '../IAppState';
+import { getDefaultService } from 'selenium-webdriver/edge';
 
 const INITIALSTATE: IAppState = {
-  user: null,
+  user: getUser(),
   navigation: {
     tabs: [
       { name: 'chat', notifications: 0 },
@@ -18,5 +19,10 @@ const INIT = {
     return state;
   },
 };
+
+function getUser() {
+  const user = JSON.parse(localStorage.getItem('user')) || null;
+  return user;
+}
 
 export { INIT, INITIALSTATE };

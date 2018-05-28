@@ -19,7 +19,9 @@ import { JwtModule } from '@auth0/angular-jwt';
   imports: [CommonModule, HttpLinkModule,
     JwtModule.forRoot({
     config: {
-      // tokenGetter: tokenGetter,
+      tokenGetter: () => {
+        return localStorage.getItem('token');
+      },
       whitelistedDomains: ['localhost:3001'],
       blacklistedRoutes: ['localhost:3001/auth/']
     }
@@ -51,6 +53,7 @@ export class SharedModule {
         );
       }
       if (networkError) {
+        console.log(networkError);
         networkError.error.errors.map(({ message, locations, path }) =>
           console.warn(
             `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(

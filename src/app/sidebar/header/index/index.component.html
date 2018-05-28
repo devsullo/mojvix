@@ -1,4 +1,4 @@
 <header>
-  <!-- <app-logged-out></app-logged-out> -->
-  <app-navigation></app-navigation>
+  <app-logged-out *ngIf="!user"></app-logged-out>
+  <app-navigation *ngIf="user"></app-navigation>
 </header>

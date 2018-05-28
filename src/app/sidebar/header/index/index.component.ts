@@ -1,4 +1,7 @@
+import { IAppState } from './../../../store/IAppState';
+import { NgRedux } from 'ng2-redux';
 import { Component, OnInit } from '@angular/core';
+import { IUser } from '../../../store/model/user';
 
 @Component({
   selector: 'app-sidebar-header',
@@ -6,10 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-
-  constructor() { }
+  user: IUser;
+  constructor(private ngRedux: NgRedux<IAppState>) {}
 
   ngOnInit() {
+    this.ngRedux.subscribe(() => {
+      this.user = this.ngRedux.getState().user;
+    });
   }
-
 }

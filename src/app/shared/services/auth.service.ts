@@ -28,6 +28,7 @@ export class AuthService {
   }
 
   setUser(user: IUser) {
+    localStorage.setItem('user', JSON.stringify(user));
     const action = { type: SET_USER, user };
     this.ngRedux.dispatch(action);
   }
