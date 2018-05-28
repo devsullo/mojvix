@@ -1,3 +1,4 @@
+import { RouteService } from './shared/services/route.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
@@ -26,7 +27,11 @@ import { NavigationModule } from './sidebar/navigation/navigation.module';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(ngRedux: NgRedux<IAppState>) {
+  constructor(
+    ngRedux: NgRedux<IAppState>,
+    routeService: RouteService
+  ) {
     ngRedux.provideStore(store);
+    routeService.monitorRoute();
   }
 }

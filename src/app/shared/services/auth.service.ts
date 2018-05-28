@@ -1,3 +1,4 @@
+import { HeaderService } from './../../sidebar/header/header.service';
 import { IAppState } from './../../store/IAppState';
 import { RouteService } from './route.service';
 import { Injectable } from '@angular/core';
@@ -11,7 +12,8 @@ export class AuthService {
   constructor(
     private routeService: RouteService,
     private jwtHelperService: JwtHelperService,
-    private ngRedux: NgRedux<IAppState>
+    private ngRedux: NgRedux<IAppState>,
+    private headerService: HeaderService
   ) {}
 
   logIn(token: string) {
@@ -23,8 +25,8 @@ export class AuthService {
 
   logOut() {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
     this.setUser(null);
+    this.headerService.changeNavigationTab('blurbs');
     this.routeService.navigateSeanceOrMain('join');
   }
 
