@@ -27,7 +27,8 @@ import { PostBlurbComponent } from './post-blurb/post-blurb.component';
         children: [
           {
             path: '',
-            component: EmptyComponent
+            component: EmptyComponent,
+            data: { scrollElement: '#seance-body-area' }
           },
           {
             path: 'join',

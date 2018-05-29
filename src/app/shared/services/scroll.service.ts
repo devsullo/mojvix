@@ -29,4 +29,8 @@ export class ScrollService {
       el.scrollTo({ top: top, behavior: 'smooth' });
     }, 1);
   }
+
+  update(selector: string) {
+    this.scrollSelectors[selector].update();
+  }
 }
