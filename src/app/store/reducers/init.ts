@@ -11,6 +11,9 @@ const INITIALSTATE: IAppState = {
       { name: 'navigation', notifications: 0 }
     ],
     activeTab: 'blurbs'
+  },
+  chat: {
+    rooms: []
   }
 };
 

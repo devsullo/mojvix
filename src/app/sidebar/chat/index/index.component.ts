@@ -1,3 +1,4 @@
+import { ChatService } from './../chat.service';
 import { ScrollService } from './../../../shared/services/scroll.service';
 import { Component, OnInit, Input, SimpleChange } from '@angular/core';
 
@@ -16,9 +17,14 @@ export class IndexComponent implements OnInit {
       : (this.scrollEl = this.scrollService.init('#vix-chat'));
   }
 
-  constructor(private scrollService: ScrollService) {}
+  constructor(
+    private scrollService: ScrollService,
+    private chatService: ChatService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.chatService.createRoom('general');
+  }
 
 
 }
