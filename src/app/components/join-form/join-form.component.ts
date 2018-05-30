@@ -44,7 +44,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.formInit({
       age: ['', [Validators.required]],
-      gender: ['', [Validators.required]],
+      sex: ['', [Validators.required]],
       anonymus: false,
       state: 0
     });
@@ -78,7 +78,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
           formState.setValue(2);
         }
       });
-      fild.gender.valueChanges.subscribe(val => {
+      fild.sex.valueChanges.subscribe(val => {
         if (val) {
           formState.setValue(3);
         }
@@ -109,13 +109,12 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     this.joinFormService.checkVixname(val)
       .map(res => res.data.checkVixname)
       .subscribe(data => {
-        console.log(data);
         if (data.available) {
           this.vixnameStatus = this.transPipe.transform('vixname-available');
           if (this.formState.value < 1) {
             this.formInit({
               age: ['', Validators.required],
-              gender: ['', Validators.required],
+              sex: ['', Validators.required],
               anonymus: false,
               state: 1
             });
@@ -148,8 +147,12 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   }
 
   join(): void {
-    console.log(this.joinForm.value);
-    if (this.joinForm.value.state === -1) {
+    const formValue = this.joinForm.value;
+    const state = formValue.state;
+    delete formValue.state;
+    delete formValue.anonymus;
+    console.log(formValue);
+    if (state === -1) {
       this.login();
     } else {
       this.register();
