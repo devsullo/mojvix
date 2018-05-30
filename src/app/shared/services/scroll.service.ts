@@ -27,10 +27,17 @@ export class ScrollService {
     const top = el.scrollHeight;
     setTimeout(() => {
       el.scrollTo({ top: top, behavior: 'smooth' });
-    }, 1);
+    }, 50);
   }
 
   update(selector: string) {
-    this.scrollSelectors[selector].update();
+    const scrollSelector = this.scrollSelectors[selector];
+    if (!scrollSelector) {
+      console.warn(`Scroll selector ${selector} does't exists`);
+      return;
+    }
+    setTimeout(() => {
+      scrollSelector.update();
+    }, 50);
   }
 }

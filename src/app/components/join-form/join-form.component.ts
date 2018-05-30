@@ -106,24 +106,29 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   }
 
   checkVixname(val): void {
-    if (this.joinFormService.checkVixname(val)) {
-      this.vixnameStatus = this.transPipe.transform('vixname-available');
-      if (this.formState.value < 1) {
-        this.formInit({
-          age: ['', Validators.required],
-          gender: ['', Validators.required],
-          anonymus: false,
-          state: 1
-        });
-      }
-    } else {
-      this.vixnameStatus = '';
-      this.formInit({
-        password: ['', Validators.required],
-        anonymus: false,
-        state: -1
+    this.joinFormService.checkVixname(val)
+      .map(res => res.data.checkVixname)
+      .subscribe(data => {
+        console.log(data);
+        if (data.available) {
+          this.vixnameStatus = this.transPipe.transform('vixname-available');
+          if (this.formState.value < 1) {
+            this.formInit({
+              age: ['', Validators.required],
+              gender: ['', Validators.required],
+              anonymus: false,
+              state: 1
+            });
+          }
+        } else {
+          this.vixnameStatus = '';
+          this.formInit({
+            password: ['', Validators.required],
+            anonymus: false,
+            state: -1
+          });
+        }
       });
-    }
   }
 
   formInit(controls: any): void {
