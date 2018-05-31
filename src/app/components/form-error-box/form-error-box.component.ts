@@ -23,5 +23,6 @@ export class FormErrorBoxComponent implements OnInit {
 
   hide() {
     this.errorBox = false;
+    this.errorBoxMsg = '';
   }
 }

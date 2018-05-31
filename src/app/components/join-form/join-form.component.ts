@@ -173,7 +173,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   register(formValue: any) {
     this.joinFormService.register(formValue).subscribe(
       res => {
-        console.log(res);
+        this.authService.logIn(res.accessToken);
       },
       err => {
         this.errorBox.show(err);
