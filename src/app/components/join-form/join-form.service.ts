@@ -22,7 +22,7 @@ export class JoinFormService {
   ): Observable<ApolloQueryResult<ICheckVixnameResult>> {
     const QUERY = gql`
       query checkVixname {
-        checkVixname(vixname: "${ vixname }") {
+        checkVixname(vixname: "${vixname}") {
           vixname
           available
         }
@@ -31,11 +31,11 @@ export class JoinFormService {
     return this.apollo.query({ query: QUERY });
   }
 
-  login(form: any) {
-    return this.http.post(environment.loginUrl, form);
+  login(formData: any): Observable<any> {
+    return this.http.post(environment.loginUrl, formData);
   }
 
-  register(form: any) {
-    return this.http.post(environment.registerUrl, form);
+  register(formData: any): Observable<any> {
+    return this.http.post(environment.registerUrl, formData);
   }
 }

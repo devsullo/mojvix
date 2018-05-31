@@ -160,22 +160,20 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   }
 
   login() {
-    // Temp
-    if (this.joinForm.value.password === '1') {
-      // tslint:disable-next-line:max-line-length
-      const token = 'eyJhbGciOiJSUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX0FETUlOIl0sInVzZXJuYW1lIjoiYWRtaW4iLCJpYXQiOjE1MjcxNjg2OTcsImV4cCI6MTUyNzE3MjI5N30.i43LN - Fu783sQ42S2 - DmLk3TMXfGyGoZOVIYE3jPJQf1_VOKUDoPboMgwciL_46OXyY8u9MOBpnbwdsfqT0WXrIaIaUqM7oH5Me03nlJd9XpSMHXHO_yb4qxbAhlgOv5rfX - n2RLPoWF3G4czpqvPpnTL4yHDSOXRcG4svmUIYFV1vEZbXTXp_crmreDakoRClZw09sikOVpWN9fhn9zxSlzYuPLBwwUcuzTXRq4FNB4SLIMmlNH4VXE_m80Kw62TNHfDd4D - FyLG6NTKpf - 0zs__zNgddl8-JMECX1 - xWNTnufMm_bJ - tY8jpaxOCR_jxtI9CYlg4U54yFeZsDli3dpBkeLBrB5VP4JoD2P_8takdPse2albsEVhiGC_FegVaHnLPYqszagQW5DQYIbJ8A8l2C3ninvUCxFmlTFcDNct96GKgScGWSRdB35l9wS6ef7bLYjS - lfAFSDPxWFHczpeE8 - UDdt5sGq6lolQGwXCFZpDZbckkmj0MjaXmowtIpxnMFwNCbsD8mPTjGHnM9sHSZhHYJnx4XklktGuq2Q7m8bU0IcpltA2Ac_v - LUb - 8TNqTUfvYc4cc8tbmK8YplHsY - PV_djlkjNmQiAqHY1nfKG2PEHpqUWfF6n9xUtiB3xGi - pAkgQkgsTfGxzSkSwe - e4ozXbjfTDv2ffhI';
-      this.authService.logIn(token);
-    } else {
+    const formValue = this.joinForm.value;
+    formValue.username = formValue.vixname;
+    delete formValue.vixname;
+    this.joinFormService.login(formValue)
+      .subscribe(
+        res => {
+          console.log(res);
+          this.authService.logIn(res.access_token);
+        },
+        err => {
+          console.log(err);
+        }
+      );
 
-    }
-    // this.joinFormService.login(this.joinForm.value).subscribe(
-    //   res => {
-    //     console.log(res);
-    //   },
-    //   err => {
-    //     console.log(err);
-    //   }
-    // );
   }
 
   register() {
