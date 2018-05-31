@@ -4,6 +4,7 @@
       <section class="join-template {{ formStyle }}">
         <h2 [innerHTML]="'join-form-heading' | trans"></h2>
         <form [formGroup]="joinForm" (ngSubmit)="join()" class="pay-form form-style-a {{ formStyle }}">
+          <app-form-error-box></app-form-error-box>
           <div [ngClass]="{'has-error' : joinForm.controls.vixname.invalid && joinForm.controls.vixname.touched}" class="inp-group">
             <span class="status">{{ vixnameStatus }}</span>
             <input formControlName="vixname" id="vixname-inp" name="vixname" class="ex-lg" type="text" [placeholder]="'input-vixname' | trans" autocomplete="off">

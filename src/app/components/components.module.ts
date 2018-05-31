@@ -7,6 +7,7 @@ import { TransPipe } from '../shared/pipes/trans.pipe';
 import { EmptyComponent } from './empty/empty.component';
 import { PassRecoverFormComponent } from './pass-recover-form/pass-recover-form.component';
 import { LoadingComponent } from './loading/loading.component';
+import { FormErrorBoxComponent } from './form-error-box/form-error-box.component';
 
 @NgModule({
   imports: [
@@ -31,7 +32,8 @@ import { LoadingComponent } from './loading/loading.component';
     JoinFormComponent,
     EmptyComponent,
     PassRecoverFormComponent,
-    LoadingComponent
+    LoadingComponent,
+    FormErrorBoxComponent
   ],
   providers: [TransPipe]
 })

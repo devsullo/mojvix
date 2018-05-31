@@ -3118,6 +3118,14 @@ a.moods {
       font-size: 18px;
     }
   }
+  .error-box{
+    background: #0e161a;
+    box-shadow: 0px 1px 4px #242c36;
+    color: #c0392b;
+    padding: 12px;
+    margin: 4px 0;
+    text-align: center;
+  }
   &.light {
     @include placeholder(#dbdfe4);
     input {
@@ -3128,6 +3136,10 @@ a.moods {
     }
     .inp-group {
       border-bottom: 1px solid #d5d9e0;
+    }
+    .error-box {
+      background: rgb(213, 217, 224);
+      box-shadow: 0px 1px 4px #c1c1c1;
     }
   }
 }

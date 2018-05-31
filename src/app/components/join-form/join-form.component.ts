@@ -3,7 +3,7 @@ import { RouteService } from './../../shared/services/route.service';
 import { TransPipe } from './../../shared/pipes/trans.pipe';
 import { ScrollService } from './../../shared/services/scroll.service';
 import { JoinFormService } from './join-form.service';
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit, QueryList, ViewChild } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
@@ -14,6 +14,7 @@ import {
 import { SeanceService } from '../../pages/seance/seance.service';
 import { IMediaSubscriptions } from 'videogular2/src/core/vg-media/i-playable';
 import { ActivatedRoute } from '@angular/router';
+import { FormErrorBoxComponent } from '../form-error-box/form-error-box.component';
 
 
 @Component({
@@ -26,6 +27,9 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   vixnameStatus: string;
   formStyle: 'dark';
   vixnamePattern = '^[a-zA-Z0-9]{3,15}$';
+  @ViewChild(FormErrorBoxComponent)
+  private errorBox: FormErrorBoxComponent;
+
   constructor(
     private fb: FormBuilder,
     private joinFormService: JoinFormService,
@@ -57,7 +61,6 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     this.seanceService.scrollBottom();
   }
 
-
   formChanges(): void {
     const fild = this.joinForm.controls;
     const formState = this.formState;
@@ -85,7 +88,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
       });
       fild.anonymus.valueChanges.subscribe(val => {
         if (val) {
-         this.seanceService.scrollBottom();
+          this.seanceService.scrollBottom();
           this.joinForm.addControl(
             'email',
             new FormControl('', [Validators.required, Validators.email])
@@ -99,14 +102,13 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
           this.joinForm.removeControl('password');
         }
       });
-      fild.state.valueChanges.subscribe(val => {
-
-      });
+      fild.state.valueChanges.subscribe(val => {});
     }
   }
 
   checkVixname(val): void {
-    this.joinFormService.checkVixname(val)
+    this.joinFormService
+      .checkVixname(val)
       .map(res => res.data.checkVixname)
       .subscribe(data => {
         if (data.available) {
@@ -149,40 +151,32 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   join(): void {
     const formValue = this.joinForm.value;
     const state = formValue.state;
-    delete formValue.state;
-    delete formValue.anonymus;
-    console.log(formValue);
     if (state === -1) {
-      this.login();
+      this.login(formValue);
     } else {
-      this.register();
+      this.register(formValue);
     }
   }
 
-  login() {
-    const formValue = this.joinForm.value;
+  login(formValue: any) {
     formValue.username = formValue.vixname;
-    delete formValue.vixname;
-    this.joinFormService.login(formValue)
-      .subscribe(
-        res => {
-          console.log(res);
-          this.authService.logIn(res.access_token);
-        },
-        err => {
-          console.log(err);
-        }
-      );
-
+    this.joinFormService.login(formValue).subscribe(
+      res => {
+        this.authService.logIn(res.accessToken);
+      },
+      err => {
+        this.errorBox.show(err);
+      }
+    );
   }
 
-  register() {
-    this.joinFormService.register(this.joinForm.value).subscribe(
+  register(formValue: any) {
+    this.joinFormService.register(formValue).subscribe(
       res => {
         console.log(res);
       },
       err => {
-        console.log(err);
+        this.errorBox.show(err);
       }
     );
   }

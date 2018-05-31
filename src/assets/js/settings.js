@@ -102,7 +102,7 @@ window.__VIX_MESSAGES__ = {
   'link-subscribe': 'Subscribe',
 
   'form-error-vixname-pattern': 'Vixname must be 3-15 chars long',
-  'form-error-invalid-email': 'Wrong email',
+  'form-error-invalid-email': 'Wrong email format',
   'form-error-email-notFound': 'Email notFound',
   'form-error-password-minlength': 'Password minlength',
 
@@ -131,5 +131,9 @@ window.__VIX_MESSAGES__ = {
   '42': 'Wrong file format',
   '50': 'Email required',
   '51': 'Email is invalid',
-  '52': 'Email has been taken'
+  '52': 'Email has been taken',
+  error: {
+    BAD_CREDENTIALS: 'Password is not valid',
+    USER_ALREADY_REGISTERED: 'Email is taken'
+  }
 };
