@@ -28,7 +28,7 @@ export class JoinFormService {
         }
       }
     `;
-    return this.apollo.query({ query: QUERY });
+    return this.apollo.query({ query: QUERY, fetchPolicy: 'network-only' });
   }
 
   login(formData: any): Observable<any> {
