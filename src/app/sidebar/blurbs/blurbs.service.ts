@@ -1,19 +1,45 @@
+import { Observable } from 'rxjs/Observable';
+import { ApolloQueryResult } from 'apollo-client';
+import { Apollo } from 'apollo-angular';
+import gql from 'graphql-tag';
 import { IBlurb } from './blurb';
 import { Injectable } from '@angular/core';
 
+interface IBlurbsResponse {
+  blurbs: IBlurb[];
+}
+
 @Injectable()
 export class BlurbsService {
+  constructor(private apollo: Apollo) {}
 
-  constructor() { }
+  getBlurbs(movieId?: number): Observable<ApolloQueryResult<IBlurbsResponse>> {
+    let eq = '';
+    if (movieId) {
+      eq = `eq:["movieId:${movieId}"]`;
+    }
+    const QUERY = gql`
+      query getBlurbs {
+        blurbs(
+          orderBy: { column: "id", order: ASC }
+          where: { ${eq} }
+        ) {
+          id
+          color
+          content
+          totalAgree
+          totalDisagree
+          totalComments
+          creator {
+            vixname
+          }
+          comments {
+            content
+          }
+        }
+      }
+    `;
 
-  getBlurbs(): IBlurb[] {
-    const blurbs = [
-     { id: 1, color: 'red', content: "it's fine to selebrate #LandmineGoesClick success but it is more #important to heed lessons of #failure", cover: 'assets/images/movies/cover-blurb.jpg', mojvixerPic: 'assets/images/profile/profile2.jpg', mojvixerName: 'Lasha', meta: { agrees: 12, disagrees: 45, comments: 56 }, comments: [{ mojvixerPic: 'assets/images/profile/profile1.jpg', mojvixerName: 'iosa', content: 'Okay bro' }] },
-     { id: 2, color: 'yellow', content: "poll (number): How often to check for file updates.", cover: '', mojvixerPic: 'assets/images/profile/profile1.jpg', mojvixerName: 'Lasha', meta: { agrees: 12, disagrees: 45, comments: 56 }, comments: [] },
-     { id: 3, color: 'green', content: "All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet.", cover: '', mojvixerPic: 'assets/images/profile/profile3.jpg', mojvixerName: 'Lasha', meta: { agrees: 12, disagrees: 45, comments: 56 }, comments: [{ mojvixerPic: 'assets/images/profile/profile3.jpg', mojvixerName: 'iosa', content: 'Various versions have evolved over the years' }] }
-    ];
-
-    return blurbs;
+    return this.apollo.query({ query: QUERY });
   }
-
 }

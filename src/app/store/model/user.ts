@@ -9,5 +9,5 @@ export interface IUser {
   };
   exp: number;
   iat: number;
-  profilePic?: string;
+  avatar?: string;
 }
