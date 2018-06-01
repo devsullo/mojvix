@@ -1,3 +1,4 @@
+import { BlurbsService } from './../../../sidebar/blurbs/blurbs.service';
 import { IMovie } from './../movie';
 import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -15,7 +16,8 @@ export class MovieComponent implements OnInit, AfterViewInit {
   arrowMarginLeft = 0;
   playerIsReady = false;
   constructor(
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private blurbsService: BlurbsService
   ) {}
 
   ngOnInit() {}
@@ -32,14 +34,15 @@ export class MovieComponent implements OnInit, AfterViewInit {
     // console.log('player state', event.data);
   }
 
-  show(i: number, calls: number): void {
+  show(i: number, calls: number, movie: IMovie): void {
+    this.movie = movie;
+    this.blurbsService.getBlurbs(movie.id);
     const boxOffice = document.querySelector('#box-office');
-    const movie = document.querySelector('.movie').clientWidth;
+    const movieWidth = document.querySelector('.movie').clientWidth;
     const rowNum = i % calls || calls;
     const moviePadding = boxOffice.clientWidth * 2.3 / 100;
-    const halfPoster = movie / 2;
-    this.arrowMarginLeft =
-      rowNum * movie - halfPoster - 10 + rowNum * moviePadding - moviePadding;
+    const halfPoster = movieWidth / 2;
+    this.arrowMarginLeft = rowNum * movieWidth - halfPoster - 10 + rowNum * moviePadding - moviePadding;
     this.expanded = true;
   }
 

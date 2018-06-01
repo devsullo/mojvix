@@ -4,6 +4,8 @@ import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { IBlurb } from './blurb';
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs/Subject';
+
 
 interface IBlurbsResponse {
   blurbs: IBlurb[];
@@ -11,9 +13,13 @@ interface IBlurbsResponse {
 
 @Injectable()
 export class BlurbsService {
+  private getBlurbsSounce = new Subject<
+    Observable<ApolloQueryResult<IBlurbsResponse>>
+  >();
+  getBlurbsSounce$ = this.getBlurbsSounce.asObservable();
   constructor(private apollo: Apollo) {}
 
-  getBlurbs(movieId?: number): Observable<ApolloQueryResult<IBlurbsResponse>> {
+  getBlurbs(movieId?: number): void {
     let eq = '';
     if (movieId) {
       eq = `eq:["movieId:${movieId}"]`;
@@ -39,7 +45,6 @@ export class BlurbsService {
         }
       }
     `;
-
-    return this.apollo.query({ query: QUERY });
+    this.getBlurbsSounce.next(this.apollo.query({ query: QUERY }));
   }
 }

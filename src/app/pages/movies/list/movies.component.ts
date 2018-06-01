@@ -71,8 +71,7 @@ export class MoviesComponent implements OnInit {
       }
       this.closeAllExpandAreas();
       this.expandedMovie = this.expandArea.toArray()[row];
-      this.expandedMovie.movie = this.movies[i];
-      this.expandedMovie.show(i + 1, this.colls);
+      this.expandedMovie.show(i + 1, this.colls, this.movies[i]);
       // TO DO: wait el expand
       setTimeout(() => {
         this.scrollTopVal = Math.floor(document

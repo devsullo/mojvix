@@ -19,11 +19,15 @@ export class BlurbsComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    this.blurbsService.getBlurbs()
-      .map(res => res.data.blurbs)
-      .subscribe(blurbs => {
-        this.blurbs = blurbs;
+    this.blurbsService.getBlurbsSounce$
+      .subscribe(blarbsObserver => {
+        blarbsObserver
+        .map(res => res.data.blurbs)
+        .subscribe(blurbs => {
+          this.blurbs = blurbs;
+        });
       });
+    this.blurbsService.getBlurbs();
   }
 
   ngOnChanges() {

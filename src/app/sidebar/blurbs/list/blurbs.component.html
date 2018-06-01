@@ -1,4 +1,5 @@
 <section id="blurbs-list" [style.height.px]="scrollHeight">
+  <h2 class="oops" *ngIf="blurbs.length < 1">No blurbs yet</h2>
   <div *ngFor="let blurb of blurbs"  class="single-blurb-wrapper">
     <div class="number">
       <i>{{ blurb.id }}</i>
