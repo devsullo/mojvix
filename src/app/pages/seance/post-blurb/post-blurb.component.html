@@ -3,21 +3,21 @@
     <div class="page-wrap page-padding">
       <div id="seance-post-blurb">
         <form [formGroup]="blurbForm" (ngSubmit)="postBlurb()" class="post-blurb-form">
-          <textarea formControlName="text" class="post-blurb-input" placeholder="Type here your blurb"></textarea>
+          <textarea formControlName="content" class="post-blurb-input" placeholder="Type here your blurb"></textarea>
           <div class="rate-movie">
             <span>Rate this movie</span>
-            <input type="radio" id="rate-good" value="green" formControlName="color">
+            <input type="radio" id="rate-good" value="GREEN" formControlName="color">
             <label for="rate-good">Good</label>
-            <input type="radio" id="rate-normal" value="yellow" formControlName="color">
+            <input type="radio" id="rate-normal" value="YELLOW" formControlName="color">
             <label for="rate-normal">Normal</label>
-            <input type="radio" id="rate-bad" value="red" formControlName="color">
+            <input type="radio" id="rate-bad" value="RED" formControlName="color">
             <label for="rate-bad">Bad</label>
           </div>
           <!-- <div class="seance-gallary">
             <img ng-repeat="img in movieData.gallery.images" img-url="{{img}}" ng-src="{{ config.mediaUrl + img }}">
           </div> -->
           <div class="controls">
-            <button class="btn blurb-btn btn-cancel">Cancel</button>
+            <button (click)="cancel()" class="btn blurb-btn btn-cancel">Cancel</button>
             <button type="submit" [disabled]="!blurbForm.valid" class="btn blurb-btn btn-blue">Post Blurb</button>
           </div>
         </form>

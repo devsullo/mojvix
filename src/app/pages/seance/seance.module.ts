@@ -15,6 +15,7 @@ import { PlayerComponent } from './player/player.component';
 import { SeanceService } from './seance.service';
 import { IndexComponent } from './index/index.component';
 import { PostBlurbComponent } from './post-blurb/post-blurb.component';
+import { PostBlurbService } from './post-blurb/post-blurb.service';
 
 
 @NgModule({
@@ -54,6 +55,6 @@ import { PostBlurbComponent } from './post-blurb/post-blurb.component';
     VgBufferingModule
   ],
   declarations: [PlayerComponent, IndexComponent, PostBlurbComponent],
-  providers: [SeanceService]
+  providers: [SeanceService, PostBlurbService]
 })
 export class SeanceModule {}

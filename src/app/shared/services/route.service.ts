@@ -23,5 +23,8 @@ export class RouteService {
       this.router.navigate([location]);
     }
   }
+  navigateSeance(location: string): void {
+    this.router.navigate([`seance/${this.pageUrl[2]}/${location}`]);
+  }
 }
 

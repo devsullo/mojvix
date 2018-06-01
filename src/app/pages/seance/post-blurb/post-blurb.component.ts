@@ -1,3 +1,5 @@
+import { Location } from '@angular/common';
+import { PostBlurbService } from './post-blurb.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { SeanceService } from '../seance.service';
@@ -9,12 +11,17 @@ import { SeanceService } from '../seance.service';
 })
 export class PostBlurbComponent implements OnInit, AfterViewInit {
   blurbForm: FormGroup;
-  constructor(private seanceService: SeanceService, private fb: FormBuilder) {}
+  constructor(
+    private seanceService: SeanceService,
+    private fb: FormBuilder,
+    private postBlurbService: PostBlurbService,
+    private location: Location
+  ) {}
 
   ngOnInit() {
     this.blurbForm = this.fb.group({
-      text: ['', Validators.required],
-      color: ['green', Validators.required]
+      content: ['', Validators.required],
+      color: ['GREEN', Validators.required]
     });
   }
 
@@ -24,5 +31,12 @@ export class PostBlurbComponent implements OnInit, AfterViewInit {
 
   postBlurb() {
     console.log(this.blurbForm.value);
+    this.postBlurbService.createBlurb(this.blurbForm.value, 6)
+    .map(res => res.data.createBlurb)
+    .subscribe(id => {});
+  }
+
+  cancel() {
+    this.location.back();
   }
 }

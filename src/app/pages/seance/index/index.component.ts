@@ -1,3 +1,5 @@
+import { RouteService } from './../../../shared/services/route.service';
+import { Router } from '@angular/router';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ScrollService } from '../../../shared/services/scroll.service';
 import { Location } from '@angular/common';
@@ -12,7 +14,8 @@ export class IndexComponent implements OnInit {
   scroll: any;
   constructor(
     private scrollService: ScrollService,
-    private location: Location
+    private location: Location,
+    private routeService: RouteService
   ) {}
 
   ngOnInit() {
@@ -22,6 +25,10 @@ export class IndexComponent implements OnInit {
 
   goBack(): void {
     this.location.back();
+  }
+
+  postBlurb(): void {
+    this.routeService.navigateSeance('post-blurb');
   }
 
   @HostListener('window:resize', ['$event'])
