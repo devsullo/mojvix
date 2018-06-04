@@ -13,7 +13,7 @@ export class MoviesService {
   getMovies(): Observable<ApolloQueryResult<IMoviesResponse>> {
     const QUERY = gql`
       query getMovies {
-        movies(orderBy:{column:"id" order:ASC}) {
+        movies {
           id
           title
           story
@@ -33,6 +33,11 @@ export class MoviesService {
         }
       }
     `;
-    return this.apollo.query({ query: QUERY });
+    return this.apollo.query({
+      query: QUERY,
+      variables: {
+        // orderBy: { column: 'id', order: 'ASC' },
+      }
+    });
   }
 }
