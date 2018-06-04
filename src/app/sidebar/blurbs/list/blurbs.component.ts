@@ -9,7 +9,7 @@ import { IBlurb } from '../blurb';
   styleUrls: ['./blurbs.component.scss']
 })
 export class BlurbsComponent implements OnInit, OnChanges {
-  blurbs: IBlurb[];
+  blurbs: IBlurb[] = [];
   scrollEl: any;
   @Input() scrollHeight: number;
 

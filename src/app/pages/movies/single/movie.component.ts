@@ -50,7 +50,10 @@ export class MovieComponent implements OnInit, AfterViewInit {
     this.playerIsReady = true;
   }
 
-  close(): void {
+  close(getBlurbs?: boolean): void {
+    if (getBlurbs) {
+      this.blurbsService.getBlurbs();
+    }
     this.expanded = false;
     this.playerIsReady = false;
     this.scrollService.scrollSelectors['#box-office'].update();

@@ -1,6 +1,6 @@
 <section id="expanded-movie" *ngIf="expanded">
   <i class="top-arrow" [style.margin-left.px]="arrowMarginLeft"></i>
-  <a class="close" (click)="close()"></a>
+  <a class="close" (click)="close(true)"></a>
   <div class="left-show">
     <div class="videoWrapper">
       <app-loading></app-loading>

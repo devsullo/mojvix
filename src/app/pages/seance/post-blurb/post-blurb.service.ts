@@ -15,16 +15,22 @@ export class PostBlurbService {
   constructor(private apollo: Apollo) {}
 
   createBlurb(
-    formValue: any,
+    input: any,
     movieId: number
   ): Observable<FetchResult<ICreateBlurbResponse>> {
     const MUTATION = gql`
-      mutation createBlurb {
-        createBlurb(movieId: ${movieId}, input: "${formValue}") {
+      mutation createBlurb($movieId: Int!, $input: CreateBlurbInput!) {
+        createBlurb(movieId: $movieId, input: $input) {
           id
         }
       }
     `;
-    return this.apollo.mutate({ mutation: MUTATION });
+    return this.apollo.mutate({
+      mutation: MUTATION,
+      variables: {
+        input: input,
+        movieId: movieId
+      }
+    });
   }
 }
