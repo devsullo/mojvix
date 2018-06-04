@@ -6,16 +6,11 @@ import { TransPipe } from './pipes/trans.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { YoutubePlayerModule } from 'ng2-youtube-player';
-import { HttpClientModule, HttpHeaders, HTTP_INTERCEPTORS, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ApolloModule, Apollo } from 'apollo-angular';
 import { HttpLinkModule, HttpLink } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
-import {
-  ApolloLink,
-  Observable,
-  Operation,
-  NextLink,
-  FetchResult } from 'apollo-link';
+import { ApolloLink } from 'apollo-link';
 import { onError } from 'apollo-link-error';
 import { AuthService } from './services/auth.service';
 import { JwtModule } from '@auth0/angular-jwt';

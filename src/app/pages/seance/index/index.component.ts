@@ -1,5 +1,6 @@
+import { SeanceService } from './../seance.service';
 import { RouteService } from './../../../shared/services/route.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { ScrollService } from '../../../shared/services/scroll.service';
 import { Location } from '@angular/common';
@@ -15,8 +16,14 @@ export class IndexComponent implements OnInit {
   constructor(
     private scrollService: ScrollService,
     private location: Location,
-    private routeService: RouteService
-  ) {}
+    private routeService: RouteService,
+    private route: ActivatedRoute,
+    private seanceService: SeanceService
+  ) {
+    const slug: string = route.snapshot.params.slug;
+    this.seanceService.initSeance(slug);
+    console.log(slug);
+  }
 
   ngOnInit() {
     this.calcScrollHeight();

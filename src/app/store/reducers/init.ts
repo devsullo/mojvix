@@ -12,8 +12,13 @@ const INITIALSTATE: IAppState = {
     ],
     activeTab: 'blurbs'
   },
+  // TODO remove this
   chat: {
     rooms: []
+  },
+  seance: {
+    id: null,
+    slug: null
   }
 };
 
