@@ -25,5 +25,5 @@ export interface IMovie {
     url: string;
   }[];
   moods: string[];
-  blurb: IBlurb;
+  blurbs: IBlurb[];
 }

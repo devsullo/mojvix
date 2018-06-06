@@ -100,22 +100,24 @@
               <p class="plain-text description">
                 {{ movie.story }}
               </p>
-              <!-- <div class="footer blurb-style-a">
+              <div class="footer blurb-style-a">
                 <div class="tags">
-                  <span>{{ movie.tags }}</span>
+                  <span>{{ movie.tagNames.join(', ') }}</span>
                 </div>
-                <div class="blurb-body left-bordered {{ movie.blurb.color }}">
-                  <div class="plain-text">
-                    <div class="warning" [innerHTML]="movie.blurb.content | escapeHtml">
+                <div *ngIf="movie.blurbs[0]">
+                  <div class="blurb-body left-bordered {{ movie.blurbs[0].color | lowercase }}">
+                    <div class="plain-text">
+                      <div class="warning" [innerHTML]="movie.blurbs[0].content | escapeHtml">
+                      </div>
                     </div>
                   </div>
+                  <div class="mojvixer right">
+                    <span class="prefix">-</span>
+                    <img class="profile-pic" [src]="'/assets/images/profile/profile2.jpg'">
+                    <span class="mojvixer-name">{{ movie.blurbs[0].creator.vixname }}</span>
+                  </div>
                 </div>
-                <div class="mojvixer right">
-                  <span class="prefix">-</span>
-                  <img class="profile-pic" [src]="movie.blurb.mojvixerPic">
-                  <span class="mojvixer-name">{{ movie.blurb.mojvixerName }}</span>
-                </div>
-              </div> -->
+              </div>
             </div>
           </div>
         </div>

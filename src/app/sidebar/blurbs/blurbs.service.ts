@@ -42,12 +42,14 @@ export class BlurbsService {
         }
       }
     `;
-    this.getBlurbsSounce.next(this.apollo.query({
+    this.getBlurbsSounce.next(
+      this.apollo.query({
         query: QUERY,
         variables: {
           orderBy: { column: 'id', order: 'ASC' },
           where: { eq: [`movieId:${_movieId}`] }
         }
-      }));
+      })
+    );
   }
 }
