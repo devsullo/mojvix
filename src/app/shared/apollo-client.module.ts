@@ -34,7 +34,7 @@ export class ApolloClientModule {
     });
     const AllLinks = ApolloLink.from([errorLink, baseLink]);
     apollo.create({
-      link: baseLink,
+      link: AllLinks,
       cache: new InMemoryCache(),
       defaultOptions: {
         watchQuery: {

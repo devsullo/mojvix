@@ -12,8 +12,8 @@ export class MoviesService {
 
   getMovies(): Observable<ApolloQueryResult<IMoviesResponse>> {
     const QUERY = gql`
-      query getMovies($orderBy: SQLOrderBy) {
-        movies(orderBy: $orderBy) {
+      query getMovies($orderBy: SQLOrderBy, $take: Int, $skip: Int) {
+        movies(orderBy: $orderBy, take: $take, skip: $skip) {
           id
           title
           story
@@ -37,6 +37,8 @@ export class MoviesService {
       query: QUERY,
       variables: {
         orderBy: { column: 'id', order: 'ASC' },
+        take: 15,
+        skip: 0
       }
     });
   }
