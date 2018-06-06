@@ -2792,7 +2792,7 @@ a.moods {
       @include border-radius(50%);
       margin-right: 10px;
     }
-    form {
+    .input-area {
       @include percent-pixel-width("100%", "36px");
       display: inline-block;
       margin-left: -4px;

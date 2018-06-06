@@ -16,7 +16,7 @@
 </div>
 <div class="type-comment">
   <img src="/assets/images/profile/profile1.jpg">
-  <form name="reblurbForm">
-    <textarea placeholder="Type reblurb text here" class=""></textarea>
-  </form>
+  <div class="input-area">
+    <textarea (keypress)="createComment($event)" [(ngModel)]="mComment" placeholder="Type comment" class=""></textarea>
+  </div>
 </div>

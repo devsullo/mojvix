@@ -1,8 +1,17 @@
 import { IUser } from './../../store/model/user';
 
+export interface IBlurbCreateCommentResponse {
+  createComment: IBlurbComment;
+}
+
 export interface IBlurbComment {
-  user: IUser;
+  // user: IUser;
+  id: number;
   content: string;
+}
+
+export interface IBlurbsResponse {
+  blurbs: IBlurb[];
 }
 
 export interface IBlurb {

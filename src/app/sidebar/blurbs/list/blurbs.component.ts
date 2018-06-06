@@ -24,6 +24,7 @@ export class BlurbsComponent implements OnInit, OnChanges {
         blarbsObserver
         .map(res => res.data.blurbs)
         .subscribe(blurbs => {
+          console.log(blurbs);
           this.blurbs = blurbs;
         });
       });

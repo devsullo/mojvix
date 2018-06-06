@@ -1,3 +1,4 @@
+import { BlurbsService } from './../blurbs.service';
 import { IBlurbComment } from './../blurb';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -8,7 +9,23 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class CommentsComponent implements OnInit {
   @Input() comments: IBlurbComment[];
-  constructor() {}
+  @Input() blurbId: number;
+  mComment: string;
+  constructor(
+    private blurbsService: BlurbsService
+  ) {}
 
   ngOnInit() {}
+
+  createComment(e) {
+    if (e.keyCode === 13) {
+      this.blurbsService
+        .createBlurbComment(this.blurbId, this.mComment)
+        .map(res => res.data.createComment)
+        .subscribe(data => {
+          console.log(data);
+        });
+      this.mComment = '';
+    }
+  }
 }

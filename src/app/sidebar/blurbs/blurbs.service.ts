@@ -2,14 +2,11 @@ import { Observable } from 'rxjs/Observable';
 import { ApolloQueryResult } from 'apollo-client';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { IBlurb } from './blurb';
+import { IBlurbCreateCommentResponse, IBlurbsResponse } from './blurb';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { FetchResult } from 'apollo-link';
 
-
-interface IBlurbsResponse {
-  blurbs: IBlurb[];
-}
 
 @Injectable()
 export class BlurbsService {
@@ -33,8 +30,11 @@ export class BlurbsService {
           totalAgree
           totalDisagree
           totalComments
-          creator { vixname }
+          creator {
+            vixname
+          }
           comments {
+            id
             content
           }
         }
@@ -49,5 +49,25 @@ export class BlurbsService {
         }
       })
     );
+  }
+
+  createBlurbComment(blurbId: number, content: string): Observable<FetchResult<IBlurbCreateCommentResponse>> {
+    const MUTATION = gql`
+      mutation createComment($blurbId: Int!, $input: CreateCommentInput!) {
+        createComment(blurbId: $blurbId, input: $input) {
+          id
+          content
+        }
+      }
+    `;
+    return this.apollo.mutate({
+      mutation: MUTATION,
+      variables: {
+        blurbId: blurbId,
+        input: {
+          content: content
+        }
+      }
+    });
   }
 }
