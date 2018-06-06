@@ -20,16 +20,13 @@ export class BlurbsService {
   constructor(private apollo: Apollo) {}
 
   getBlurbs(movieId?: number): void {
-    let eq = '';
-    if (movieId) {
-      eq = `eq:["movieId:${movieId}"]`;
+    let _movieId = movieId;
+    if (!movieId) {
+      _movieId = 0;
     }
     const QUERY = gql`
-      query getBlurbs {
-        blurbs(
-          orderBy: { column: "id", order: ASC }
-          where: { ${eq} }
-        ) {
+      query getBlurbs($orderBy: SQLOrderBy, $where: SQLWhere) {
+        blurbs(orderBy: $orderBy, where: $where) {
           id
           color
           content
@@ -45,10 +42,12 @@ export class BlurbsService {
         }
       }
     `;
-    this.getBlurbsSounce.next(
-      this.apollo.query({
-        query: QUERY
-      }
-    ));
+    this.getBlurbsSounce.next(this.apollo.query({
+        query: QUERY,
+        variables: {
+          orderBy: { column: 'id', order: 'ASC' },
+          where: { eq: [`movieId:${_movieId}`] }
+        }
+      }));
   }
 }

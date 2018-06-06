@@ -22,7 +22,6 @@ export class ApolloClientModule {
         );
       }
       if (networkError) {
-        console.log(networkError);
         networkError.error.errors.map(({ message, locations, path }) =>
           console.warn(
             `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
