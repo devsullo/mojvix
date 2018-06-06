@@ -33,9 +33,7 @@ export class BlurbsService {
           totalAgree
           totalDisagree
           totalComments
-          creator {
-            vixname
-          }
+          creator { vixname }
           comments {
             content
           }

@@ -42,27 +42,7 @@
           <span class="icon icon-nav icon-nav-menu"></span>
         </a>
       </div>
-      <div class="user-comments">
-        <!-- <div *ngFor="let comment of blurb.comments" class="comment">
-          <img class="profile-pic" [src]="comment.mojvixerPic">
-          <div class="comment-content">
-            <a href="#reblurb.vixname">
-              <b>{{ comment.content }}</b>
-            </a>
-            “{{ comment.content }}”
-            <div class="info">
-              <abbr>13 mins ago</abbr>
-            </div>
-          </div>
-        </div>
-        <a *ngIf="blurb.comments.length > 1" result-per-page="0" class="load-more">Load more Comments</a>  -->
-      </div>
-      <div class="type-comment">
-        <img src="assets/images/profile/profile1.jpg">
-        <form name="reblurbForm">
-          <textarea placeholder="Type reblurb text here" class=""></textarea>
-        </form>
-      </div>
+      <app-blurb-comments [comments]="blurb.comments"></app-blurb-comments>
     </div>
   </div>
 </section>

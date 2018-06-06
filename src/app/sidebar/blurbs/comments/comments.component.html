@@ -1,0 +1,22 @@
+<div class="user-comments">
+  <div *ngFor="let comment of comments" class="comment">
+    <img class="profile-pic" [src]="'/assets/images/profile/profile1.jpg'">
+    <div class="comment-content">
+      <a href="#reblurb.vixname">
+        <!-- <b>{{ comment.creator.vixname }}</b> -->
+        <b>Vixname</b>
+      </a>
+      “{{ comment.content }}”
+      <div class="info">
+        <abbr>13 mins ago</abbr>
+      </div>
+    </div>
+  </div>
+  <a *ngIf="comments.length > 1" result-per-page="0" class="load-more">Load more Comments</a>
+</div>
+<div class="type-comment">
+  <img src="/assets/images/profile/profile1.jpg">
+  <form name="reblurbForm">
+    <textarea placeholder="Type reblurb text here" class=""></textarea>
+  </form>
+</div>
