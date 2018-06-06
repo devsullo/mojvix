@@ -45,6 +45,10 @@ export class BlurbsService {
         }
       }
     `;
-    this.getBlurbsSounce.next(this.apollo.query({ query: QUERY }));
+    this.getBlurbsSounce.next(
+      this.apollo.query({
+        query: QUERY
+      }
+    ));
   }
 }
