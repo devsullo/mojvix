@@ -13,14 +13,16 @@ import { LoggedOutGuardService } from './guards/logged-out-guard.service';
 import { TokenInterceptor } from './interceptors';
 import { ApolloClientModule } from './apollo-client.module';
 
+const tokenGetter = () => {
+  return localStorage.getItem('token');
+};
+
 @NgModule({
   imports: [
     CommonModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem('token');
-        },
+        tokenGetter: tokenGetter,
         whitelistedDomains: ['localhost:3001'],
         blacklistedRoutes: ['localhost:3001/auth/']
       }
