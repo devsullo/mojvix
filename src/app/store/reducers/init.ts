@@ -22,15 +22,9 @@ const INITIALSTATE: IAppState = {
   }
 };
 
-const INIT = {
-  '@@INIT': function (state, action) {
-    return state;
-  },
-};
-
 function getUser() {
   const user = JSON.parse(localStorage.getItem('user')) || null;
   return user;
 }
 
-export { INIT, INITIALSTATE };
+export { INITIALSTATE };
