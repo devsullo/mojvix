@@ -17,7 +17,7 @@
             <img ng-repeat="img in movieData.gallery.images" img-url="{{img}}" ng-src="{{ config.mediaUrl + img }}">
           </div> -->
           <div class="controls">
-            <button (click)="cancel()" class="btn blurb-btn btn-cancel">Cancel</button>
+            <a (click)="cancel()" class="btn blurb-btn btn-cancel">Cancel</a>
             <button type="submit" [disabled]="!blurbForm.valid" class="btn blurb-btn btn-blue">Post Blurb</button>
           </div>
         </form>

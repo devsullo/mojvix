@@ -43,6 +43,9 @@ export class PostBlurbComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   postBlurb() {
+    if (this.blurbForm.invalid) {
+      return;
+    }
     this.postBlurbService
       .createBlurb(this.blurbForm.value, this.seance.id)
       .map(res => res.data.createBlurb)

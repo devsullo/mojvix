@@ -17,9 +17,9 @@ export class BlurbsService {
   constructor(private apollo: Apollo) {}
 
   getBlurbs(movieId?: number): void {
-    let _movieId = movieId;
+    let where = `movieId:${movieId}`;
     if (!movieId) {
-      _movieId = 0;
+      where = '';
     }
     const QUERY = gql`
       query getBlurbs($orderBy: SQLOrderBy, $where: SQLWhere) {
@@ -40,15 +40,13 @@ export class BlurbsService {
         }
       }
     `;
-    this.getBlurbsSounce.next(
-      this.apollo.query({
+    this.getBlurbsSounce.next(this.apollo.query({
         query: QUERY,
         variables: {
           orderBy: { column: 'id', order: 'ASC' },
-          where: { eq: [`movieId:${_movieId}`] }
+          where: { eq: [where] }
         }
-      })
-    );
+      }));
   }
 
   createBlurbComment(blurbId: number, content: string): Observable<FetchResult<IBlurbCreateCommentResponse>> {
