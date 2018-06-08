@@ -1,7 +1,7 @@
 import { SeanceService } from './../seance.service';
 import { RouteService } from './../../../shared/services/route.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { ScrollService } from '../../../shared/services/scroll.service';
 import { Location } from '@angular/common';
 
@@ -10,7 +10,7 @@ import { Location } from '@angular/common';
   templateUrl: './index.component.html',
   styleUrls: ['./index.component.scss']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent implements OnInit, OnDestroy {
   pageHeight: number;
   scroll: any;
   constructor(
@@ -20,14 +20,20 @@ export class IndexComponent implements OnInit {
     private route: ActivatedRoute,
     private seanceService: SeanceService
   ) {
-    const slug: string = route.snapshot.params.slug;
-    this.seanceService.initSeance(slug);
-    console.log(slug);
+    const seanceData = {
+      id: route.snapshot.params.id,
+      slug: route.snapshot.params.slug
+     };
+    this.seanceService.initSeance(seanceData);
   }
 
   ngOnInit() {
     this.calcScrollHeight();
     this.scroll = this.scrollService.init('#seance-body-area');
+  }
+
+  ngOnDestroy() {
+    this.seanceService.destSeance();
   }
 
   goBack(): void {

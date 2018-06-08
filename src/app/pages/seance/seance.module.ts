@@ -23,7 +23,7 @@ import { PostBlurbService } from './post-blurb/post-blurb.service';
     SharedModule,
     RouterModule.forChild([
       {
-        path: 'seance/:slug',
+        path: 'seance/:slug/:id',
         component: IndexComponent,
         children: [
           {

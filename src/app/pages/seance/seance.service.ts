@@ -1,3 +1,4 @@
+import { ISeance } from './../../store/model/seance';
 import { NgRedux } from 'ng2-redux';
 import { ScrollService } from './../../shared/services/scroll.service';
 import { Injectable } from '@angular/core';
@@ -9,6 +10,7 @@ import {
 import { Promise } from 'core-js';
 import { IAppState } from '../../store';
 export const INIT_SEANCE = 'INIT_SEANCE';
+export const DEST_SEANCE = 'DEST_SEANCE';
 
 @Injectable()
 export class SeanceService {
@@ -25,13 +27,18 @@ export class SeanceService {
     return this.api;
   }
 
-  initSeance(slug: string) {
+  initSeance(data: ISeance) {
     const action = {
       type: INIT_SEANCE,
-      data: {
-        id: 7,
-        slug
-      }
+      data: data
+    };
+    this.ngRedux.dispatch(action);
+  }
+
+  destSeance() {
+    const action = {
+      type: DEST_SEANCE,
+      data: null
     };
     this.ngRedux.dispatch(action);
   }

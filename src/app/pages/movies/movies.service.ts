@@ -25,6 +25,7 @@ export class MoviesService {
           skip: $skip
         ) {
           id
+          slug
           title
           story
           poster

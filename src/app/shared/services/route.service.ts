@@ -18,13 +18,17 @@ export class RouteService {
   }
   navigateSeanceOrMain(location: string): void {
     if (this.pageUrl[1] === 'seance') {
-      this.router.navigate([`seance/${this.pageUrl[2]}/${location}`]);
+      this.router.navigate([
+        `seance/${this.pageUrl[2]}/${this.pageUrl[3]}/${location}`
+      ]);
     } else {
       this.router.navigate([location]);
     }
   }
   navigateSeance(location: string): void {
-    this.router.navigate([`seance/${this.pageUrl[2]}/${location}`]);
+    this.router.navigate([
+      `seance/${this.pageUrl[2]}/${this.pageUrl[3]}/${location}`
+    ]);
   }
 }
 

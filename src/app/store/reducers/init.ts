@@ -16,10 +16,7 @@ const INITIALSTATE: IAppState = {
   chat: {
     rooms: []
   },
-  seance: {
-    id: null,
-    slug: null
-  }
+  seance: null
 };
 
 function getUser() {
