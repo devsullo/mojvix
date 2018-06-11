@@ -6,7 +6,25 @@ import { IBlurbCreateCommentResponse, IBlurbsResponse } from './blurb';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { FetchResult } from 'apollo-link';
-
+const fragments = {
+  blurbs: gql`
+    fragment blurbFields on Blurb {
+      id
+      color
+      content
+      totalAgree
+      totalDisagree
+      totalComments
+      creator {
+        vixname
+      }
+      comments {
+        id
+        content
+      }
+    }
+  `
+};
 
 @Injectable()
 export class BlurbsService {
@@ -18,28 +36,15 @@ export class BlurbsService {
   constructor(private apollo: Apollo) {}
 
   getBlurbs(movieId?: number): void {
-    let where = `movieId:${movieId}`;
-    if (!movieId) {
-      where = '';
-    }
+    let where;
+    movieId ? (where = `movieId:${movieId}`) : (where = '');
     const QUERY = gql`
       query getBlurbs($orderBy: SQLOrderBy, $where: SQLWhere) {
         blurbs(orderBy: $orderBy, where: $where) {
-          id
-          color
-          content
-          totalAgree
-          totalDisagree
-          totalComments
-          creator {
-            vixname
-          }
-          comments {
-            id
-            content
-          }
+          ...blurbFields
         }
       }
+      ${fragments.blurbs}
     `;
     this.blurbsQuery = this.apollo.watchQuery({
       query: QUERY,
@@ -56,21 +61,10 @@ export class BlurbsService {
     const SUBSCRIPTION = gql`
       subscription onblurbAdded($movieId: Int!) {
         blurbAdded(movieId: $movieId) {
-          id
-          color
-          content
-          totalAgree
-          totalDisagree
-          totalComments
-          creator {
-            vixname
-          }
-          comments {
-            id
-            content
-          }
+          ...blurbFields
         }
       }
+      ${fragments.blurbs}
     `;
     this.blurbsQuery.subscribeToMore({
       document: SUBSCRIPTION,
@@ -83,7 +77,7 @@ export class BlurbsService {
         }
         const newBlurb = subscriptionData.data.blurbAdded;
         const data = {
-          prevBlurbs,
+          ...prevBlurbs,
           ...{ blurbs: [newBlurb, ...prevBlurbs.blurbs] }
         };
         console.warn(data);
