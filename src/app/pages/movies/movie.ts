@@ -15,7 +15,7 @@ export interface IMovie {
   tagNames: string[];
   properties: {
     resolution: string;
-    runtime: number;
+    duration: number;
     soundQuality: string;
     threeD: boolean;
     colored: boolean;
