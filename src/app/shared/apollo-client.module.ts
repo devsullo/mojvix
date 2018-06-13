@@ -7,13 +7,18 @@ import { ApolloModule, Apollo } from 'apollo-angular';
 import { WebSocketLink } from 'apollo-link-ws';
 import { environment } from '../../environments/environment';
 import { getMainDefinition } from 'apollo-utilities';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   exports: [ApolloModule, HttpLinkModule]
 })
 
 export class ApolloClientModule {
-  constructor(apollo: Apollo, httpLink: HttpLink) {
+  constructor(
+    private apollo: Apollo,
+    private httpLink: HttpLink,
+    private authService: AuthService
+  ) {
     const baseLink = httpLink.create({ uri: environment.graphqlUrl });
     const errorLink = onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
@@ -39,7 +44,7 @@ export class ApolloClientModule {
         reconnect: true
       },
       connectionParams: {
-        // authToken: user.authToken,
+        authToken: this.authService.isAuthenticated
       },
     });
 
