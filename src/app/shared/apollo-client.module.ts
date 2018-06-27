@@ -57,7 +57,13 @@ export class ApolloClientModule {
     const AllLinks = ApolloLink.from([errorLink, link]);
     apollo.create({
       link: AllLinks,
-      cache: new InMemoryCache(),
+      cache: new InMemoryCache({
+        dataIdFromObject: (o: any) => {
+          if (o.__typename != null && o.id != null) {
+            return `${o.__typename}-${o.id}`;
+          }
+        },
+      }),
       defaultOptions: {
         watchQuery: {
           errorPolicy: 'all'

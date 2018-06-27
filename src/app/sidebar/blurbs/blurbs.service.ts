@@ -2,7 +2,7 @@ import { Observable } from 'rxjs/Observable';
 import { ApolloQueryResult } from 'apollo-client';
 import { Apollo, QueryRef } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { IBlurbCreateCommentResponse, IBlurbsResponse } from './blurb';
+import { IBlurbCreateCommentResponse, IBlurbsResponse, IBlurb } from './blurb';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { FetchResult } from 'apollo-link';
@@ -10,6 +10,7 @@ const fragments = {
   blurbs: gql`
     fragment blurbFields on Blurb {
       id
+      movieId
       color
       content
       totalAgree
@@ -33,6 +34,7 @@ export class BlurbsService {
   >();
   getBlurbsSounce$ = this.getBlurbsSounce.asObservable();
   blurbsQuery: QueryRef<any>;
+  blurbSub: any;
   constructor(private apollo: Apollo) {}
 
   getBlurbs(movieId?: number): void {
@@ -66,7 +68,10 @@ export class BlurbsService {
       }
       ${fragments.blurbs}
     `;
-    this.blurbsQuery.subscribeToMore({
+    if (this.blurbSub) {
+      this.blurbSub();
+    }
+    this.blurbSub = this.blurbsQuery.subscribeToMore({
       document: SUBSCRIPTION,
       variables: {
         movieId: movieId
@@ -75,15 +80,16 @@ export class BlurbsService {
         if (!subscriptionData.data) {
           return prevBlurbs;
         }
-        const newBlurb = subscriptionData.data.blurbAdded;
+        const newBlurb: IBlurb = subscriptionData.data.blurbAdded;
         const data = {
           ...prevBlurbs,
-          ...{ blurbs: [newBlurb, ...prevBlurbs.blurbs] }
+          ...{ blurbs: [...prevBlurbs.blurbs, newBlurb] }
         };
         console.warn(data);
         return data;
       }
     });
+
   }
 
   createBlurbComment(
@@ -105,6 +111,15 @@ export class BlurbsService {
         input: {
           content: content
         }
+      },
+      update: (store, { data: { submitComment } }) => {
+        console.warn(submitComment, store);
+        // // Read the data from our cache for this query.
+        // const data = store.readQuery({ query: CommentAppQuery });
+        // // Add our comment from the mutation to the end.
+        // data.comments.push(submitComment);
+        // // Write our data back to the cache.
+        // store.writeQuery({ query: CommentAppQuery, data });
       }
     });
   }

@@ -16,6 +16,7 @@ export interface IBlurbsResponse {
 
 export interface IBlurb {
   id?: number;
+  movieId: number;
   color: string;
   content: string;
   cover?: string;
