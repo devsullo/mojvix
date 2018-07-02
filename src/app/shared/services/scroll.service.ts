@@ -40,9 +40,7 @@ export class ScrollService {
       scrollSelector.update();
     }
     const el = scrollSelector.element;
-    setTimeout(() => {
-      el.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 50);
+    el.scrollTo({ top: 0 });
   }
 
   update(selector: string) {

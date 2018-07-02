@@ -75,7 +75,7 @@ export class BlurbsService {
       fetchPolicy: 'network-only'
     });
     this.getBlurbsSounce.next(this.blurbsQuery.valueChanges);
-    this.subscribeToNewBlurbs(movieId);
+    // this.subscribeToNewBlurbs(movieId);
   }
 
   fetchMoreBlurbs(skip: number) {
