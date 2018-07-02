@@ -1,3 +1,4 @@
+import { Helper } from './helper';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EscapeHtmlPipe } from './pipes/escape-html.pipe';
@@ -48,7 +49,8 @@ const tokenGetter = () => {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
       multi: true
-    }
+    },
+    Helper
   ]
 })
 export class SharedModule {

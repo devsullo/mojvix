@@ -26,9 +26,15 @@ export class BlurbsComponent implements OnInit, OnChanges {
         .subscribe(blurbs => {
           console.log(blurbs);
           this.blurbs = blurbs;
+          this.scrollService.update('#blurbs-list');
         });
       });
     this.blurbsService.getBlurbs();
+    // this.scrollService.scrollTop('#blurbs-list');
+
+    this.scrollService.loadMore(this.scrollEl, this.scrollHeight, () => {
+      this.blurbsService.fetchMoreBlurbs(this.blurbs.length);
+    });
   }
 
   ngOnChanges() {

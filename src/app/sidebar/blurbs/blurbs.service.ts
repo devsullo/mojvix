@@ -1,3 +1,4 @@
+import { Helper } from './../../shared/helper';
 import { Observable } from 'rxjs/Observable';
 import { ApolloQueryResult } from 'apollo-client';
 import { Apollo, QueryRef } from 'apollo-angular';
@@ -35,14 +36,29 @@ export class BlurbsService {
   getBlurbsSounce$ = this.getBlurbsSounce.asObservable();
   blurbsQuery: QueryRef<any>;
   blurbSub: any;
-  constructor(private apollo: Apollo) {}
+  SETTINGS = this.helper.getSettings();
+
+  constructor(
+    private apollo: Apollo,
+    private helper: Helper
+  ) {}
 
   getBlurbs(movieId?: number): void {
     let where;
     movieId ? (where = `movieId:${movieId}`) : (where = '');
     const QUERY = gql`
-      query getBlurbs($orderBy: SQLOrderBy, $where: SQLWhere) {
-        blurbs(orderBy: $orderBy, where: $where) {
+      query getBlurbs(
+        $orderBy: SQLOrderBy,
+        $where: SQLWhere,
+        $skip: Int,
+        $take: Int
+      ) {
+        blurbs(
+          orderBy: $orderBy,
+          where: $where,
+          skip: $skip,
+          take: $take
+        ) {
           ...blurbFields
         }
       }
@@ -52,11 +68,30 @@ export class BlurbsService {
       query: QUERY,
       variables: {
         orderBy: { column: 'id', order: 'ASC' },
-        where: { eq: [where] }
-      }
+        where: { eq: [where] },
+        skip: 0,
+        take: this.SETTINGS.blurbsTake
+      },
+      fetchPolicy: 'network-only'
     });
     this.getBlurbsSounce.next(this.blurbsQuery.valueChanges);
     this.subscribeToNewBlurbs(movieId);
+  }
+
+  fetchMoreBlurbs(skip: number) {
+    this.blurbsQuery.fetchMore({
+      variables: {
+        skip: skip
+      },
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          return prev;
+        }
+        return Object.assign({}, prev, {
+          blurbs: [...prev.blurbs, ...fetchMoreResult.blurbs]
+        });
+      }
+    });
   }
 
   subscribeToNewBlurbs(movieId: number) {
@@ -76,16 +111,15 @@ export class BlurbsService {
       variables: {
         movieId: movieId
       },
-      updateQuery: (prevBlurbs: IBlurbsResponse, { subscriptionData }) => {
+      updateQuery: (prev: IBlurbsResponse, { subscriptionData }) => {
         if (!subscriptionData.data) {
-          return prevBlurbs;
+          return prev;
         }
         const newBlurb: IBlurb = subscriptionData.data.blurbAdded;
         const data = {
-          ...prevBlurbs,
-          ...{ blurbs: [...prevBlurbs.blurbs, newBlurb] }
+          ...prev,
+          ...{ blurbs: [...prev.blurbs, newBlurb] }
         };
-        console.warn(data);
         return data;
       }
     });

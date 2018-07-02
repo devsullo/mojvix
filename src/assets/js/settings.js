@@ -3,10 +3,7 @@ window.__VIX_SETTINGS__ = {
   pmMentionWaitTime: 1.5,
   defaultScrollInteria: 500,
   defaultScrollTimeout: 50,
-  searchUsersSortParams: { offset: 0, limit: 18 },
-  searchLeaderBoardParams: { offset: 0, limit: 18 },
-  searchUserLogParams: { offset: 0, limit: 18 },
-  searchGifsParams: { offset: 0, limit: 4 }
+  blurbsTake: 6
 };
 
 window.__VIX_MESSAGES__ = {
