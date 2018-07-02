@@ -1,5 +1,5 @@
 <section id="blurbs-list" [style.height.px]="scrollHeight">
-  <h2 class="oops" *ngIf="blurbs.length < 1">No blurbs yet</h2>
+  <h2 class="oops" *ngIf="blurbs.length < 1">{{ 'blurb-wall-empty-list' | trans }}</h2>
   <div *ngFor="let blurb of blurbs"  class="single-blurb-wrapper">
     <!-- <div class="number">
       <i>{{ blurb.id }}</i>
@@ -20,23 +20,23 @@
           </div>
         </div>
         <div class="meta">
-          <span class="agrees">{{ blurb.totalAgree }} Agrees</span>
-          <span class="disagrees">{{ blurb.totalDisagree }} disagrees</span>
-          <span class="comments">{{ blurb.totalComments }} comments</span>
+          <span class="agrees">{{ blurb.totalAgree }} {{ 'blurb-wall-agrees' | trans }}</span>
+          <span class="disagrees">{{ blurb.totalDisagree }} {{ 'blurb-wall-disagrees' | trans }}</span>
+          <span class="comments">{{ blurb.totalComments }} {{ 'blurb-wall-comments' | trans }}</span>
         </div>
       </div>
       <div ng-if="user.isLogged" class="blurb-footer">
         <a class="trigger-agree left">
           <span class="icon icon-nav icon-nav-agree"></span>
-          <span class="text">Agree</span>
+          <span class="text">{{ 'blurb-wall-agree' | trans }}</span>
         </a>
         <a class="trigger-disagree left">
           <span class="icon icon-nav icon-nav-disagree"></span>
-          <span class="text">Disagree</span>
+          <span class="text">{{ 'blurb-wall-disagree' | trans }}</span>
         </a>
         <a class="trigger-blurb left">
           <span class="icon icon-nav icon-nav-blurb"></span>
-          <span class="text">Blurb</span>
+          <span class="text">{{ 'blurb-wall-comment' | trans }}</span>
         </a>
         <!-- <a class="trigger-menu" left>
           <span class="icon icon-nav icon-nav-menu"></span>

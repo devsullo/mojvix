@@ -59,7 +59,7 @@ export class ScrollService {
       const maxOffsetTop = scrollEl.contentHeight - scrollHeight;
       const currentOffsetTop = scrollEl.scrollbarYRail.offsetTop;
       const currentOffsetTopPercent = (currentOffsetTop * 100) / maxOffsetTop;
-      if (currentOffsetTopPercent > 90) {
+      if (currentOffsetTopPercent > 60) {
         cb();
       }
     });

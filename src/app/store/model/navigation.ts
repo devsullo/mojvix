@@ -4,4 +4,5 @@ export interface INavigation {
     notifications: number;
   }[];
   activeTab: string;
+  deactivatedTab: string;
 }

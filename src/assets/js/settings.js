@@ -106,6 +106,18 @@ window.__VIX_MESSAGES__ = {
   'directive-seance-chat-get-nickname': 'Get Vixname',
   'directive-seance-chat-pary-general': 'General',
 
+  'blurb-wall-agrees': 'Agrees',
+  'blurb-wall-disagrees': 'Disagrees',
+  'blurb-wall-comments': 'Comments',
+
+  'blurb-wall-agree': 'Agree',
+  'blurb-wall-disagree': 'Disagree',
+  'blurb-wall-comment': 'Comment',
+
+  'blurb-wall-empty-list': 'No blurbs yet',
+
+  'blurb-load-more-comments': 'Load more comments',
+
   // Server error messages
   'Internal Server Error': '500 Internal Server Error',
   Forbidden: '403 Forbidden',

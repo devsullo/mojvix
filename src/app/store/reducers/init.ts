@@ -10,7 +10,8 @@ const INITIALSTATE: IAppState = {
       { name: 'notifications', notifications: 0 },
       { name: 'navigation', notifications: 0 }
     ],
-    activeTab: 'blurbs'
+    activeTab: 'blurbs',
+    deactivatedTab: null,
   },
   // TODO remove this
   chat: {

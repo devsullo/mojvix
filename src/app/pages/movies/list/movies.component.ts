@@ -1,3 +1,4 @@
+import { BlurbsService } from './../../../sidebar/blurbs/blurbs.service';
 import { element } from 'protractor';
 import { MovieComponent } from './../single/movie.component';
 import { ScrollService } from './../../../shared/services/scroll.service';
@@ -18,11 +19,13 @@ export class MoviesComponent implements OnInit {
   colls = 3;
   scrollTopVal = 0;
   expandedMovie: MovieComponent;
+  expandedMovieI: number;
   @ViewChildren('expandArea') expandArea: QueryList<MovieComponent>;
 
   constructor(
     private moviesService: MoviesService,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private blurbsService: BlurbsService
   ) {}
 
   ngOnInit() {
@@ -70,6 +73,12 @@ export class MoviesComponent implements OnInit {
         row = Math.floor(T);
       }
       this.closeAllExpandAreas();
+      if (this.expandedMovieI === i) {
+        this.blurbsService.getBlurbs();
+        this.expandedMovieI = null;
+        return;
+      }
+      this.expandedMovieI = i;
       this.expandedMovie = this.expandArea.toArray()[row];
       this.expandedMovie.show(i + 1, this.colls, this.movies[i]);
       // TO DO: wait el expand
