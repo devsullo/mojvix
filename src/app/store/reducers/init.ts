@@ -5,7 +5,7 @@ const INITIALSTATE: IAppState = {
   user: getUser(),
   navigation: {
     tabs: [
-      { name: 'chat', notifications: 0 },
+      // { name: 'chat', notifications: 0 },
       { name: 'blurbs', notifications: 0 },
       { name: 'notifications', notifications: 0 },
       { name: 'navigation', notifications: 0 }

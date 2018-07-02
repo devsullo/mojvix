@@ -1056,6 +1056,7 @@ textarea {
       top: -4px;
       right: 1px;
       @include border-radius(5px);
+      visibility: hidden;
       &:before {
         content: "";
         background: $mainSprite;

@@ -1,10 +1,10 @@
 <section id="blurbs-list" [style.height.px]="scrollHeight">
   <h2 class="oops" *ngIf="blurbs.length < 1">No blurbs yet</h2>
   <div *ngFor="let blurb of blurbs"  class="single-blurb-wrapper">
-    <div class="number">
+    <!-- <div class="number">
       <i>{{ blurb.id }}</i>
       <span class="icon icon-arrow-down"></span>
-    </div>
+    </div> -->
     <div class="blurb-style-a">
       <img class="cover" *ngIf="blurb.cover" [src]="blurb.cover" src="">
       <div class="blurb-body left-bordered {{ blurb.color | lowercase }}">
@@ -38,9 +38,9 @@
           <span class="icon icon-nav icon-nav-blurb"></span>
           <span class="text">Blurb</span>
         </a>
-        <a class="trigger-menu" left>
+        <!-- <a class="trigger-menu" left>
           <span class="icon icon-nav icon-nav-menu"></span>
-        </a>
+        </a> -->
       </div>
       <app-blurb-comments [blurbId]="blurb.id" [comments]="blurb.comments"></app-blurb-comments>
     </div>
