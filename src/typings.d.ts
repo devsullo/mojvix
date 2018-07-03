@@ -9,3 +9,6 @@ interface Element {
 interface Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
 }
+interface Number {
+  pad(): string;
+}

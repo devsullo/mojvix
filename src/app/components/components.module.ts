@@ -8,6 +8,7 @@ import { EmptyComponent } from './empty/empty.component';
 import { PassRecoverFormComponent } from './pass-recover-form/pass-recover-form.component';
 import { LoadingComponent } from './loading/loading.component';
 import { FormErrorBoxComponent } from './form-error-box/form-error-box.component';
+import { UpcomingShowComponent } from './upcoming-show/upcoming-show.component';
 
 @NgModule({
   imports: [
@@ -27,13 +28,14 @@ import { FormErrorBoxComponent } from './form-error-box/form-error-box.component
       }
     ])
   ],
-  exports: [LoadingComponent],
+  exports: [LoadingComponent, UpcomingShowComponent],
   declarations: [
     JoinFormComponent,
     EmptyComponent,
     PassRecoverFormComponent,
     LoadingComponent,
-    FormErrorBoxComponent
+    FormErrorBoxComponent,
+    UpcomingShowComponent
   ],
   providers: [TransPipe]
 })

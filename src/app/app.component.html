@@ -1,12 +1,7 @@
 <div id="center-area" class="{{ page }}-page-area">
   <header class="main-header center-area-cont">
     <a [routerLink]="['/']" class="logo"></a>
-    <div class="right upcoming">
-      <p>
-        Upcoming show <span class="at">@17:00</span> in
-        <span class="time">:25 <i>min</i> </span>
-      </p>
-    </div>
+    <app-upcoming-show></app-upcoming-show>
   </header>
   <router-outlet></router-outlet>
 </div>
