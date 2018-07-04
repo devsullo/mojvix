@@ -19,10 +19,6 @@ const fragments = {
       creator {
         vixname
       }
-      comments(take:${SETTINGS.blurbCommentsTake}) {
-        id
-        content
-      }
     }
   `
 };

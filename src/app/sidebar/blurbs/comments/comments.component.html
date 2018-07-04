@@ -3,8 +3,7 @@
     <img class="profile-pic" [src]="'/assets/images/profile/profile1.jpg'">
     <div class="comment-content">
       <a href="#reblurb.vixname">
-        <!-- <b>{{ comment.creator.vixname }}</b> -->
-        <b>Vixname</b>
+        <b>{{ comment.creator.vixname }}</b>
       </a>
       “{{ comment.content }}”
       <div class="info">
@@ -12,7 +11,7 @@
       </div>
     </div>
   </div>
-  <a *ngIf="comments.length > 1" (click)="fetchMoreComments()" class="load-more">{{ 'blurb-load-more-comments' | trans }}</a>
+  <a *ngIf="comments.length > 1" [ngClass]="{'vis-hide': !loadMoreLinkShow || !(comments.length > SETTINGS.blurbCommentsTake-1)}" (click)="fetchMoreComments()" class="load-more">{{ 'blurb-load-more-comments' | trans }}</a>
 </div>
 <div class="type-comment">
   <img src="/assets/images/profile/profile1.jpg">

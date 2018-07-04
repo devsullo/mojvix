@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { IBlurbCreateCommentResponse, IBlurbComment } from '../blurb';
+import { IBlurbCreateCommentResponse, IBlurbCommentResponse } from '../blurb';
 import { FetchResult } from 'apollo-link';
 import gql from 'graphql-tag';
 import { Apollo, QueryRef } from 'apollo-angular';
+import { ApolloQueryResult } from 'apollo-client';
 const SETTINGS = window['VIX_SETTINGS'] || {};
 
 @Injectable()
 export class CommentsService {
-  commentsQuery: QueryRef<any>;
+  commentsQuery = [];
   constructor(private apollo: Apollo) {}
 
   createComment(
@@ -20,6 +21,9 @@ export class CommentsService {
         createComment(blurbId: $blurbId, input: $input) {
           id
           content
+          creator {
+            vixname
+          }
         }
       }
     `;
@@ -34,45 +38,45 @@ export class CommentsService {
     });
   }
 
-  fetchMoreComments(
-    skip: number,
+  getComments(
     blurbId: number
-  ): Observable<FetchResult<IBlurbComment>> {
+  ): Observable<ApolloQueryResult<IBlurbCommentResponse>> {
     const QUERY = gql`
-      query getComments($skip: Int, $take: Int) {
-        comments(skip: $skip, take: $take) {
+      query getComments($skip: Int, $take: Int, $findBy: FindByComment) {
+        comments(skip: $skip, take: $take, findBy: $findBy) {
           id
           content
+          creator {
+            vixname
+          }
         }
       }
     `;
-    return this.apollo.watchQuery({
+    this.commentsQuery[blurbId] = this.apollo.watchQuery({
       query: QUERY,
       variables: {
         findBy: { blurbId: blurbId },
-        skip: skip,
+        skip: 0,
         take: SETTINGS.blurbCommentsTake
+      }
+      // fetchPolicy: 'network-only'
+    });
+    return this.commentsQuery[blurbId].valueChanges;
+  }
+
+  fetchMoreComments(skip: number, blurbId: number) {
+    this.commentsQuery[blurbId].fetchMore({
+      variables: {
+        skip: skip
       },
-      fetchPolicy: 'network-only'
-    }).valueChanges;
-
-    // this.commentsQuery.valueChanges.subscribe(res => {
-    //   console.log(res);
-
-    // });
-
-    // this.commentsQuery.fetchMore({
-    //   variables: {
-    //     skip: skip
-    //   },
-    //   updateQuery: (prev, { fetchMoreResult }) => {
-    //     if (!fetchMoreResult) {
-    //       return prev;
-    //     }
-    //     return Object.assign({}, prev, {
-    //       comments: [...prev.comments, ...fetchMoreResult.comments]
-    //     });
-    //   }
-    // });
+      updateQuery: (prev, { fetchMoreResult }) => {
+        if (!fetchMoreResult) {
+          return prev;
+        }
+        return Object.assign({}, prev, {
+          comments: [...prev.comments, ...fetchMoreResult.comments]
+        });
+      }
+    });
   }
 }

@@ -9,13 +9,23 @@ const SETTINGS = window['VIX_SETTINGS'] || {};
   styleUrls: ['./comments.component.scss']
 })
 export class CommentsComponent implements OnInit {
-  @Input() comments: IBlurbComment[];
+  comments: IBlurbComment[] = [];
   @Input() blurbId: number;
   mComment: string;
   SETTINGS = SETTINGS;
+  loadMoreLinkShow = true;
   constructor(private commentsService: CommentsService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.commentsService.getComments(this.blurbId)
+      .map(res => res.data)
+      .subscribe(res => {
+        if (this.comments.length < res.comments.length && res.comments.length % SETTINGS.blurbCommentsTake === 0) {
+          this.loadMoreLinkShow = true;
+        }
+        this.comments = res.comments;
+      });
+  }
 
   createComment(e) {
     if (e.keyCode === 13) {
@@ -30,11 +40,8 @@ export class CommentsComponent implements OnInit {
   }
 
   fetchMoreComments() {
-    this.commentsService.fetchMoreComments(this.comments.length, this.blurbId)
-      .map(res => res.data.comments)
-      .subscribe(res => {
-        console.log(res);
-        this.comments = [...this.comments, ...res];
-      });
+    this.loadMoreLinkShow = false;
+    this.commentsService.fetchMoreComments(this.comments.length, this.blurbId);
   }
+
 }
