@@ -1,12 +1,13 @@
-window.__VIX_SETTINGS__ = {
+window.VIX_SETTINGS = {
   pmMentionExecutionTime: 40,
   pmMentionWaitTime: 1.5,
   defaultScrollInteria: 500,
   defaultScrollTimeout: 50,
-  blurbsTake: 6
+  blurbsTake: 6,
+  blurbCommentsTake: 3
 };
 
-window.__VIX_MESSAGES__ = {
+window.VIX_MESSAGES = {
   vixname: 'vixname',
   'vixname-available': 'Vixname available',
   'vixname-unavailable': 'Vixname has benn taken',

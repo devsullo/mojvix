@@ -1,4 +1,4 @@
-const transObj = window['__VIX_MESSAGES__'] || {};
+const transObj = window['VIX_MESSAGES'] || {};
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

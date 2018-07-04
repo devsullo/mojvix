@@ -1,12 +1,11 @@
-import { Helper } from './../../shared/helper';
 import { Observable } from 'rxjs/Observable';
 import { ApolloQueryResult } from 'apollo-client';
 import { Apollo, QueryRef } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { IBlurbCreateCommentResponse, IBlurbsResponse, IBlurb } from './blurb';
+import { IBlurbsResponse, IBlurb } from './blurb';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { FetchResult } from 'apollo-link';
+const SETTINGS = window['VIX_SETTINGS'] || {};
 const fragments = {
   blurbs: gql`
     fragment blurbFields on Blurb {
@@ -20,7 +19,7 @@ const fragments = {
       creator {
         vixname
       }
-      comments {
+      comments(take:${SETTINGS.blurbCommentsTake}) {
         id
         content
       }
@@ -36,11 +35,9 @@ export class BlurbsService {
   getBlurbsSounce$ = this.getBlurbsSounce.asObservable();
   blurbsQuery: QueryRef<any>;
   blurbSub: any;
-  SETTINGS = this.helper.getSettings();
 
   constructor(
-    private apollo: Apollo,
-    private helper: Helper
+    private apollo: Apollo
   ) {}
 
   getBlurbs(movieId?: number): void {
@@ -70,7 +67,7 @@ export class BlurbsService {
         orderBy: { column: 'id', order: 'ASC' },
         where: { eq: [where] },
         skip: 0,
-        take: this.SETTINGS.blurbsTake
+        take: SETTINGS.blurbsTake
       },
       fetchPolicy: 'network-only'
     });
@@ -126,35 +123,5 @@ export class BlurbsService {
 
   }
 
-  createBlurbComment(
-    blurbId: number,
-    content: string
-  ): Observable<FetchResult<IBlurbCreateCommentResponse>> {
-    const MUTATION = gql`
-      mutation createComment($blurbId: Int!, $input: CreateCommentInput!) {
-        createComment(blurbId: $blurbId, input: $input) {
-          id
-          content
-        }
-      }
-    `;
-    return this.apollo.mutate({
-      mutation: MUTATION,
-      variables: {
-        blurbId: blurbId,
-        input: {
-          content: content
-        }
-      },
-      update: (store, { data: { submitComment } }) => {
-        console.warn(submitComment, store);
-        // // Read the data from our cache for this query.
-        // const data = store.readQuery({ query: CommentAppQuery });
-        // // Add our comment from the mutation to the end.
-        // data.comments.push(submitComment);
-        // // Write our data back to the cache.
-        // store.writeQuery({ query: CommentAppQuery, data });
-      }
-    });
-  }
+
 }
