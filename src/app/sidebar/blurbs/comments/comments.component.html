@@ -1,7 +1,7 @@
 <div class="user-comments">
-  <a *ngIf="comments.length > 1 && loadMoreLinkShow && (comments.length > SETTINGS.blurbCommentsTake-1)"
+  <a *ngIf="comments.length < totalComments"
     (click)="fetchMoreComments()" class="load-more">{{ 'blurb-load-more-comments' | trans }}</a>
-  <div *ngFor="let comment of comments" class="comment">
+  <div *ngFor="let comment of comments | orderBy: 'id'" class="comment">
     <img class="profile-pic" [src]="'/assets/images/profile/profile1.jpg'">
     <div class="comment-content">
       <a href="#reblurb.vixname">
@@ -17,6 +17,6 @@
 <div class="type-comment">
   <img src="/assets/images/profile/profile1.jpg">
   <div class="input-area">
-    <textarea (keypress)="createComment($event)" [(ngModel)]="mComment" placeholder="Type comment" class=""></textarea>
+    <textarea (keyup)="createComment($event)" [(ngModel)]="mComment" placeholder="Type comment" class=""></textarea>
   </div>
 </div>

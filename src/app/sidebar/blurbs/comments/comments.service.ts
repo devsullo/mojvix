@@ -1,15 +1,31 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-import { IBlurbCreateCommentResponse, IBlurbCommentResponse } from '../blurb';
+import {
+  IBlurbCreateCommentResponse,
+  IBlurbComment,
+  IBlurbCommentResponse
+} from '../blurb';
 import { FetchResult } from 'apollo-link';
 import gql from 'graphql-tag';
 import { Apollo, QueryRef } from 'apollo-angular';
 import { ApolloQueryResult } from 'apollo-client';
 const SETTINGS = window['VIX_SETTINGS'] || {};
+const fragments = {
+  comment: gql`
+    fragment commentFields on Comment {
+      id
+      content
+      creator {
+        vixname
+      }
+    }
+  `
+};
 
 @Injectable()
 export class CommentsService {
-  commentsQuery = [];
+  commentQuerys = [];
+  commentSubscriptions = [];
   constructor(private apollo: Apollo) {}
 
   createComment(
@@ -20,10 +36,6 @@ export class CommentsService {
       mutation createComment($blurbId: Int!, $input: CreateCommentInput!) {
         createComment(blurbId: $blurbId, input: $input) {
           id
-          content
-          creator {
-            vixname
-          }
         }
       }
     `;
@@ -44,15 +56,12 @@ export class CommentsService {
     const QUERY = gql`
       query getComments($skip: Int, $take: Int, $findBy: FindByComment, $orderBy: SQLOrderBy) {
         comments(skip: $skip, take: $take, findBy: $findBy, orderBy: $orderBy) {
-          id
-          content
-          creator {
-            vixname
-          }
+          ...commentFields
         }
       }
+      ${fragments.comment}
     `;
-    this.commentsQuery[blurbId] = this.apollo.watchQuery({
+    this.commentQuerys[blurbId] = this.apollo.watchQuery({
       query: QUERY,
       variables: {
         findBy: { blurbId: blurbId },
@@ -62,11 +71,12 @@ export class CommentsService {
       }
       // fetchPolicy: 'network-only'
     });
-    return this.commentsQuery[blurbId].valueChanges;
+    this.subscribeToNewComments(blurbId);
+    return this.commentQuerys[blurbId].valueChanges;
   }
 
   fetchMoreComments(skip: number, blurbId: number) {
-    this.commentsQuery[blurbId].fetchMore({
+    this.commentQuerys[blurbId].fetchMore({
       variables: {
         skip: skip
       },
@@ -74,10 +84,41 @@ export class CommentsService {
         if (!fetchMoreResult) {
           return prev;
         }
-        return Object.assign({}, prev, {
-          comments: [...fetchMoreResult.comments, ...prev.comments]
-        });
+        const data = { ...prev, ...{ comments: [...fetchMoreResult.comments, ...prev.comments] } };
+        return data;
       }
     });
   }
+
+  subscribeToNewComments(blurbId: number) {
+    const SUBSCRIPTION = gql`
+      subscription onCommentAdded($blurbId: Int!) {
+        commentAdded(blurbId: $blurbId) {
+          ...commentFields
+        }
+      }
+      ${fragments.comment}
+    `;
+    if (this.commentSubscriptions[blurbId]) {
+      this.commentSubscriptions[blurbId]();
+    }
+    this.commentSubscriptions[blurbId] = this.commentQuerys[blurbId].subscribeToMore(
+      {
+        document: SUBSCRIPTION,
+        variables: {
+          blurbId: blurbId
+        },
+        updateQuery: (prev: IBlurbCommentResponse, { subscriptionData }) => {
+          if (!subscriptionData.data) {
+            return prev;
+          }
+          const newComment: IBlurbComment = subscriptionData.data.commentAdded;
+          const data = { ...prev, ...{ comments: [...prev.comments, newComment], test: 1 } };
+          console.log(data);
+          return data;
+        }
+      }
+    );
+  }
+
 }

@@ -11,20 +11,16 @@ const SETTINGS = window['VIX_SETTINGS'] || {};
 export class CommentsComponent implements OnInit {
   comments: IBlurbComment[] = [];
   @Input() blurbId: number;
+  @Input() totalComments: number;
   mComment: string;
   SETTINGS = SETTINGS;
-  loadMoreLinkShow = true;
   constructor(private commentsService: CommentsService) {}
 
   ngOnInit() {
-    this.commentsService.getComments(this.blurbId)
+    this.commentsService
+      .getComments(this.blurbId)
       .map(res => res.data)
       .subscribe(res => {
-        if (this.comments.length < res.comments.length && res.comments.length % SETTINGS.blurbCommentsTake === 0) {
-          this.loadMoreLinkShow = true;
-        } else {
-          this.loadMoreLinkShow = false;
-        }
         this.comments = res.comments;
       });
   }
@@ -44,5 +40,4 @@ export class CommentsComponent implements OnInit {
   fetchMoreComments() {
     this.commentsService.fetchMoreComments(this.comments.length, this.blurbId);
   }
-
 }
