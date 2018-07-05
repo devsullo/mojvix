@@ -22,7 +22,7 @@
         <div class="meta">
           <span class="agrees">{{ blurb.totalAgree }} {{ 'blurb-wall-agrees' | trans }}</span>
           <span class="disagrees">{{ blurb.totalDisagree }} {{ 'blurb-wall-disagrees' | trans }}</span>
-          <span class="comments">{{ blurb.totalComments }} {{ 'blurb-wall-comments' | trans }}</span>
+          <span class="comments">{{ blurb.totalComments}} {{ 'blurb-wall-comments' | trans }}</span>
         </div>
       </div>
       <div ng-if="user.isLogged" class="blurb-footer">
@@ -42,7 +42,7 @@
           <span class="icon icon-nav icon-nav-menu"></span>
         </a> -->
       </div>
-      <app-blurb-comments [blurbId]="blurb.id" [comments]="blurb.comments"></app-blurb-comments>
+      <app-blurb-comments [blurbId]="blurb.id" [totalComments]="blurb.totalComments"></app-blurb-comments>
     </div>
   </div>
 </section>

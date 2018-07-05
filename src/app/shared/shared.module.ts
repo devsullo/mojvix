@@ -13,6 +13,7 @@ import { LoggedInGuardService } from './guards/logged-in-guard.service';
 import { LoggedOutGuardService } from './guards/logged-out-guard.service';
 import { TokenInterceptor } from './interceptors';
 import { ApolloClientModule } from './apollo-client.module';
+import { OrderModule } from 'ngx-order-pipe';
 
 const tokenGetter = () => {
   return localStorage.getItem('token');
@@ -39,7 +40,8 @@ const tokenGetter = () => {
     TransPipe,
     PasswordStrengthBarModule,
     YoutubePlayerModule,
-    HttpClientModule
+    HttpClientModule,
+    OrderModule
   ],
   providers: [
     AuthService,

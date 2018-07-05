@@ -4,10 +4,14 @@ export interface IBlurbCreateCommentResponse {
   createComment: IBlurbComment;
 }
 
+export interface IBlurbCommentResponse {
+  comments: IBlurbComment[];
+}
+
 export interface IBlurbComment {
-  // user: IUser;
   id: number;
   content: string;
+  creator: IUser;
 }
 
 export interface IBlurbsResponse {
