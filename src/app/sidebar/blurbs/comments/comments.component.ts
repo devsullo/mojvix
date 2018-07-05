@@ -22,6 +22,8 @@ export class CommentsComponent implements OnInit {
       .subscribe(res => {
         if (this.comments.length < res.comments.length && res.comments.length % SETTINGS.blurbCommentsTake === 0) {
           this.loadMoreLinkShow = true;
+        } else {
+          this.loadMoreLinkShow = false;
         }
         this.comments = res.comments;
       });
@@ -40,7 +42,6 @@ export class CommentsComponent implements OnInit {
   }
 
   fetchMoreComments() {
-    this.loadMoreLinkShow = false;
     this.commentsService.fetchMoreComments(this.comments.length, this.blurbId);
   }
 

@@ -42,8 +42,8 @@ export class CommentsService {
     blurbId: number
   ): Observable<ApolloQueryResult<IBlurbCommentResponse>> {
     const QUERY = gql`
-      query getComments($skip: Int, $take: Int, $findBy: FindByComment) {
-        comments(skip: $skip, take: $take, findBy: $findBy) {
+      query getComments($skip: Int, $take: Int, $findBy: FindByComment, $orderBy: SQLOrderBy) {
+        comments(skip: $skip, take: $take, findBy: $findBy, orderBy: $orderBy) {
           id
           content
           creator {
@@ -56,6 +56,7 @@ export class CommentsService {
       query: QUERY,
       variables: {
         findBy: { blurbId: blurbId },
+        orderBy: { column: 'id', order: 'DESC' },
         skip: 0,
         take: SETTINGS.blurbCommentsTake
       }
@@ -74,7 +75,7 @@ export class CommentsService {
           return prev;
         }
         return Object.assign({}, prev, {
-          comments: [...prev.comments, ...fetchMoreResult.comments]
+          comments: [...fetchMoreResult.comments, ...prev.comments]
         });
       }
     });
