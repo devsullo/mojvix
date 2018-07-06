@@ -26,11 +26,11 @@
         </div>
       </div>
       <div ng-if="user.isLogged" class="blurb-footer">
-        <a class="trigger-agree left">
+        <a (click)="voteBlurb('AGREE', blurb.id)" class="trigger-agree left">
           <span class="icon icon-nav icon-nav-agree"></span>
           <span class="text">{{ 'blurb-wall-agree' | trans }}</span>
         </a>
-        <a class="trigger-disagree left">
+        <a (click)="voteBlurb('DISAGREE', blurb.id)" class="trigger-disagree left">
           <span class="icon icon-nav icon-nav-disagree"></span>
           <span class="text">{{ 'blurb-wall-disagree' | trans }}</span>
         </a>
