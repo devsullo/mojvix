@@ -5,6 +5,7 @@ import gql from 'graphql-tag';
 import { IBlurbsResponse, IBlurb } from './blurb';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { FetchResult } from 'apollo-link';
 const SETTINGS = window['VIX_SETTINGS'] || {};
 const fragments = {
   blurbs: gql`
@@ -117,6 +118,20 @@ export class BlurbsService {
       }
     });
 
+  }
+
+  voteBlurb(action: string, blurbId: number): Observable<FetchResult<{}>> {
+    const MUTATION = gql`
+      mutation voteBlurb($action: BlurbVoteAction, $blurbId: Int!) {
+        voteBlurb(action: $action, blurbId: $blurbId) {
+          blurbId
+        }
+      }
+    `;
+    return this.apollo.mutate({
+      mutation: MUTATION,
+      variables: { blurbId, action }
+    });
   }
 
 

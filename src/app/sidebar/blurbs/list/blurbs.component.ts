@@ -15,20 +15,17 @@ export class BlurbsComponent implements OnInit, OnChanges {
 
   constructor(
     private blurbsService: BlurbsService,
-    private scrollService: ScrollService,
+    private scrollService: ScrollService
   ) {}
 
   ngOnInit() {
-    this.blurbsService.getBlurbsSounce$
-      .subscribe(blarbsObserver => {
-        blarbsObserver
-        .map(res => res.data.blurbs)
-        .subscribe(blurbs => {
-          console.log(blurbs);
-          this.blurbs = blurbs;
-          this.scrollService.update('#blurbs-list');
-        });
+    this.blurbsService.getBlurbsSounce$.subscribe(blarbsObserver => {
+      blarbsObserver.map(res => res.data.blurbs).subscribe(blurbs => {
+        console.log(blurbs);
+        this.blurbs = blurbs;
+        this.scrollService.update('#blurbs-list');
       });
+    });
     this.blurbsService.getBlurbs();
 
     this.scrollService.loadMore(this.scrollEl, this.scrollHeight, () => {
@@ -36,7 +33,18 @@ export class BlurbsComponent implements OnInit, OnChanges {
     });
   }
 
+  voteBlurb(action: string, blurbId: number) {
+    this.blurbsService
+      .voteBlurb(action, blurbId)
+      .map(res => res.data.voteBlurb)
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
   ngOnChanges() {
-    this.scrollEl ? this.scrollEl.update() : (this.scrollEl = this.scrollService.init('#blurbs-list'));
+    this.scrollEl
+      ? this.scrollEl.update()
+      : (this.scrollEl = this.scrollService.init('#blurbs-list'));
   }
 }
