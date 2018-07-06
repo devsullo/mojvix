@@ -14,6 +14,7 @@ import { LoggedOutGuardService } from './guards/logged-out-guard.service';
 import { TokenInterceptor } from './interceptors';
 import { ApolloClientModule } from './apollo-client.module';
 import { OrderModule } from 'ngx-order-pipe';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 const tokenGetter = () => {
   return localStorage.getItem('token');
@@ -31,7 +32,7 @@ const tokenGetter = () => {
     }),
     ApolloClientModule
   ],
-  declarations: [EscapeHtmlPipe, TransPipe],
+  declarations: [EscapeHtmlPipe, TransPipe, TimeAgoPipe],
   exports: [
     CommonModule,
     FormsModule,
@@ -41,7 +42,8 @@ const tokenGetter = () => {
     PasswordStrengthBarModule,
     YoutubePlayerModule,
     HttpClientModule,
-    OrderModule
+    OrderModule,
+    TimeAgoPipe
   ],
   providers: [
     AuthService,

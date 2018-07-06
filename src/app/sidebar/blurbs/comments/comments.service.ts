@@ -15,6 +15,7 @@ const fragments = {
     fragment commentFields on Comment {
       id
       content
+      createdAt
       creator {
         vixname
       }

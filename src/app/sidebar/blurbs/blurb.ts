@@ -12,6 +12,7 @@ export interface IBlurbComment {
   id: number;
   content: string;
   creator: IUser;
+  createdAt: Date;
 }
 
 export interface IBlurbsResponse {

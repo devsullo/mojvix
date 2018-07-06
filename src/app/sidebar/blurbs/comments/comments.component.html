@@ -9,7 +9,7 @@
       </a>
       “{{ comment.content }}”
       <div class="info">
-        <abbr>13 mins ago</abbr>
+        <abbr>{{ comment.createdAt | timeAgo }}</abbr>
       </div>
     </div>
   </div>
