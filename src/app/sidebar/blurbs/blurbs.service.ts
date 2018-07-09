@@ -31,28 +31,22 @@ export class BlurbsService {
   >();
   getBlurbsSounce$ = this.getBlurbsSounce.asObservable();
   blurbsQuery: QueryRef<any>;
-  blurbSub: any;
+  newBlurbSub: any;
+  updateBlurbsSub: any;
 
-  constructor(
-    private apollo: Apollo
-  ) {}
+  constructor(private apollo: Apollo) {}
 
   getBlurbs(movieId?: number): void {
     let where;
     movieId ? (where = `movieId:${movieId}`) : (where = '');
     const QUERY = gql`
       query getBlurbs(
-        $orderBy: SQLOrderBy,
-        $where: SQLWhere,
-        $skip: Int,
+        $orderBy: SQLOrderBy
+        $where: SQLWhere
+        $skip: Int
         $take: Int
       ) {
-        blurbs(
-          orderBy: $orderBy,
-          where: $where,
-          skip: $skip,
-          take: $take
-        ) {
+        blurbs(orderBy: $orderBy, where: $where, skip: $skip, take: $take) {
           ...blurbFields
         }
       }
@@ -69,7 +63,6 @@ export class BlurbsService {
       fetchPolicy: 'network-only'
     });
     this.getBlurbsSounce.next(this.blurbsQuery.valueChanges);
-    // this.subscribeToNewBlurbs(movieId);
   }
 
   fetchMoreBlurbs(skip: number) {
@@ -97,10 +90,10 @@ export class BlurbsService {
       }
       ${fragments.blurbs}
     `;
-    if (this.blurbSub) {
-      this.blurbSub();
+    if (this.newBlurbSub) {
+      this.newBlurbSub();
     }
-    this.blurbSub = this.blurbsQuery.subscribeToMore({
+    this.newBlurbSub = this.blurbsQuery.subscribeToMore({
       document: SUBSCRIPTION,
       variables: {
         movieId: movieId
@@ -117,7 +110,6 @@ export class BlurbsService {
         return data;
       }
     });
-
   }
 
   voteBlurb(action: string, blurbId: number): Observable<FetchResult<{}>> {
@@ -134,5 +126,36 @@ export class BlurbsService {
     });
   }
 
-
+  subscribeToUpdateBlurb(blurbIds: number[]) {
+    const SUBSCRIPTION = gql`
+      subscription onblurbUpdated($ids: [Int]) {
+        blurbUpdated(ids: $ids) {
+          ...blurbFields
+        }
+      }
+      ${fragments.blurbs}
+    `;
+    if (this.updateBlurbsSub) {
+      this.updateBlurbsSub();
+    }
+    this.updateBlurbsSub = this.blurbsQuery.subscribeToMore({
+      document: SUBSCRIPTION,
+      variables: {
+        ids: blurbIds
+      },
+      updateQuery: (prev: IBlurbsResponse, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
+        const updatedBlurb: IBlurb = subscriptionData.data.blurbUpdated;
+        const data = {
+          ...prev,
+          blurbs: prev.blurbs.map(
+            blurb => (blurb.id === updatedBlurb.id ? updatedBlurb : blurb)
+          )
+        };
+        return data;
+      }
+    });
+  }
 }

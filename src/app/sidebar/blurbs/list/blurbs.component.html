@@ -1,6 +1,6 @@
 <section id="blurbs-list" [style.height.px]="scrollHeight">
   <h2 class="oops" *ngIf="blurbs.length < 1">{{ 'blurb-wall-empty-list' | trans }}</h2>
-  <div *ngFor="let blurb of blurbs"  class="single-blurb-wrapper">
+  <div *ngFor="let blurb of blurbs; let i = index"  class="single-blurb-wrapper">
     <!-- <div class="number">
       <i>{{ blurb.id }}</i>
       <span class="icon icon-arrow-down"></span>
@@ -34,7 +34,7 @@
           <span class="icon icon-nav icon-nav-disagree"></span>
           <span class="text">{{ 'blurb-wall-disagree' | trans }}</span>
         </a>
-        <a class="trigger-blurb left">
+        <a (click)="focusOnCommentInput(i)" class="trigger-blurb left">
           <span class="icon icon-nav icon-nav-blurb"></span>
           <span class="text">{{ 'blurb-wall-comment' | trans }}</span>
         </a>
@@ -42,7 +42,7 @@
           <span class="icon icon-nav icon-nav-menu"></span>
         </a> -->
       </div>
-      <app-blurb-comments [blurbId]="blurb.id" [totalComments]="blurb.totalComments"></app-blurb-comments>
+      <app-blurb-comments #comments [blurbId]="blurb.id" [totalComments]="blurb.totalComments"></app-blurb-comments>
     </div>
   </div>
 </section>

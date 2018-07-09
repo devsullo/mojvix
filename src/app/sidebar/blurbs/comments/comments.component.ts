@@ -1,6 +1,6 @@
 import { CommentsService } from './comments.service';
 import { IBlurbComment } from './../blurb';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 const SETTINGS = window['VIX_SETTINGS'] || {};
 
 @Component({
@@ -12,6 +12,7 @@ export class CommentsComponent implements OnInit {
   comments: IBlurbComment[] = [];
   @Input() blurbId: number;
   @Input() totalComments: number;
+  @ViewChild('commentInput') commentInput: ElementRef;
   mComment: string;
   SETTINGS = SETTINGS;
   constructor(private commentsService: CommentsService) {}
@@ -35,6 +36,10 @@ export class CommentsComponent implements OnInit {
         });
       this.mComment = '';
     }
+  }
+
+  focusOnCommentInput() {
+    this.commentInput.nativeElement.focus();
   }
 
   fetchMoreComments() {

@@ -17,6 +17,6 @@
 <div class="type-comment">
   <img src="/assets/images/profile/profile1.jpg">
   <div class="input-area">
-    <textarea (keyup)="createComment($event)" [(ngModel)]="mComment" placeholder="Type comment" class=""></textarea>
+    <textarea #commentInput (keyup)="createComment($event)" [(ngModel)]="mComment" placeholder="Type comment" class=""></textarea>
   </div>
 </div>

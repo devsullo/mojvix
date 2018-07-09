@@ -1,6 +1,7 @@
+import { CommentsComponent } from './../comments/comments.component';
 import { ScrollService } from './../../../shared/services/scroll.service';
 import { BlurbsService } from './../blurbs.service';
-import { Component, OnInit, Input, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, QueryList, ViewChildren } from '@angular/core';
 import { IBlurb } from '../blurb';
 
 @Component({
@@ -10,8 +11,10 @@ import { IBlurb } from '../blurb';
 })
 export class BlurbsComponent implements OnInit, OnChanges {
   blurbs: IBlurb[] = [];
+  blurbIds: number[];
   scrollEl: any;
   @Input() scrollHeight: number;
+  @ViewChildren('comments') comments: QueryList<CommentsComponent>;
 
   constructor(
     private blurbsService: BlurbsService,
@@ -23,6 +26,11 @@ export class BlurbsComponent implements OnInit, OnChanges {
       blarbsObserver.map(res => res.data.blurbs).subscribe(blurbs => {
         console.log(blurbs);
         this.blurbs = blurbs;
+        const newblurbIds = blurbs.map(bl => bl.id);
+        if (this.blurbIds !== newblurbIds) {
+          this.blurbIds = newblurbIds;
+          this.blurbsService.subscribeToUpdateBlurb(this.blurbIds);
+        }
         this.scrollService.update('#blurbs-list');
       });
     });
@@ -40,6 +48,10 @@ export class BlurbsComponent implements OnInit, OnChanges {
       .subscribe(data => {
         console.log(data);
       });
+  }
+
+  focusOnCommentInput(i: number) {
+    this.comments.toArray()[i].focusOnCommentInput();
   }
 
   ngOnChanges() {

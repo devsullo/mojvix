@@ -114,7 +114,7 @@ export class CommentsService {
             return prev;
           }
           const newComment: IBlurbComment = subscriptionData.data.commentAdded;
-          const data = { ...prev, ...{ comments: [...prev.comments, newComment], test: 1 } };
+          const data = { ...prev, ...{ comments: [...prev.comments, newComment] } };
           console.log(data);
           return data;
         }
