@@ -50,7 +50,7 @@
         <div class="value">{{ movie.actorNames.join(', ') }}</div>
       </div>
     </div>
-    <a [routerLink]="['/seance/' + movie.slug + '/' + movie.id]" class="attend-to-show btn btn-sky-blue">Attend To Show</a>
+    <a (click)="attendToShow(movie)" class="attend-to-show btn btn-sky-blue">Attend To Show</a>
     <div class="bottom-meta">
       <div class="divider"></div>
       <div class="left">

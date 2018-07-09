@@ -4,6 +4,7 @@ export interface IMoviesResponse {
 }
 export interface IMovie {
   id?: number;
+  slug: string;
   title: string;
   story: string;
   poster: string;
