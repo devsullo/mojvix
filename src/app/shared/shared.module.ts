@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { Helper } from './helper';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -43,7 +44,8 @@ const tokenGetter = () => {
     YoutubePlayerModule,
     HttpClientModule,
     OrderModule,
-    TimeAgoPipe
+    TimeAgoPipe,
+    RouterModule
   ],
   providers: [
     AuthService,

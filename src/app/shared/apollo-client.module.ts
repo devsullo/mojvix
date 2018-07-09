@@ -1,3 +1,4 @@
+import { RouteService } from './services/route.service';
 import { NgModule } from '@angular/core';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
@@ -17,16 +18,21 @@ export class ApolloClientModule {
   constructor(
     private apollo: Apollo,
     private httpLink: HttpLink,
-    private authService: AuthService
+    private authService: AuthService,
+    private routeService: RouteService
   ) {
     const baseLink = httpLink.create({ uri: environment.graphqlUrl });
     const errorLink = onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
-        graphQLErrors.map(({ message, locations, path }) =>
+        graphQLErrors.map(({ message, locations, path }) => {
           console.warn(
             `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-          )
-        );
+          );
+          // Temp
+          if (message === 'Forbidden') {
+            this.routeService.navigateSeanceOrMain('join');
+          }
+        });
       }
       if (networkError) {
         networkError.error.errors.map(({ message, locations, path }) =>
