@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { ProfileComponent } from './profile/profile.component';
 import { SharedModule } from '../../shared/shared.module';
 import { RouterModule } from '@angular/router';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   imports: [
@@ -19,14 +20,14 @@ import { RouterModule } from '@angular/router';
             canActivate: [LoggedInGuard]
           },
           {
-            path: 'profile',
-            component: ProfileComponent,
+            path: 'settings',
+            component: SettingsComponent,
             canActivate: [LoggedInGuard]
           }
         ]
       }
     ])
   ],
-  declarations: [ProfileComponent, IndexComponent]
+  declarations: [ProfileComponent, IndexComponent, SettingsComponent]
 })
 export class UserModule {}

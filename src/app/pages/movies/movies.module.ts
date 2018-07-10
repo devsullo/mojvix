@@ -11,7 +11,7 @@ import { MovieComponent } from './single/movie.component';
     SharedModule,
     ComponentsModule,
     RouterModule.forChild([
-      { path: 'box-office', component: MoviesComponent },
+      { path: '', component: MoviesComponent },
     ])
   ],
   declarations: [MoviesComponent, MovieComponent],
