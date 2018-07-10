@@ -1,7 +1,7 @@
-<section id="profile-area" class="page-style-a light">
+<section id="user-area" class="page-style-a light">
   <header class="center-area-cont">
     <div class="left">
-      <span class="btn btn-nav back"></span>
+      <span (click)="goBack()" class="btn btn-nav back"></span>
     </div>
     <div class="right">
       <a class="btn btn-nav ticket"></a>
@@ -9,128 +9,9 @@
       <a class="btn btn-nav more">More</a>
     </div>
   </header>
-  <section class="center-area-cont">
-    <div class="page-wrap light">
-      <header>
-        <div class="cover icon-hover">
-          <img src="/assets/images/profile/cover/cover1.jpg">
-          <i class="icon-a camera"></i>
-        </div>
-        <div class="profile-pic icon-hover">
-          <img src="/assets/images/profile/155x155.jpg">
-          <i id="uploadProfilePictureTriger" class="icon-a camera"></i>
-          <input id="uploadProfilePicture" class="hideEl" type="file">
-        </div>
-        <span class="vixname icon-hover">
-          user.vixNames[0]
-          <i class="icon-a pencil-a"></i>
-        </span>
-        <div class="profile-actions">
-          <a class="btn sm btn-blue">Send Message</a>
-          <a class="btn sm btn-green">Follow</a>
-        </div>
-        <div class="profile-info">
-          <div class="page-padding">
-            <div class="left">
-              <span class="name icon-hover">user.meta.firstname +" "+ user.meta.lastname
-                <i class="icon-a pencil-b"></i>
-              </span>
-              <span class="address">Georgia, Tbilisi</span>
-            </div>
-            <div class="right">
-              <span class="meta">
-                MOVIES
-                <i>0</i>
-              </span>
-              <span class="meta">
-                BLARBS
-                <i>0</i>
-              </span>
-              <span class="meta">
-                FOLLOWERS
-                <i>0</i>
-              </span>
-            </div>
-          </div>
-        </div>
-      </header>
-      <section class="profile-about page-padding">
-        <div class="bio block-section">
-          <h2 class="icon-hover">Bio
-            <i class="icon-a pencil-b"></i>
-          </h2>
-          <p class="i">user.meta.bio</p>
-        </div>
-
-        <div class="laurels block-section">
-          <h2>Laurels</h2>
-          <img src="/assets/images/profile/laurel/laurel.png">
-          <img src="/assets/images/profile/laurel/laurel.png">
-          <img src="/assets/images/profile/laurel/laurel.png">
-          <img src="/assets/images/profile/laurel/laurel.png">
-        </div>
-        <div class="tag-cloud block-section">
-          <h2>Tag Cloud</h2>
-          <div class="tags">
-            <a>tag</a>
-          </div>
-        </div>
-        <!-- <div class="recenty-movies block-section" id="box-office">
-          <h2 class="center-t">Recently watched movies</h2>
-          <div class="titles sort-4">
-            <div ng-repeat="title in titles" title-id="{{ title.id }}" id="title_{{ title.id }}" class="title">
-              <div class="title-wrapper">
-                <img class="poster" ng-src="/images/titles/{{ title.poster }}">
-              </div>
-              <div class="hover_{{ title.id }} hover">
-                <div class="cont">
-                  <span class="time right">131 min</span>
-                  <h3 class="hover-title">{{ title.name }}</h3>
-                  <h5 class="hover-genre">{{ title.genre }}</h5>
-                  <ul>
-                    <li>
-                      <span>Direcor: </span>
-                      <a href="#">J Blakeson</a>
-                    </li>
-                    <li>
-                      <span>Stars: </span>
-                      <a href="#">Chloë Grace Moretz</a>,
-                      <a href="#">Liev Schreiber</a>,
-                      <a href="#">Maika Monroe</a>
-                    </li>
-                  </ul>
-                  <p class="plain-text description">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, modi, delectus libero sapiente beatae eligendi, commodi quae,
-                    consequuntur iusto excepturi repudiandae! In quam fugiat voluptates itaque officiis recusandae quae asperiores.
-                  </p>
-                  <div class="footer">
-                    <div class="tags">
-                      <span>#Awesome</span>
-                      <span>#the search</span>
-                      <span>#questioning</span>
-                      <span>#important</span>
-                      <span>#Trials</span>
-                    </div>
-                    <div class="blurb-body left-bordered yellow">
-                      <p class="plain-text">
-                        “It's fine to celebrate
-                        <i>#LandmineGoes Click</i> success but it is more
-                        <i>#important</i> to heed the lessons of
-                        <i>#failure</i>.”
-                      </p>
-                    </div>
-                    <div class="mojvixer right">
-                      <span class="prefix">-</span>
-                      <img class="profile-pic mCS_img_loaded" src="images/profile/profile3.jpg">
-                      <span class="mojvixer-name">Bill Gates</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
-      </section>
+  <section [style.height.px]="pageHeight" id="user-body-area">
+    <div class="center-area-cont">
+      <router-outlet></router-outlet>
     </div>
   </section>
 </section>

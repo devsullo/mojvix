@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
+import { Location } from '@angular/common';
+import { ScrollService } from '../../../shared/services/scroll.service';
+import { Helper } from '../../../shared/helper';
 
 @Component({
   selector: 'app-index',
@@ -6,10 +9,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-
-  constructor() { }
+  pageHeight: number;
+  scroll: any;
+  constructor(
+    private location: Location,
+    private scrollService: ScrollService
+  ) {}
 
   ngOnInit() {
+    this.calcScrollHeight();
+    this.scroll = this.scrollService.init('#user-body-area');
   }
 
+  @HostListener('window:resize', ['$event'])
+  onResize(event) {
+    this.calcScrollHeight();
+    this.scroll.update();
+  }
+
+  calcScrollHeight(): void {
+    this.pageHeight = window.innerHeight - 114;
+  }
+
+  goBack(): void {
+    this.location.back();
+  }
 }

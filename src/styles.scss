@@ -2041,7 +2041,12 @@ a.moods {
   }
 }
 
-#profile-area .page-wrap {
+#user-body-area {
+  position: relative;
+  @extend .cf;
+}
+
+#user-area .page-wrap {
   header {
     .cover {
       img {
@@ -3255,6 +3260,9 @@ a.moods {
   &.fixed {
     width: 760px;
     margin: auto;
+    .page-wrap {
+      margin: 50px 0;
+    }
   }
   >header {
     margin-top: 3px;
@@ -3263,7 +3271,6 @@ a.moods {
   .page-wrap {
     @extend .cf;
     position: relative;
-    margin: 50px 0;
     &.light {
       background: rgb(244, 248, 251);
       @include border-radius(4px);

@@ -1,3 +1,4 @@
+import { Helper } from './../../../shared/helper';
 import { BlurbsService } from './../../../sidebar/blurbs/blurbs.service';
 import { element } from 'protractor';
 import { MovieComponent } from './../single/movie.component';
@@ -25,7 +26,8 @@ export class MoviesComponent implements OnInit {
   constructor(
     private moviesService: MoviesService,
     private scrollService: ScrollService,
-    private blurbsService: BlurbsService
+    private blurbsService: BlurbsService,
+    private helper: Helper
   ) {}
 
   ngOnInit() {
@@ -55,12 +57,7 @@ export class MoviesComponent implements OnInit {
 
   calcScrollHeight(): void {
     this.pageHeight = window.innerHeight - 112;
-    const boxOfficeEl =  document.querySelector('#box-office');
-    if (boxOfficeEl.clientWidth > 1240) {
-      this.colls = 4;
-    } else {
-      this.colls = 3;
-    }
+    this.colls = this.helper.getMoviePosterColls('#box-office');
   }
 
   expandMovie(i: number): void {
