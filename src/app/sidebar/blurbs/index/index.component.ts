@@ -5,9 +5,9 @@ import { Component, OnInit, Input, OnChanges, QueryList, ViewChildren } from '@a
 import { IBlurb } from '../blurb';
 
 @Component({
-  selector: 'app-blurbs',
-  templateUrl: './blurbs.component.html',
-  styleUrls: ['./blurbs.component.scss']
+  selector: 'app-blurbs-index',
+  templateUrl: './index.component.html',
+  styleUrls: ['./index.component.scss']
 })
 export class BlurbsComponent implements OnInit, OnChanges {
   blurbs: IBlurb[] = [];

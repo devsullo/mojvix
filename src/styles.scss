@@ -932,11 +932,11 @@ textarea {
 }
 
 .hideEl {
-  display: none;
+  display: none !important;
 }
 
 .showEl {
-  display: block;
+  display: block !important;
 }
 
 //animation

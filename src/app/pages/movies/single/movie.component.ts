@@ -6,7 +6,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { ScrollService } from '../../../shared/services/scroll.service';
 import { NgRedux } from '../../../../../node_modules/ng2-redux';
 import { IAppState } from '../../../store';
-import { $ } from '../../../../../node_modules/protractor';
+
 
 @Component({
   selector: 'app-movie',

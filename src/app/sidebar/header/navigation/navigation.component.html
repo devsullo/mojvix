@@ -5,7 +5,14 @@
   <div class="left nav-wrapper">
     <div id="profile-nav" class="right-nav">
       <div class="left-cont">
-        <a *ngFor="let nav of navigation.tabs" (click)="changeNavigationTab(nav.name)" [ngClass]="{'active': navigation.activeTab === nav.name}" class="icon icon-{{ nav.name }} nav-{{ nav.name }}"></a>
+        <ng-container *ngFor="let nav of navigation.tabs">
+          <a
+            *ngIf="!nav.disabled"
+            (click)="changeNavigationTab(nav.name)"
+            [ngClass]="{'active': navigation.activeTab === nav.name}"
+            class="icon icon-{{ nav.name }} nav-{{ nav.name }}">
+          </a>
+        </ng-container>
       </div>
     </div>
     <!-- <span class="my-vixname">myvixname</span> -->

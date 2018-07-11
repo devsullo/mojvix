@@ -1,7 +1,23 @@
 <app-sidebar-header></app-sidebar-header>
 <section id="right-content">
-  <app-blurbs [scrollHeight]="scrollHeight" *ngIf="navigation.activeTab === 'blurbs'"></app-blurbs>
-  <app-chat-index [scrollHeight]="scrollHeight" *ngIf="navigation.activeTab === 'chat'"></app-chat-index>
-  <app-notifications-index [scrollHeight]="scrollHeight" *ngIf="navigation.activeTab === 'notifications'"></app-notifications-index>
-  <app-navigation-index [scrollHeight]="scrollHeight" *ngIf="navigation.activeTab === 'navigation'"></app-navigation-index>
+  <app-chat-index
+    [hidden]="navigation.activeTab !== 'chat'"
+    [scrollHeight]="scrollHeight"
+    *ngIf="navigation.tabs[0].inited">
+  </app-chat-index>
+  <app-blurbs-index
+    [hidden]="navigation.activeTab !== 'blurbs'"
+    [scrollHeight]="scrollHeight"
+    *ngIf="navigation.tabs[1].inited">
+  </app-blurbs-index>
+  <app-notifications-index
+    [hidden]="navigation.activeTab !== 'notifications'"
+    [scrollHeight]="scrollHeight"
+    *ngIf="navigation.tabs[2].inited">
+  </app-notifications-index>
+  <app-navigation-index
+    [hidden]="navigation.activeTab !== 'navigation'"
+    [scrollHeight]="scrollHeight"
+    *ngIf="navigation.tabs[3].inited">
+  </app-navigation-index>
 </section>

@@ -1,4 +1,4 @@
-import { IUser } from './../../store/model/user';
+import { IUser } from '../../store/model/user';
 
 export interface IBlurbCreateCommentResponse {
   createComment: IBlurbComment;

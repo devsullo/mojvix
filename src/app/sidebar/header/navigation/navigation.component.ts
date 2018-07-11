@@ -14,7 +14,7 @@ export class NavigationComponent implements OnInit {
   constructor(
     private ngRedux: NgRedux<IAppState>,
     private headerService: HeaderService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.navigation = this.ngRedux.getState().navigation;
@@ -22,5 +22,9 @@ export class NavigationComponent implements OnInit {
 
   changeNavigationTab(tab: string) {
     this.headerService.changeNavigationTab(tab);
+  }
+
+  keys(): Array<string> {
+    return Object.keys(this.navigation);
   }
 }

@@ -1,17 +1,16 @@
 import { IAppState } from '../IAppState';
-import { getDefaultService } from 'selenium-webdriver/edge';
 
 const INITIALSTATE: IAppState = {
   user: getUser(),
   navigation: {
     tabs: [
-      // { name: 'chat', notifications: 0 },
-      { name: 'blurbs', notifications: 0 },
-      { name: 'notifications', notifications: 0 },
-      { name: 'navigation', notifications: 0 }
+      { name: 'chat', notifications: 0, inited: false, disabled: true },
+      { name: 'blurbs', notifications: 0, inited: true, disabled: false },
+      { name: 'notifications', notifications: 0, inited: false, disabled: false },
+      { name: 'navigation', notifications: 0, inited: false, disabled: false }
     ],
     activeTab: 'blurbs',
-    deactivatedTab: null,
+    deactivatedTab: null
   },
   // TODO remove this
   chat: {
