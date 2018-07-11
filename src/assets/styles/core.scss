@@ -10,14 +10,93 @@ $hLine: #242a32;
 $blue: #2980B9;
 $green: #27AE60;
 $skyBlue:#489CDA;
-
 /*
-	http://meyerweb.com/eric/tools/css/reset/ 
+	http://meyerweb.com/eric/tools/css/reset/
 	v2.0 | 20110126
 	License: none (public domain)
 */
 
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -26,10 +105,19 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   vertical-align: baseline;
 }
 
-
 /* HTML5 display-role reset for older browsers */
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
   display: block;
 }
 
@@ -124,29 +212,29 @@ $pixel) {
 
 @mixin placeholder($color,
 $weight:100) {
-   ::-webkit-input-placeholder {
+  ::-webkit-input-placeholder {
     /* WebKit, Blink, Edge */
     color: $color;
     font-weight: $weight;
   }
-   :-moz-placeholder {
+  :-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
     color: $color;
     opacity: 1;
     font-weight: $weight;
   }
-   ::-moz-placeholder {
+  ::-moz-placeholder {
     /* Mozilla Firefox 19+ */
     color: $color;
     opacity: 1;
     font-weight: $weight;
   }
-   :-ms-input-placeholder {
+  :-ms-input-placeholder {
     /* Internet Explorer 10-11 */
     color: $color;
     font-weight: $weight;
   }
-   :placeholder-shown {
+  :placeholder-shown {
     /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
     color: $color;
     font-weight: $weight;
@@ -173,7 +261,6 @@ a {
   unicode-range: U+0460-052F, U+20B4, U+2DE0-2DFF, U+A640-A69F;
 }
 
-
 /* cyrillic */
 
 @font-face {
@@ -184,7 +271,6 @@ a {
   unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
 }
 
-
 /* latin-ext */
 
 @font-face {
@@ -194,7 +280,6 @@ a {
   src: local('PT Sans'), local('PTSans-Regular'), url(https://fonts.gstatic.com/s/ptsans/v8/9kaD4V2pNPMMeUVBHayd7vY6323mHUZFJMgTvxaG2iE.woff2) format('woff2');
   unicode-range: U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
 }
-
 
 /* latin */
 
@@ -213,7 +298,6 @@ a {
   font-weight: normal;
   font-style: normal;
 }
-
 
 /* grid */
 
@@ -1002,5 +1086,25 @@ a {
   }
   .col-lg-offset-0 {
     margin-left: 0%;
+  }
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
   }
 }

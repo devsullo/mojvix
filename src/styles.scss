@@ -970,6 +970,13 @@ textarea {
   max-height: 1000px;
 }
 
+.shakeAnimation {
+  animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
 //responsive video
 .videoWrapper {
   position: relative;
@@ -2779,6 +2786,7 @@ a.moods {
       @include border-radius(50%);
       float: left;
       margin-right: 4%;
+      max-width: 50px;
     }
   }
   .comment:first-child {
@@ -3124,12 +3132,25 @@ a.moods {
     }
   }
   .error-box {
+    position: relative;
     background: #0e161a;
     box-shadow: 0px 1px 4px #242c36;
     color: #c0392b;
     padding: 12px;
     margin: 4px 0;
     text-align: center;
+    cursor: pointer;
+    &::after {
+      content: "";
+      position: absolute;
+      background: $iconsSprite;
+      background-position: -95px -28px;
+      width: 10px;
+      height: 10px;
+      right: 8px;
+      top: 9px;
+      opacity: 0.5;
+    }
   }
   &.light {
     @include placeholder(#dbdfe4);
@@ -3145,6 +3166,9 @@ a.moods {
     .error-box {
       background: rgb(213, 217, 224);
       box-shadow: 0px 1px 4px #c1c1c1;
+      &::after {
+        opacity: 1;
+      }
     }
   }
 }

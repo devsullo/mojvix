@@ -8,13 +8,16 @@ import { TransPipe } from '../../shared/pipes/trans.pipe';
 })
 export class FormErrorBoxComponent implements OnInit {
   errorBox = false;
+  animation = false;
   errorBoxMsg = '';
   constructor(private transPipe: TransPipe) {}
 
   ngOnInit() {}
 
   show(data: any) {
+    this.animation = false;
     setTimeout(() => {
+      this.animation = true;
       this.errorBox = true;
       console.log(data.error.error);
       this.errorBoxMsg = this.transPipe.transform(data.error.error, 'error');

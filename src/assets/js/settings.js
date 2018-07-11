@@ -144,6 +144,6 @@ window.VIX_MESSAGES = {
   '52': 'Email has been taken',
   error: {
     BAD_CREDENTIALS: 'Password is not valid',
-    USER_ALREADY_REGISTERED: 'Email is taken'
+    USER_ALREADY_REGISTERED: 'Email has been taken'
   }
 };
