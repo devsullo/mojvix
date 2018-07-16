@@ -33,8 +33,9 @@ export class CommentsComponent implements OnInit {
         .map(res => res.data.createComment)
         .subscribe(data => {
           console.log(data);
+          this.mComment = '';
         });
-      this.mComment = '';
+      return false;
     }
   }
 

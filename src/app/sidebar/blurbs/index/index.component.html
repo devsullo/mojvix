@@ -19,23 +19,18 @@
             <span class="mojvixer-name">{{ blurb.creator.vixname }}</span>
           </div>
         </div>
-        <div class="meta">
-          <span class="agrees">{{ blurb.totalAgree }} {{ 'blurb-wall-agrees' | trans }}</span>
-          <span class="disagrees">{{ blurb.totalDisagree }} {{ 'blurb-wall-disagrees' | trans }}</span>
-          <span class="comments">{{ blurb.totalComments}} {{ 'blurb-wall-comments' | trans }}</span>
-        </div>
       </div>
       <div ng-if="user.isLogged" class="blurb-footer">
         <a (click)="voteBlurb('AGREE', blurb.id)" class="trigger-agree left">
-          <span class="icon icon-nav icon-nav-agree"></span>
+          <span class="num">{{ blurb.totalAgree }}</span>
           <span class="text">{{ 'blurb-wall-agree' | trans }}</span>
         </a>
         <a (click)="voteBlurb('DISAGREE', blurb.id)" class="trigger-disagree left">
-          <span class="icon icon-nav icon-nav-disagree"></span>
+          <span class="num">{{ blurb.totalDisagree }}</span>
           <span class="text">{{ 'blurb-wall-disagree' | trans }}</span>
         </a>
         <a (click)="focusOnCommentInput(i)" class="trigger-blurb left">
-          <span class="icon icon-nav icon-nav-blurb"></span>
+          <span class="num">{{ blurb.totalComments}}</span>
           <span class="text">{{ 'blurb-wall-comment' | trans }}</span>
         </a>
         <!-- <a class="trigger-menu" left>

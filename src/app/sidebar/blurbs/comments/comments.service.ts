@@ -85,7 +85,8 @@ export class CommentsService {
         if (!fetchMoreResult) {
           return prev;
         }
-        const data = { ...prev, ...{ comments: [...fetchMoreResult.comments, ...prev.comments] } };
+        const data = { ...prev, ...{ comments: [...prev.comments, ...fetchMoreResult.comments] } };
+        console.log(data);
         return data;
       }
     });
@@ -114,7 +115,7 @@ export class CommentsService {
             return prev;
           }
           const newComment: IBlurbComment = subscriptionData.data.commentAdded;
-          const data = { ...prev, ...{ comments: [...prev.comments, newComment] } };
+          const data = { ...prev, ...{ comments: [newComment, ...prev.comments] } };
           console.log(data);
           return data;
         }

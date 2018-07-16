@@ -2714,14 +2714,16 @@ a.moods {
     text-align: center;
     @extend .cf;
     a {
-      width: 25%;
-      opacity: 0.4;
-      &.disabled {
-        opacity: 1;
+      width: 33.33%;
+      @media screen and (min-width: 1550px) {
+        width: 25%;
       }
+      &.active,
       &:hover {
-        opacity: 1;
-      } // margin-right: 0;
+        .text {
+          opacity: 1;
+        }
+      }
       .icon-nav {
         margin-left: -20%;
         &.icon-nav-menu {
@@ -2731,16 +2733,15 @@ a.moods {
       &:last-child {
         // margin-right:0;
       }
+      .num {
+        color: #656E82;
+      }
       .text {
-        display: none;
+        opacity: 0.4;
         @include font-size(13);
-        margin-left: 15px;
-        vertical-align: top;
+        margin-left: 2px;
         margin-top: 4px;
         color: #656E82;
-        @media screen and (min-width: 1472px) {
-          display: inline-block;
-        }
       }
     }
   }
