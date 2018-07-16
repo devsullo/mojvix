@@ -27,6 +27,7 @@ const fragments = {
 export class CommentsService {
   commentQuerys = [];
   commentSubscriptions = [];
+  commentTypeStore = {};
   constructor(private apollo: Apollo) {}
 
   createComment(

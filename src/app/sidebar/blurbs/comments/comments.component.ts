@@ -13,8 +13,8 @@ export class CommentsComponent implements OnInit {
   @Input() blurbId: number;
   @Input() totalComments: number;
   @ViewChild('commentInput') commentInput: ElementRef;
-  mComment: string;
   SETTINGS = SETTINGS;
+  _mComment: string;
   constructor(private commentsService: CommentsService) {}
 
   ngOnInit() {
@@ -24,6 +24,19 @@ export class CommentsComponent implements OnInit {
       .subscribe(res => {
         this.comments = res.comments;
       });
+    const commentTypeContent = this.commentsService.commentTypeStore[this.blurbId];
+    if (commentTypeContent) {
+      this.mComment = commentTypeContent;
+    }
+  }
+
+  set mComment(value: string) {
+    this._mComment = value;
+    this.commentsService.commentTypeStore[this.blurbId] = this._mComment;
+  }
+
+  get mComment() {
+    return this._mComment;
   }
 
   createComment(e) {
