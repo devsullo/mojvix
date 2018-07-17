@@ -20,7 +20,7 @@
               </div>
               <div class="inp-group">
                 <label for="inp-2">Last Name:</label>
-                <input id="inp-2" formControlName="lastname" class="ex-sm" type="text" placeholder="First Name">
+                <input id="inp-2" formControlName="lastname" class="ex-sm" type="text" placeholder="Last Name">
               </div>
               <div class="inp-group">
                 <label for="inp-3">Age:</label>
@@ -34,10 +34,10 @@
                   <option *ngFor="let sex of SEXOPTIONS" [value]="sex">{{ sex }}</option>
                 </select>
               </div>
-              <div class="inp-group">
+              <!-- <div class="inp-group">
                 <label for="inp-5">Bio:</label>
                 <textarea id="inp-5" formControlName="bio" class="ex-sm" placeholder="Bio"></textarea>
-              </div>
+              </div> -->
               <button (click)="changeFormState('metaForm')" class="btn btn-cancel sm right gray-b">Cancel</button>
               <button type="submit" class="btn btn-save sm right ">Save</button>
             </form>

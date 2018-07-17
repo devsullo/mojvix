@@ -23,8 +23,8 @@ export class SettingsComponent implements OnInit {
       firstname: [''],
       lastname: [''],
       age: [''],
-      sex: [''],
-      bio: ['']
+      sex: ['']
+      // bio: ['']
     });
 
     this.emailForm = this.fb.group({
