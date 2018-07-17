@@ -58,7 +58,7 @@ export class BlurbsService {
         orderBy: { column: 'id', order: 'ASC' },
         where: { eq: [where] },
         skip: 0,
-        take: SETTINGS.blurbsTake
+        take: SETTINGS.BLURBSTAKE
       },
       fetchPolicy: 'network-only'
     });

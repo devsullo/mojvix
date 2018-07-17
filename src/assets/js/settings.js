@@ -1,11 +1,10 @@
 window.VIX_SETTINGS = {
-  pmMentionExecutionTime: 40,
-  pmMentionWaitTime: 1.5,
-  defaultScrollInteria: 500,
-  defaultScrollTimeout: 50,
-  blurbsTake: 6,
-  blurbCommentsTake: 3
-};
+  BLURBSTAKE: 6,
+  BLURBCOMMENTSTAKE: 3,
+  VIXNAMEPATTERN: '^[a-zA-Z0-9]{3,15}$',
+  AGEOPTIONS: ['13-17', '18-23', '24+'],
+  SEXOPTIONS: ['Male', 'Female']
+ };
 
 window.VIX_MESSAGES = {
   vixname: 'vixname',

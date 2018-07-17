@@ -15,7 +15,7 @@ import { SeanceService } from '../../pages/seance/seance.service';
 import { IMediaSubscriptions } from 'videogular2/src/core/vg-media/i-playable';
 import { ActivatedRoute } from '@angular/router';
 import { FormErrorBoxComponent } from '../form-error-box/form-error-box.component';
-
+const SETTINGS = window['VIX_SETTINGS'] || {};
 
 @Component({
   selector: 'app-join-form',
@@ -26,9 +26,10 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   joinForm: FormGroup;
   vixnameStatus: string;
   formStyle: 'dark';
-  vixnamePattern = '^[a-zA-Z0-9]{3,15}$';
-  @ViewChild(FormErrorBoxComponent)
-  private errorBox: FormErrorBoxComponent;
+  VIXNAMEPATTERN = SETTINGS.VIXNAMEPATTERN;
+  AGEOPTIONS = SETTINGS.AGEOPTIONS;
+  SEXOPTIONS = SETTINGS.SEXOPTIONS;
+  @ViewChild(FormErrorBoxComponent) private errorBox: FormErrorBoxComponent;
 
   constructor(
     private fb: FormBuilder,
@@ -65,7 +66,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     const fild = this.joinForm.controls;
     const formState = this.formState;
     fild.vixname.valueChanges.subscribe(val => {
-      if (RegExp(this.vixnamePattern).test(val)) {
+      if (RegExp(this.VIXNAMEPATTERN).test(val)) {
         this.checkVixname(val);
       } else {
         this.vixnameStatus = '';
@@ -140,7 +141,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     const fixControls = {
       vixname: [
         vixname,
-        [Validators.required, Validators.pattern(this.vixnamePattern)]
+        [Validators.required, Validators.pattern(this.VIXNAMEPATTERN)]
       ]
     };
     const newControls = Object.assign(fixControls, controls);

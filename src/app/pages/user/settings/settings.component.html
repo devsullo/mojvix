@@ -2,10 +2,10 @@
   <section class="center-area-cont">
     <div class="page-wrap light page-padding">
       <section id="settings">
-        <h2>GENERAL</h2>
-        <div [ngClass]="{'opened': formsState.metaForm}" class="section icon-hover">
-          <div class="toggle" (click)="changeFormState('metaForm')">
-            <span class="key">Meta</span>
+        <h2>SETTINGS</h2>
+        <div [ngClass]="{'opened': formsState.generalForm}" class="section icon-hover">
+          <div class="toggle" (click)="changeFormState('generalForm')">
+            <span class="key">General</span>
             <span class="value">user.firstname user.lastname, user.age, user.sex</span>
             <span class="edit-section">
               Edit
@@ -13,7 +13,7 @@
             </span>
           </div>
           <div class="section-content">
-            <form (ngSubmit)="updateMeta()" [formGroup]="metaForm" class="form-style-a light">
+            <form (ngSubmit)="updateMeta()" [formGroup]="generalForm" class="form-style-a light">
               <div class="inp-group">
                 <label for="inp-1">First Name:</label>
                 <input id="inp-1" formControlName="firstname" class="ex-sm" type="text" placeholder="First Name">
@@ -38,7 +38,7 @@
                 <label for="inp-5">Bio:</label>
                 <textarea id="inp-5" formControlName="bio" class="ex-sm" placeholder="Bio"></textarea>
               </div> -->
-              <button (click)="changeFormState('metaForm')" class="btn btn-cancel sm right gray-b">Cancel</button>
+              <button (click)="changeFormState('generalForm')" class="btn btn-cancel sm right gray-b">Cancel</button>
               <button type="submit" class="btn btn-save sm right ">Save</button>
             </form>
           </div>

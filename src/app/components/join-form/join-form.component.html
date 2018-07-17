@@ -13,31 +13,18 @@
           <div class="cf">
             <div *ngIf="formState.value >= 1" class="inp-group radio-group col-md-7">
               <span class="left" [innerHTML]="'join-form-iam' | trans"></span>
-              <div class="radio-a">
-                <input formControlName="age" type="radio" id="labelId_4" value="13-17" name="age">
-                <label for="labelId_4">13-17</label>
-                <i class="divider"></i>
-              </div>
-              <div class="radio-a">
-                <input formControlName="age" type="radio" id="labelId_5" value="18-23" name="age">
-                <label for="labelId_5">18-23</label>
-                <i class="divider"></i>
-              </div>
-              <div class="radio-a">
-                <input formControlName="age" type="radio" id="labelId_6" value="24+" name="age">
-                <label for="labelId_6">24+</label>
+              <div *ngFor="let age of AGEOPTIONS; let last = last"  class="radio-a">
+                <input formControlName="age" type="radio" id="labelId_{{ age }}"  [value]="age" name="age">
+                <label for="labelId_{{ age }}">{{ age }}</label>
+                <i *ngIf="!last" class="divider"></i>
               </div>
               <span class="left" [innerHTML]="'join-form-years-old' | trans"></span>
             </div>
             <div *ngIf="formState.value >= 2" class="inp-group radio-group col-md-4 right lap">
-              <div class="radio-a">
-                <input formControlName="sex" type="radio" id="labelId_7" value="Female" name="sex">
-                <label for="labelId_7" [innerHTML]="'input-female' | trans"></label>
-                <i class="divider"></i>
-              </div>
-              <div class="radio-a">
-                <input formControlName="sex" type="radio" id="labelId_8" value="Male" name="sex">
-                <label for="labelId_8" [innerHTML]="'input-male' | trans"></label>
+              <div *ngFor="let sex of SEXOPTIONS; let last = last" class="radio-a">
+                <input formControlName="sex" type="radio" id="labelId_{{ sex }}" [value]="sex" name="sex">
+                <label for="labelId_{{ sex }}">{{ sex }}</label>
+                <i *ngIf="!last" class="divider"></i>
               </div>
             </div>
           </div>

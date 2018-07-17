@@ -1,5 +1,6 @@
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+const SETTINGS = window['VIX_SETTINGS'] || {};
 
 @Component({
   selector: 'app-settings',
@@ -7,19 +8,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  AGEOPTIONS = ['13-17', '18-23', '24+'];
-  SEXOPTIONS = ['Male', 'Female'];
-  metaForm: FormGroup;
+  AGEOPTIONS = SETTINGS.AGEOPTIONS;
+  SEXOPTIONS = SETTINGS.SEXOPTIONS;
+  generalForm: FormGroup;
   emailForm: FormGroup;
   formsState = {
-    metaForm: false,
+    generalForm: true,
     emailForm: false
   };
 
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
-    this.metaForm = this.fb.group({
+    this.generalForm = this.fb.group({
       firstname: [''],
       lastname: [''],
       age: [''],
@@ -34,7 +35,7 @@ export class SettingsComponent implements OnInit {
   }
 
   updateMeta() {
-    console.log(this.metaForm.value);
+    console.log(this.generalForm.value);
   }
 
   updateEmail() {
