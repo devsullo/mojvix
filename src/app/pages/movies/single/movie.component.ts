@@ -42,7 +42,7 @@ export class MovieComponent implements OnInit, AfterViewInit {
 
   show(i: number, calls: number, movie: IMovie): void {
     this.movie = movie;
-    this.blurbsService.getBlurbs(movie.id);
+    this.blurbsService.getBlurbs(`movieId:${movie.id}`);
     this.scrollService.scrollTop('#blurbs-list');
     const boxOffice = document.querySelector('#box-office');
     const movieWidth = document.querySelector('.movie').clientWidth;

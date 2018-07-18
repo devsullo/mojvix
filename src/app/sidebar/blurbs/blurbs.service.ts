@@ -36,9 +36,7 @@ export class BlurbsService {
 
   constructor(private apollo: Apollo) {}
 
-  getBlurbs(movieId?: number): void {
-    let where;
-    movieId ? (where = `movieId:${movieId}`) : (where = '');
+  getBlurbs(where: string = ''): Observable<ApolloQueryResult<IBlurbsResponse>> {
     const QUERY = gql`
       query getBlurbs(
         $orderBy: SQLOrderBy
@@ -63,6 +61,7 @@ export class BlurbsService {
       fetchPolicy: 'network-only'
     });
     this.getBlurbsSounce.next(this.blurbsQuery.valueChanges);
+    return this.blurbsQuery.valueChanges;
   }
 
   fetchMoreBlurbs(skip: number) {

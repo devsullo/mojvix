@@ -3,7 +3,7 @@
     Notifications
   </h3>
   <div class="messages-cont">
-    <div class="messages-single">
+    <div (click)="getOneBlurb('7')" class="messages-single">
       <div class="profile-cont">
         <img src="assets/images/profile/profile1.jpg">
       </div>
@@ -17,7 +17,7 @@
       </div>
     </div>
 
-    <div class="messages-single unread">
+    <div (click)="getOneBlurb('2')" class="messages-single unread">
       <div class="profile-cont">
         <img src="assets/images/profile/profile2.jpg">
       </div>
