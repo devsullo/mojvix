@@ -16,6 +16,7 @@ import { TokenInterceptor } from './interceptors';
 import { ApolloClientModule } from './apollo-client.module';
 import { OrderModule } from 'ngx-order-pipe';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { PermissionModule } from '../modules/permission/permission.module';
 
 const tokenGetter = () => {
   return localStorage.getItem('token');
@@ -24,6 +25,7 @@ const tokenGetter = () => {
 @NgModule({
   imports: [
     CommonModule,
+    PermissionModule.forRoot(),
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
@@ -45,7 +47,8 @@ const tokenGetter = () => {
     HttpClientModule,
     OrderModule,
     TimeAgoPipe,
-    RouterModule
+    RouterModule,
+    PermissionModule
   ],
   providers: [
     AuthService,

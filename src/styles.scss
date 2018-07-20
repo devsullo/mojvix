@@ -42,6 +42,11 @@ textarea {
   font-weight: bold;
 }
 
+.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .full {
   width: 100% !important;
 }

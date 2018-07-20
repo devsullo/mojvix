@@ -1,7 +1,7 @@
 <div class="type-comment">
   <img src="/assets/images/profile/profile1.jpg">
   <div class="input-area">
-    <textarea #commentInput (keypress)="createComment($event)" [(ngModel)]="mComment" placeholder="Type comment" class=""></textarea>
+    <textarea [hasPermission]="['GuestUser']" onUnauthorizedPermission="disable" #commentInput (keypress)="createComment($event)" [(ngModel)]="mComment" placeholder="Type comment" class=""></textarea>
   </div>
 </div>
 <div class="user-comments">
