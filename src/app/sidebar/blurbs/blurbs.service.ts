@@ -53,7 +53,7 @@ export class BlurbsService {
     this.blurbsQuery = this.apollo.watchQuery({
       query: QUERY,
       variables: {
-        orderBy: { column: 'id', order: 'ASC' },
+        orderBy: { column: 'totalAgree', order: 'DESC' },
         where: { eq: [where] },
         skip: 0,
         take: SETTINGS.BLURBSTAKE

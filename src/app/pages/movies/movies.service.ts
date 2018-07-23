@@ -41,6 +41,7 @@ export class MoviesService {
           actorNames
           genreNames
           tagNames
+          mood
           blurbs(orderBy:$bOrderBy, take:$bTake) {
             id
             color

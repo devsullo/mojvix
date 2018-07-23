@@ -36,11 +36,7 @@ export class HasPermissionDirective implements OnInit {
       } else if (typeof this.onUnauthorized === 'string') {
         this._helper.ApplyStrategie(this.onUnauthorized, this._elem);
       } else {
-        if (el.tagName === 'INPUT') {
-          el.classList.add('disabled');
-        } else {
-          el.style.display = 'none';
-        }
+        el.style.display = 'none';
       }
     } else {
       if (typeof this.onAuthorized === 'function') {
