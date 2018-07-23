@@ -1,10 +1,9 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable ,  Subject } from 'rxjs';
 import { ApolloQueryResult } from 'apollo-client';
 import { Apollo, QueryRef } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { IBlurbsResponse, IBlurb } from './blurb';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
 import { FetchResult } from 'apollo-link';
 const SETTINGS = window['VIX_SETTINGS'] || {};
 const fragments = {

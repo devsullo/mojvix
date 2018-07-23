@@ -1,7 +1,7 @@
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { FetchResult } from 'apollo-link';
 
 interface ICreateBlurbResponse {

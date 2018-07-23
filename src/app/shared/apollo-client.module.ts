@@ -25,9 +25,7 @@ export class ApolloClientModule {
     const errorLink = onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
         graphQLErrors.map(({ message, locations, path }) => {
-          console.warn(
-            `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`
-          );
+          console.warn(`[GraphQL error]: Message: ${message}, Path: ${path}, Location: ${JSON.stringify(locations)}`);
           // Temp
           if (message === 'Forbidden') {
             this.routeService.navigateSeanceOrMain('join');
@@ -35,13 +33,7 @@ export class ApolloClientModule {
         });
       }
       if (networkError) {
-        networkError.error.errors.map(({ message, locations, path }) =>
-          console.warn(
-            `[GraphQL error]: Message: ${message}, Location: ${JSON.stringify(
-              locations
-            )}`
-          )
-        );
+        console.warn(`[GraphQL networkError]: name: ${networkError.name}, message: ${networkError.message}`);
       }
     });
     const wsLink = new WebSocketLink({

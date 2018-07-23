@@ -1,5 +1,5 @@
 import { SeanceService } from './../../pages/seance/seance.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ScrollService } from '../../shared/services/scroll.service';

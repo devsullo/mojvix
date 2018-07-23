@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { ApolloQueryResult } from 'apollo-client';
 
 interface ICheckVixnameResult {
