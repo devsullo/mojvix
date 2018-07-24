@@ -1,4 +1,3 @@
-import { ChatService } from './../chat.service';
 import { ScrollService } from './../../../shared/services/scroll.service';
 import { Component, OnInit, Input, SimpleChange } from '@angular/core';
 
@@ -18,12 +17,11 @@ export class IndexComponent implements OnInit {
   }
 
   constructor(
-    private scrollService: ScrollService,
-    private chatService: ChatService
+    private scrollService: ScrollService
   ) {}
 
   ngOnInit() {
-    this.chatService.createRoom('general');
+    // this.chatService.createRoom('general');
   }
 
 

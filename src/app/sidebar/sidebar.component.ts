@@ -1,7 +1,8 @@
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
 import { Component, OnInit, HostListener } from '@angular/core';
-import { NgRedux } from 'ng2-redux';
-import { IAppState } from '../store';
-import { INavigation } from '../store/model/navigation';
+
+import * as fromNavigation from '../sidebar/header/navigation/store/navigation.reducer';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,12 +10,14 @@ import { INavigation } from '../store/model/navigation';
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  navigation: INavigation;
+  navigationState: Observable<fromNavigation.State>;
   scrollHeight: number;
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+  constructor(
+    private store: Store<fromNavigation.State>
+  ) {}
 
   ngOnInit() {
-    this.navigation = this.ngRedux.getState().navigation;
+    this.navigationState = this.store.select('navigation');
     this.calcScrollHeight();
   }
 
@@ -26,5 +29,4 @@ export class SidebarComponent implements OnInit {
   calcScrollHeight() {
     this.scrollHeight = window.innerHeight - 61;
   }
-
 }

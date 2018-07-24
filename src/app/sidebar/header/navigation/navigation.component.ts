@@ -1,8 +1,9 @@
-import { INavigation } from './../../../store/model/navigation';
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { HeaderService } from '../header.service';
-import { NgRedux } from 'ng2-redux';
-import { IAppState, store } from '../../../store';
+import { Store } from '@ngrx/store';
+
+import * as fromNavigation from './store/navigation.reducer';
+import * as NavigationActions from './store/navigation.actions';
 
 @Component({
   selector: 'app-navigation',
@@ -10,21 +11,16 @@ import { IAppState, store } from '../../../store';
   styleUrls: ['./navigation.component.scss']
 })
 export class NavigationComponent implements OnInit {
-  navigation: INavigation;
+  navigationState: Observable<fromNavigation.State>;
   constructor(
-    private ngRedux: NgRedux<IAppState>,
-    private headerService: HeaderService
-  ) { }
+    private store: Store<fromNavigation.State>,
+  ) {}
 
   ngOnInit() {
-    this.navigation = this.ngRedux.getState().navigation;
+    this.navigationState = this.store.select('navigation');
   }
 
   changeNavigationTab(tab: string) {
-    this.headerService.changeNavigationTab(tab);
-  }
-
-  keys(): Array<string> {
-    return Object.keys(this.navigation);
+    this.store.dispatch(new NavigationActions.ChangeNavTab(tab));
   }
 }

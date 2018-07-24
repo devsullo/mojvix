@@ -4,6 +4,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { ScrollService } from '../../../shared/services/scroll.service';
 import { Location } from '@angular/common';
+import { Store } from '@ngrx/store';
+
+import * as fromSeance from '../store/seance.reducer';
+import * as SeanceActions from '../store/seance.actions';
 
 @Component({
   selector: 'app-seance-index',
@@ -18,13 +22,14 @@ export class IndexComponent implements OnInit, OnDestroy {
     private location: Location,
     private routeService: RouteService,
     private route: ActivatedRoute,
-    private seanceService: SeanceService
+    private seanceService: SeanceService,
+    private store: Store<fromSeance.State>
   ) {
-    const seanceData = {
+    const seancePayload = {
       id: route.snapshot.params.id,
       slug: route.snapshot.params.slug
      };
-    this.seanceService.initSeance(seanceData);
+    this.store.dispatch(new SeanceActions.InitializeSeance(seancePayload));
   }
 
   ngOnInit() {
@@ -33,7 +38,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.seanceService.destSeance();
+    this.store.dispatch(new SeanceActions.DestroySeance());
   }
 
   goBack(): void {

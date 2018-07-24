@@ -27,22 +27,6 @@ export class SeanceService {
     return this.api;
   }
 
-  initSeance(data: ISeance) {
-    const action = {
-      type: INIT_SEANCE,
-      data: data
-    };
-    this.ngRedux.dispatch(action);
-  }
-
-  destSeance() {
-    const action = {
-      type: DEST_SEANCE,
-      data: null
-    };
-    this.ngRedux.dispatch(action);
-  }
-
   playerReady(): Promise<any> {
     return new Promise((resolve, reject) => {
       this.playerReadyResolve = resolve;

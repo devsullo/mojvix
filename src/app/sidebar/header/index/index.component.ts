@@ -1,7 +1,8 @@
-import { IAppState } from './../../../store/IAppState';
-import { NgRedux } from 'ng2-redux';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../../../store/model/user';
+
+import * as fromUser from '../../../pages/user/store/user.reducer';
 
 @Component({
   selector: 'app-sidebar-header',
@@ -9,13 +10,14 @@ import { IUser } from '../../../store/model/user';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  user: IUser;
-  constructor(private ngRedux: NgRedux<IAppState>) {}
+  user: fromUser.State;
+  constructor(private store: Store<fromUser.State>) {}
 
   ngOnInit() {
-    this.user = this.ngRedux.getState().user;
-    this.ngRedux.subscribe(() => {
-      this.user = this.ngRedux.getState().user;
+    // this.user = this.store.
+    this.store.select('').subscribe(user => {
+      console.log('>>', user)
+      this.user = user;
     });
   }
 }

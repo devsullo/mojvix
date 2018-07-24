@@ -1,39 +1,42 @@
+import { Store } from '@ngrx/store';
 import { HeaderService } from './../../sidebar/header/header.service';
-import { IAppState } from './../../store/IAppState';
 import { RouteService } from './route.service';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { NgRedux } from 'ng2-redux';
-import { IUser } from '../../store/model/user';
 export const SET_USER = 'SET_USER';
+
+import * as UserActions from './../../pages/user/store/user.actions';
+import * as fromUser from '../../pages/user/store/user.reducer';
 
 @Injectable()
 export class AuthService {
   constructor(
     private routeService: RouteService,
     private jwtHelperService: JwtHelperService,
-    private ngRedux: NgRedux<IAppState>,
-    private headerService: HeaderService
-  ) {}
+    private headerService: HeaderService,
+    private store: Store<fromUser.State>
+  ) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const user = this.jwtHelperService.decodeToken(token);
+      this.store.dispatch(new UserActions.SetUser(user));
+    }
+  }
 
   logIn(token: string) {
     const user = this.jwtHelperService.decodeToken(token);
     localStorage.setItem('token', token);
-    this.setUser(user);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.store.dispatch(new UserActions.SetUser(user));
     this.routeService.navigateSeanceOrMain('');
   }
 
   logOut() {
     localStorage.removeItem('token');
-    this.setUser(null);
+    localStorage.removeItem('user');
+    this.store.dispatch(new UserActions.UnsetUser());
     this.headerService.changeNavigationTab('blurbs');
     this.routeService.navigateSeanceOrMain('join');
-  }
-
-  setUser(user: IUser) {
-    localStorage.setItem('user', JSON.stringify(user));
-    const action = { type: SET_USER, user };
-    this.ngRedux.dispatch(action);
   }
 
   isAuthenticated(): boolean {
