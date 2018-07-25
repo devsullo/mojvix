@@ -1,5 +1,4 @@
 import { Store } from '@ngrx/store';
-import { HeaderService } from './../../sidebar/header/header.service';
 import { RouteService } from './route.service';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -13,21 +12,25 @@ export class AuthService {
   constructor(
     private routeService: RouteService,
     private jwtHelperService: JwtHelperService,
-    private headerService: HeaderService,
     private store: Store<fromUser.State>
   ) {
-    const token = localStorage.getItem('token');
-    if (token) {
-      const user = this.jwtHelperService.decodeToken(token);
-      this.store.dispatch(new UserActions.SetUser(user));
-    }
+    this.isAuthenticated()
+      ? this.store.dispatch(new UserActions.SetUser(this.user))
+      : this.store.dispatch(new UserActions.UnsetUser());
+  }
+
+  get token(): string {
+    return localStorage.getItem('token') || null;
+  }
+
+  get user(): fromUser.State {
+    return this.jwtHelperService.decodeToken(this.token);
   }
 
   logIn(token: string) {
-    const user = this.jwtHelperService.decodeToken(token);
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
-    this.store.dispatch(new UserActions.SetUser(user));
+    localStorage.setItem('user', JSON.stringify(this.user));
+    this.store.dispatch(new UserActions.SetUser(this.user));
     this.routeService.navigateSeanceOrMain('');
   }
 
@@ -40,11 +43,14 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    const token = localStorage.getItem('token');
-    // TODO : this.jwtHelperService.isTokenExpired(token)
-    if (token) {
-      return true;
+    return !this.jwtHelperService.isTokenExpired(this.token);
+  }
+
+  getAuthorizationHeader(): any {
+    if (this.token) {
+      return { Authorization: `Bearer ${this.token}` };
+    } else {
+      return {};
     }
-    return false;
   }
 }

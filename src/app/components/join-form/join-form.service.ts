@@ -21,14 +21,18 @@ export class JoinFormService {
     vixname: string
   ): Observable<ApolloQueryResult<ICheckVixnameResult>> {
     const QUERY = gql`
-      query checkVixname {
-        checkVixname(vixname: "${vixname}") {
+      query checkVixname($vixname: String!) {
+        checkVixname(vixname: $vixname) {
           vixname
           available
         }
       }
     `;
-    return this.apollo.query({ query: QUERY, fetchPolicy: 'network-only' });
+    return this.apollo.query({
+      query: QUERY,
+      variables: { vixname: vixname },
+      fetchPolicy: 'network-only'
+    });
   }
 
   login(formData: any): Observable<any> {
