@@ -1,13 +1,13 @@
+import { Store } from '@ngrx/store';
 import { RouteService } from './../../../shared/services/route.service';
-import { ISeance } from './../../../store/model/seance';
-import { IAppState } from './../../../store/IAppState';
 import { Location } from '@angular/common';
 import { PostBlurbService } from './post-blurb.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { SeanceService } from '../seance.service';
-import { NgRedux } from 'ng2-redux';
-import { Unsubscribe } from 'redux';
+
+import * as fromSeance from '../../seance/store/seance.reducer';
+import * as fromApp from '../../../store/app.reducers';
 
 @Component({
   selector: 'app-post-blurb',
@@ -16,24 +16,24 @@ import { Unsubscribe } from 'redux';
 })
 export class PostBlurbComponent implements OnInit, AfterViewInit, OnDestroy {
   blurbForm: FormGroup;
+  seance: fromSeance.State;
   constructor(
     private seanceService: SeanceService,
     private fb: FormBuilder,
     private postBlurbService: PostBlurbService,
     private location: Location,
-    private ngRedux: NgRedux<IAppState>,
-    private routeService: RouteService
-  ) {}
-
-  get seance(): ISeance {
-    return this.ngRedux.getState().seance;
+    private routeService: RouteService,
+    private store: Store<fromApp.AppState>
+  ) {
   }
+
 
   ngOnInit() {
     this.blurbForm = this.fb.group({
       content: ['', Validators.required],
       color: ['GREEN', Validators.required]
     });
+    this.store.select('seance').subscribe(s => this.seance = s);
   }
 
   ngOnDestroy() { }

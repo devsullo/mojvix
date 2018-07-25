@@ -1,7 +1,10 @@
+import { Store } from '@ngrx/store';
 import { BlurbsService } from './../../blurbs/blurbs.service';
 import { ScrollService } from './../../../shared/services/scroll.service';
-import { Component, OnInit, Input, SimpleChange } from '@angular/core';
-import { HeaderService } from '../../header/header.service';
+import { Component, OnInit, Input } from '@angular/core';
+
+import * as fromApp from '../../../store/app.reducers';
+import * as NavigationActions from './../../header/navigation/store/navigation.actions';
 
 @Component({
   selector: 'app-notifications-index',
@@ -20,14 +23,14 @@ export class IndexComponent implements OnInit {
   constructor(
     private scrollService: ScrollService,
     private blurbsService: BlurbsService,
-    private headerService: HeaderService
+    private store: Store<fromApp.AppState>
   ) {}
 
   ngOnInit() {}
 
   getOneBlurb(id: number) {
     this.blurbsService.getBlurbs(`id:${id}`).subscribe(() => {
-      this.headerService.changeNavigationTab('blurbs');
+      this.store.dispatch(new NavigationActions.ChangeNavTab('blurbs'));
     });
   }
 }

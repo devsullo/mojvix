@@ -3,6 +3,7 @@ import { ScrollService } from './../../../shared/services/scroll.service';
 import { BlurbsService } from './../blurbs.service';
 import { Component, OnInit, Input, OnChanges, QueryList, ViewChildren } from '@angular/core';
 import { IBlurb } from '../blurb';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'app-blurbs-index',

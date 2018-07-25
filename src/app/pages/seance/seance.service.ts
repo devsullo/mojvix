@@ -1,5 +1,3 @@
-import { ISeance } from './../../store/model/seance';
-import { NgRedux } from 'ng2-redux';
 import { ScrollService } from './../../shared/services/scroll.service';
 import { Injectable } from '@angular/core';
 import { VgAPI } from 'videogular2/core';
@@ -8,9 +6,6 @@ import {
   IMediaSubscriptions
 } from 'videogular2/src/core/vg-media/i-playable';
 import { Promise } from 'core-js';
-import { IAppState } from '../../store';
-export const INIT_SEANCE = 'INIT_SEANCE';
-export const DEST_SEANCE = 'DEST_SEANCE';
 
 @Injectable()
 export class SeanceService {
@@ -20,7 +15,6 @@ export class SeanceService {
   playerSubscriptions: IMediaSubscriptions;
   constructor(
     private scrollService: ScrollService,
-    private ngRedux: NgRedux<IAppState>
   ) {}
 
   get playerApi() {

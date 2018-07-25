@@ -1,4 +1,4 @@
-import { IUser } from '../../store/model/user';
+import * as fromUser from '../../pages/user/store/user.reducer';
 
 export interface IBlurbCreateCommentResponse {
   createComment: IBlurbComment;
@@ -11,7 +11,7 @@ export interface IBlurbCommentResponse {
 export interface IBlurbComment {
   id: number;
   content: string;
-  creator: IUser;
+  creator: fromUser.State;
   createdAt: Date;
 }
 
@@ -25,7 +25,7 @@ export interface IBlurb {
   color: string;
   content: string;
   cover?: string;
-  creator: IUser;
+  creator: fromUser.State;
   totalAgree: number;
   totalDisagree: number;
   totalComments: number;

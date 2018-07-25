@@ -1,8 +1,8 @@
-import { Helper } from './../../../shared/helper';
-import { NgRedux } from 'ng2-redux';
+import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
-import { IAppState } from '../../../store';
-import { IUser } from '../../../store/model/user';
+
+import * as fromUser from '../store/user.reducer';
+import * as fromApp from '../../../store/app.reducers';
 
 @Component({
   selector: 'app-profile',
@@ -10,13 +10,10 @@ import { IUser } from '../../../store/model/user';
   styleUrls: ['./profile.component.scss']
 })
 export class ProfileComponent implements OnInit {
-  user: IUser;
-  constructor(
-    private ngRedux: NgRedux<IAppState>
-  ) { }
+  user: fromUser.State;
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {
-    this.user = this.ngRedux.getState().user;
+    this.store.select('user').subscribe(user => (this.user = user));
   }
-
 }

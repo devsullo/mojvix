@@ -1,12 +1,8 @@
 import { Router } from '@angular/router';
 import { BlurbsService } from './../../../sidebar/blurbs/blurbs.service';
 import { IMovie } from './../movie';
-import { Component, OnInit, Output, EventEmitter, AfterViewInit } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ScrollService } from '../../../shared/services/scroll.service';
-import { NgRedux } from '../../../../../node_modules/ng2-redux';
-import { IAppState } from '../../../store';
-
 
 @Component({
   selector: 'app-movie',
@@ -22,7 +18,6 @@ export class MovieComponent implements OnInit, AfterViewInit {
   constructor(
     private scrollService: ScrollService,
     private blurbsService: BlurbsService,
-    private ngRedux: NgRedux<IAppState>,
     private router: Router
   ) {}
 
@@ -72,7 +67,8 @@ export class MovieComponent implements OnInit, AfterViewInit {
   }
 
   attendToShow(movie: IMovie) {
-    const user = this.ngRedux.getState().user;
+    // TO DO
+    const user = true;
     let urlEnd = '';
     if (!user) {
       urlEnd = '/join';

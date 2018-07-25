@@ -3,10 +3,10 @@ import { HeaderService } from './../../sidebar/header/header.service';
 import { RouteService } from './route.service';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-export const SET_USER = 'SET_USER';
 
 import * as UserActions from './../../pages/user/store/user.actions';
 import * as fromUser from '../../pages/user/store/user.reducer';
+import * as NavigationActions from './../../sidebar/header/navigation/store/navigation.actions';
 
 @Injectable()
 export class AuthService {
@@ -35,7 +35,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.store.dispatch(new UserActions.UnsetUser());
-    this.headerService.changeNavigationTab('blurbs');
+    this.store.dispatch(new NavigationActions.ChangeNavTab('blurbs'));
     this.routeService.navigateSeanceOrMain('join');
   }
 
