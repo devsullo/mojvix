@@ -5,6 +5,7 @@ import { PostBlurbService } from './post-blurb.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { SeanceService } from '../seance.service';
+import { map } from 'rxjs/operators';
 
 import * as fromSeance from '../../seance/store/seance.reducer';
 import * as fromApp from '../../../store/app.reducers';
@@ -48,7 +49,7 @@ export class PostBlurbComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     this.postBlurbService
       .createBlurb(this.blurbForm.value, this.seance.id)
-      .map(res => res.data.createBlurb)
+      .pipe(map(res => res.data.createBlurb))
       .subscribe(id => {
         this.routeService.navigateSeance('');
       });

@@ -8,6 +8,8 @@ import { Component, OnInit, HostListener, ViewChild, ViewChildren, QueryList } f
 import { IMovie } from '../movie';
 import { MoviesService } from '../movies.service';
 import { isPlatformBrowser } from '@angular/common';
+import { map } from 'rxjs/operators';
+
 const SETTINGS = window['VIX_SETTINGS'] || {};
 
 @Component({
@@ -60,7 +62,7 @@ export class MoviesComponent implements OnInit {
 
     this.moviesService
       .getMovies()
-      .map(res => res.data.movies)
+      .pipe(map(res => res.data.movies))
       .subscribe(movies => {
         console.log(movies);
         this.movies = movies;

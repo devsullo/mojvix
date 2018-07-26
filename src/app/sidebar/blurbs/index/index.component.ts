@@ -3,7 +3,7 @@ import { ScrollService } from './../../../shared/services/scroll.service';
 import { BlurbsService } from './../blurbs.service';
 import { Component, OnInit, Input, OnChanges, QueryList, ViewChildren } from '@angular/core';
 import { IBlurb } from '../blurb';
-import 'rxjs/add/operator/map';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-blurbs-index',
@@ -24,7 +24,7 @@ export class BlurbsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.blurbsService.getBlurbsSounce$.subscribe(blarbsObserver => {
-      blarbsObserver.map(res => res.data.blurbs).subscribe(blurbs => {
+      blarbsObserver.pipe(map(res => res.data.blurbs)).subscribe(blurbs => {
         console.log(blurbs);
         this.blurbs = blurbs;
         const newblurbIds = blurbs.map(bl => bl.id);
@@ -45,7 +45,7 @@ export class BlurbsComponent implements OnInit, OnChanges {
   voteBlurb(action: string, blurbId: number) {
     this.blurbsService
       .voteBlurb(action, blurbId)
-      .map(res => res.data.voteBlurb)
+      .pipe(map(res => res.data.voteBlurb))
       .subscribe(data => {
         console.log(data);
       });

@@ -1,6 +1,8 @@
 import { CommentsService } from './comments.service';
 import { IBlurbComment } from './../blurb';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { map } from 'rxjs/operators';
+
 const SETTINGS = window['VIX_SETTINGS'] || {};
 
 @Component({
@@ -20,7 +22,7 @@ export class CommentsComponent implements OnInit {
   ngOnInit() {
     this.commentsService
       .getComments(this.blurbId)
-      .map(res => res.data)
+      .pipe(map(res => res.data))
       .subscribe(res => {
         this.comments = res.comments;
       });
@@ -43,7 +45,7 @@ export class CommentsComponent implements OnInit {
     if (e.keyCode === 13) {
       this.commentsService
         .createComment(this.blurbId, this.mComment)
-        .map(res => res.data.createComment)
+        .pipe(map(res => res.data.createComment))
         .subscribe(data => {
           console.log(data);
           this.mComment = '';

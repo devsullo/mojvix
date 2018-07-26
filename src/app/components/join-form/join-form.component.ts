@@ -15,6 +15,8 @@ import { SeanceService } from '../../pages/seance/seance.service';
 import { IMediaSubscriptions } from 'videogular2/src/core/vg-media/i-playable';
 import { ActivatedRoute } from '@angular/router';
 import { FormErrorBoxComponent } from '../form-error-box/form-error-box.component';
+import { map } from 'rxjs/operators';
+
 const SETTINGS = window['VIX_SETTINGS'] || {};
 
 @Component({
@@ -110,7 +112,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   checkVixname(val): void {
     this.joinFormService
       .checkVixname(val)
-      .map(res => res.data.checkVixname)
+      .pipe(map(res => res.data.checkVixname))
       .subscribe(data => {
         if (data.available) {
           this.vixnameStatus = this.transPipe.transform('vixname-available');

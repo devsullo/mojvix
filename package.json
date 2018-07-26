@@ -78,7 +78,6 @@
     "karma-jasmine-html-reporter": "^1.2.0",
     "ng2-youtube-player": "0.0.31",
     "protractor": "~5.4.0",
-    "rxjs-compat": "^6.2.2",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "^2.7.2"
