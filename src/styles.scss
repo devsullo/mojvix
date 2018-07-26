@@ -339,6 +339,16 @@ header {
       }
     }
   }
+  &.hide-input {
+    label {
+      &:before {
+        display: none;
+      }
+      &:after {
+        display: none;
+      }
+    }
+  }
 }
 
 .radio-a {
@@ -1039,20 +1049,23 @@ textarea {
       margin-left: 27px;
       @include font-size(14);
       margin-top: 4px;
-      li:first-child {
+      .radio {
+        position: relative
+      }
+      .link:first-child {
         margin-left: 0;
       }
-      li {
+      .link {
         float: left;
         margin-left: 17px;
-        a {
-          color: #bac0c4;
-        }
-        &.active a {
+        color: #bac0c4;
+        padding-left: 0;
+        cursor: pointer;
+        &.active {
           color: #546a76;
         }
       }
-      .choose-mood a {
+      .choose-mood {
         background: #E7E9F0;
         padding: 2px 9px;
         @include font-size(13);
@@ -1971,10 +1984,10 @@ a.moods {
 }
 
 .mood-change-cont {
-  display: none;
   position: absolute;
   margin-top: -80px;
   z-index: 10;
+  right: 10px;
   .shpargalka {
     top: 0;
     position: absolute;

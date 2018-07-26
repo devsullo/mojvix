@@ -1,3 +1,4 @@
+import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
 import { Helper } from './../../../shared/helper';
 import { BlurbsService } from './../../../sidebar/blurbs/blurbs.service';
 import { element } from 'protractor';
@@ -7,6 +8,7 @@ import { Component, OnInit, HostListener, ViewChild, ViewChildren, QueryList } f
 import { IMovie } from '../movie';
 import { MoviesService } from '../movies.service';
 import { isPlatformBrowser } from '@angular/common';
+const SETTINGS = window['VIX_SETTINGS'] || {};
 
 @Component({
   selector: 'app-movies',
@@ -21,16 +23,41 @@ export class MoviesComponent implements OnInit {
   scrollTopVal = 0;
   expandedMovie: MovieComponent;
   expandedMovieI: number;
+  sortFilterForm: FormGroup;
+  MOVIE_MOODS = SETTINGS.MOVIE_MOODS;
+  MOVIE_SORTS = SETTINGS.MOVIE_SORTS;
+  showChooseMoods = false;
+
   @ViewChildren('expandArea') expandArea: QueryList<MovieComponent>;
 
   constructor(
     private moviesService: MoviesService,
     private scrollService: ScrollService,
     private blurbsService: BlurbsService,
-    private helper: Helper
+    private helper: Helper,
+    private fb: FormBuilder
   ) {}
 
+  get moodFilters(): FormArray {
+    return <FormArray>this.sortFilterForm.get('moodFilters');
+  }
+
+  get sortName(): string {
+    return this.sortFilterForm.get('sortName').value;
+  }
+
   ngOnInit() {
+    this.sortFilterForm = this.fb.group({
+      sortName: [this.MOVIE_SORTS[0]],
+      moodFilters: [[]]
+    });
+
+    this.sortFilterForm.get('sortName').valueChanges.subscribe(v => {
+      setTimeout(() => {
+        this.onSortFilterForm();
+      }, 1);
+    });
+
     this.moviesService
       .getMovies()
       .map(res => res.data.movies)
@@ -43,10 +70,24 @@ export class MoviesComponent implements OnInit {
     this.scroll = this.scrollService.init('#box-office');
 
     this.scroll.element.addEventListener('ps-scroll-y', () => {
-      if (this.scroll.scrollbarYRail.offsetTop === this.scrollTopVal || this.scroll.reach.y) {
+      if (
+        this.scroll.scrollbarYRail.offsetTop === this.scrollTopVal ||
+        this.scroll.reach.y
+      ) {
         this.expandedMovie.initPlayer();
       }
     });
+  }
+
+  toggleMood(mood: string) {
+    const arr = this.moodFilters.value;
+    const T = arr.indexOf(mood);
+    if (T > -1) {
+      arr.splice(T, 1);
+    } else {
+      arr.push(mood);
+    }
+    this.moodFilters.setValue(arr);
   }
 
   @HostListener('window:resize', ['$event'])
@@ -60,7 +101,17 @@ export class MoviesComponent implements OnInit {
     this.colls = this.helper.getMoviePosterColls('#box-office');
   }
 
-  expandMovie(i: number): void {
+  onSortFilterForm() {
+    const formValue = this.sortFilterForm.value;
+    console.log(formValue);
+    this.showChooseMoods = false;
+  }
+
+  onChooseMoods() {
+    this.showChooseMoods = true;
+  }
+
+  onExpandMovie(i: number): void {
     if (isPlatformBrowser) {
       let row = 0;
       const T = (i + 1) / this.colls;
@@ -80,9 +131,11 @@ export class MoviesComponent implements OnInit {
       this.expandedMovie.show(i + 1, this.colls, this.movies[i]);
       // TO DO: wait el expand
       setTimeout(() => {
-        this.scrollTopVal = Math.floor(document
-            .querySelector('#expanded-movie')
-            .documentOffsetTop() - window.innerHeight / 2 + 112);
+        this.scrollTopVal = Math.floor(
+          document.querySelector('#expanded-movie').documentOffsetTop() -
+            window.innerHeight / 2 +
+            112
+        );
         this.scroll.element.scrollTo({
           top: this.scrollTopVal,
           behavior: 'smooth'
@@ -95,7 +148,7 @@ export class MoviesComponent implements OnInit {
   }
 
   closeAllExpandAreas(): void {
-    this.expandArea.forEach( el => el.close() );
+    this.expandArea.forEach(el => el.close());
   }
 
   detectExpandArea(i: number, length: number): boolean {

@@ -2,9 +2,11 @@ window.VIX_SETTINGS = {
   BLURBSTAKE: 6,
   BLURBCOMMENTSTAKE: 3,
   VIXNAMEPATTERN: '^[a-zA-Z0-9]{3,15}$',
-  AGEOPTIONS: ['13-17', '18-23', '24+'],
-  SEXOPTIONS: ['Male', 'Female']
- };
+  AGE_OPTIONS: ['13-17', '18-23', '24+'],
+  SEX_OPTIONS: ['Male', 'Female'],
+  MOVIE_MOODS: ['scary', 'cool', 'happy', 'excite', 'evil', 'angry'],
+  MOVIE_SORTS: ['Audience', 'Trending', 'Green']
+};
 
 window.VIX_MESSAGES = {
   vixname: 'vixname',

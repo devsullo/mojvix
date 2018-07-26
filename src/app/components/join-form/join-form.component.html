@@ -13,7 +13,7 @@
           <div class="cf">
             <div *ngIf="formState.value >= 1" class="inp-group radio-group col-md-7">
               <span class="left" [innerHTML]="'join-form-iam' | trans"></span>
-              <div *ngFor="let age of AGEOPTIONS; let last = last"  class="radio-a">
+              <div *ngFor="let age of AGE_OPTIONS; let last = last"  class="radio-a">
                 <input formControlName="age" type="radio" id="labelId_{{ age }}"  [value]="age" name="age">
                 <label for="labelId_{{ age }}">{{ age }}</label>
                 <i *ngIf="!last" class="divider"></i>
@@ -21,7 +21,7 @@
               <span class="left" [innerHTML]="'join-form-years-old' | trans"></span>
             </div>
             <div *ngIf="formState.value >= 2" class="inp-group radio-group col-md-4 right lap">
-              <div *ngFor="let sex of SEXOPTIONS; let last = last" class="radio-a">
+              <div *ngFor="let sex of SEX_OPTIONS; let last = last" class="radio-a">
                 <input formControlName="sex" type="radio" id="labelId_{{ sex }}" [value]="sex" name="sex">
                 <label for="labelId_{{ sex }}">{{ sex }}</label>
                 <i *ngIf="!last" class="divider"></i>

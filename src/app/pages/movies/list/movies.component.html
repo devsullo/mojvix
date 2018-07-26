@@ -3,39 +3,24 @@
     <div id="first-header">
       <div class="left">
         <h2>Discover</h2>
-        <div class="sort">
-          <ul>
-            <li ng-click="sortMovies('audience')">
-              <a>Audience</a>
-            </li>
-            <li ng-click="sortMovies('trending')">
-              <a>Trending</a>
-            </li>
-            <li ng-click="sortMovies('green')">
-              <a>Green</a>
-            </li>
-            <li class="choose-mood">
-              <a id="moods">Choose Moods</a>
-              <div class="mood-change-cont">
-                <form name="emotionsForm" ng-submit="" class="mood-icons">
-                  <input type='checkbox' id="icon-scary">
-                  <label for="icon-scary" class="icon-scary"></label>
-                  <input type='checkbox' id="icon-cool">
-                  <label for="icon-cool" class="icon-cool"></label>
-                  <input type='checkbox' id="icon-happy">
-                  <label for="icon-happy" class="icon-happy"></label>
-                  <input type='checkbox' id="icon-excite">
-                  <label for="icon-excite" class="icon-excite"></label>
-                  <input type='checkbox' id="icon-evil">
-                  <label for="icon-evil" class="icon-evil"></label>
-                  <input type='checkbox' id="icon-angry">
-                  <label for="icon-angry" class="icon-angry"></label>
-                  <input class="submit-ok" value="OK" type="submit">
-                </form>
+        <form [formGroup]="sortFilterForm" (ngSubmit)="onSortFilterForm()" class="sort">
+          <div class="radio hide-input">
+            <ng-container *ngFor="let sort of MOVIE_SORTS">
+              <label for="{{ sort }}-inp" [ngClass]="{'active': sortName == sort}" class="link">{{ sort }}</label>
+              <input id="{{ sort }}-inp" formControlName="sortName" [value]="sort" type="radio">
+            </ng-container>
+            <label (click)="onChooseMoods()" class="choose-mood link">Choose Moods</label>
+            <div [ngClass]="{'hideEl': !showChooseMoods}" class="mood-change-cont">
+              <div class="mood-icons">
+                <ng-container *ngFor="let mood of MOVIE_MOODS;">
+                  <input type='checkbox' id="icon-{{ mood }}">
+                  <label (click)="toggleMood(mood)" for="icon-{{ mood }}" class="icon-{{ mood }}"></label>
+                </ng-container>
+                <input value="OK" class="submit-ok" type="submit">
               </div>
-            </li>
-          </ul>
-        </div>
+            </div>
+          </div>
+        </form>
       </div>
       <div class="right">
         <a class="search-btn"></a>
@@ -75,7 +60,7 @@
   <div id="box-office" [style.height.px]="pageHeight">
     <div class="movies center-area-cont sort-{{ colls }}">
       <div *ngFor="let movie of movies; let i = index">
-        <div class="movie" (click)="expandMovie(i)">
+        <div class="movie" (click)="onExpandMovie(i)">
           <div class="movie-wrapper">
             <i class="movie-status" data-toggle="tooltip" data-placement="right" title="FirstDay"></i>
             <img class="poster" [src]="'assets/images/movie/'+ movie.poster">

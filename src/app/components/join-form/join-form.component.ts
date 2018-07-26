@@ -26,9 +26,9 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
   joinForm: FormGroup;
   vixnameStatus: string;
   formStyle: 'dark';
-  VIXNAMEPATTERN = SETTINGS.VIXNAMEPATTERN;
-  AGEOPTIONS = SETTINGS.AGEOPTIONS;
-  SEXOPTIONS = SETTINGS.SEXOPTIONS;
+  VIXNAME_PATTERN = SETTINGS.VIXNAME_PATTERN;
+  AGE_OPTIONS = SETTINGS.AGE_OPTIONS;
+  SEX_OPTIONS = SETTINGS.SEX_OPTIONS;
   @ViewChild(FormErrorBoxComponent) private errorBox: FormErrorBoxComponent;
 
   constructor(
@@ -66,7 +66,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     const fild = this.joinForm.controls;
     const formState = this.formState;
     fild.vixname.valueChanges.subscribe(val => {
-      if (RegExp(this.VIXNAMEPATTERN).test(val)) {
+      if (RegExp(this.VIXNAME_PATTERN).test(val)) {
         this.checkVixname(val);
       } else {
         this.vixnameStatus = '';
@@ -141,7 +141,7 @@ export class JoinFormComponent implements OnInit, AfterViewInit {
     const fixControls = {
       vixname: [
         vixname,
-        [Validators.required, Validators.pattern(this.VIXNAMEPATTERN)]
+        [Validators.required, Validators.pattern(this.VIXNAME_PATTERN)]
       ]
     };
     const newControls = Object.assign(fixControls, controls);
