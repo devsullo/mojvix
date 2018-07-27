@@ -1,7 +1,7 @@
 import { Component, OnInit, HostListener } from '@angular/core';
-import { Location } from '@angular/common';
 import { ScrollService } from '../../../shared/services/scroll.service';
 import { Helper } from '../../../shared/helper';
+import { RouteService } from '../../../shared/services/route.service';
 
 @Component({
   selector: 'app-index',
@@ -12,8 +12,8 @@ export class IndexComponent implements OnInit {
   pageHeight: number;
   scroll: any;
   constructor(
-    private location: Location,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private routeService: RouteService
   ) {}
 
   ngOnInit() {
@@ -32,6 +32,6 @@ export class IndexComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.routeService.navigateBack();
   }
 }

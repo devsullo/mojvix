@@ -1,3 +1,4 @@
+import { RouteService } from './../../shared/services/route.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
@@ -17,7 +18,8 @@ export class PassRecoverFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private routeService: RouteService
   ) {}
 
   get email(): AbstractControl {
@@ -38,7 +40,7 @@ export class PassRecoverFormComponent implements OnInit {
   }
 
   goBack(): void {
-    this.location.back();
+    this.routeService.navigateBack();
   }
 
   passRecover() {

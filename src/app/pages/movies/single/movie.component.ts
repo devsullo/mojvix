@@ -1,12 +1,9 @@
-import { Store } from '@ngrx/store';
-import { Router } from '@angular/router';
+import { RouteService } from './../../../shared/services/route.service';
 import { BlurbsService } from './../../../sidebar/blurbs/blurbs.service';
 import { IMovie } from './../movie';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ScrollService } from '../../../shared/services/scroll.service';
-import { take } from 'rxjs/operators';
 
-import * as fromApp from '../../../store/app.reducers';
 
 @Component({
   selector: 'app-movie',
@@ -22,8 +19,7 @@ export class MovieComponent implements OnInit, AfterViewInit {
   constructor(
     private scrollService: ScrollService,
     private blurbsService: BlurbsService,
-    private router: Router,
-    private store: Store<fromApp.AppState>
+    private routeService: RouteService
   ) {}
 
   ngOnInit() {}
@@ -72,12 +68,6 @@ export class MovieComponent implements OnInit, AfterViewInit {
   }
 
   attendToShow(movie: IMovie) {
-    this.store.select('user').pipe(take(1))
-      .subscribe(user => {
-        let urlEnd;
-        user ? urlEnd = '' : urlEnd = '/join';
-        this.router.navigate([`/seance/${movie.slug}/${movie.id + urlEnd}`]);
-      });
-
+    this.routeService.goToSeance(movie);
   }
 }

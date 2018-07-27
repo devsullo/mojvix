@@ -1,7 +1,6 @@
 import { RouteService } from './../../../shared/services/route.service';
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { ScrollService } from '../../../shared/services/scroll.service';
-import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 
 import * as fromApp from '../../../store/app.reducers';
@@ -17,7 +16,6 @@ export class IndexComponent implements OnInit, OnDestroy {
   scroll: any;
   constructor(
     private scrollService: ScrollService,
-    private location: Location,
     private routeService: RouteService,
     private store: Store<fromApp.AppState>
   ) {}
@@ -32,7 +30,7 @@ export class IndexComponent implements OnInit, OnDestroy {
   }
 
   goBack(): void {
-    this.location.back();
+    this.routeService.navigateBack();
   }
 
   postBlurb(): void {

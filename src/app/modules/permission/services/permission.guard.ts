@@ -1,4 +1,5 @@
-﻿import { Injectable } from '@angular/core';
+﻿import { RouteService } from './../../../shared/services/route.service';
+import { Injectable } from '@angular/core';
 import {
   CanActivate,
   Router,
@@ -12,7 +13,7 @@ import { PermissionService } from './permission.service';
 export class PermissionGuard implements CanActivate {
   constructor(
     private _permissionService: PermissionService,
-    private router: Router
+    private routeService: RouteService
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
@@ -28,7 +29,7 @@ export class PermissionGuard implements CanActivate {
         return true;
       }
       if (data.RedirectTo && data.RedirectTo !== undefined) {
-        this.router.navigate([data.RedirectTo]);
+        this.routeService.navigate({ path: [data.RedirectTo] });
       }
       return false;
     }
@@ -39,7 +40,7 @@ export class PermissionGuard implements CanActivate {
         return true;
       }
       if (data.RedirectTo && data.RedirectTo !== undefined) {
-        this.router.navigate([data.RedirectTo]);
+        this.routeService.navigate({ path: [data.RedirectTo] });
       }
       return false;
     }

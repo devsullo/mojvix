@@ -5,15 +5,17 @@ export const GO = '[Router] Go';
 export const BACK = '[Router] Back';
 export const FORWARD = '[Router] Forward';
 
+export interface IGoPayload {
+  path: any[];
+  query?: object;
+  extras?: NavigationExtras;
+}
+
 export class Go implements Action {
   readonly type = GO;
 
   constructor(
-    public payload: {
-      path: any[];
-      query?: object;
-      extras?: NavigationExtras;
-    }
+    public payload: IGoPayload
   ) {}
 }
 
@@ -25,4 +27,4 @@ export class Forward implements Action {
   readonly type = FORWARD;
 }
 
-export type RouterActionsUnion = Go | Back | Forward;
+export type RouterActions = Go | Back | Forward;
