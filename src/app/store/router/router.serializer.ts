@@ -3,7 +3,7 @@ import { RouterStateSerializer } from '@ngrx/router-store';
 
 export interface RouterStateUrl {
   url: string;
-  params: Params;
+  params: any;
   queryParams: Params;
 }
 

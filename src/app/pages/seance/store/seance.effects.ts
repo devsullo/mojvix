@@ -5,7 +5,7 @@ import { map, filter } from 'rxjs/operators';
 
 import * as fromApp from '../../../store/app.reducers';
 import * as SeanceActions from './seance.actions';
-import { ActivatedRouteSnapshot } from '@angular/router';
+import { RouterStateUrl } from '../../../store/router/router.serializer';
 import { RouterNavigationAction } from '@ngrx/router-store';
 
 
@@ -14,9 +14,9 @@ export class SeanceEffects {
   @Effect()
   seanceRoute = this.actions$.ofType('ROUTER_NAVIGATION').pipe(
     map((action: RouterNavigationAction) => action.payload.routerState),
-    map((r: ActivatedRouteSnapshot) => {
-      console.log(r)
-      return { type: SeanceActions.INITIALIZE_SEANCE };
+    filter(f => f.url.indexOf('seance') > 0),
+    map((r: RouterStateUrl) => {
+      return new SeanceActions.InitializeSeance(r.params);
     })
   );
 

@@ -1,12 +1,10 @@
-import { SeanceService } from './../seance.service';
 import { RouteService } from './../../../shared/services/route.service';
-import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { ScrollService } from '../../../shared/services/scroll.service';
 import { Location } from '@angular/common';
 import { Store } from '@ngrx/store';
 
-import * as fromSeance from '../store/seance.reducer';
+import * as fromApp from '../../../store/app.reducers';
 import * as SeanceActions from '../store/seance.actions';
 
 @Component({
@@ -21,16 +19,8 @@ export class IndexComponent implements OnInit, OnDestroy {
     private scrollService: ScrollService,
     private location: Location,
     private routeService: RouteService,
-    private route: ActivatedRoute,
-    private seanceService: SeanceService,
-    private store: Store<fromSeance.State>
-  ) {
-    const seancePayload = {
-      id: route.snapshot.params.id,
-      slug: route.snapshot.params.slug
-     };
-    this.store.dispatch(new SeanceActions.InitializeSeance(seancePayload));
-  }
+    private store: Store<fromApp.AppState>
+  ) {}
 
   ngOnInit() {
     this.calcScrollHeight();
