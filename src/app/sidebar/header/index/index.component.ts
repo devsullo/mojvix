@@ -1,8 +1,7 @@
-import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
 
-import * as fromUser from '../../../pages/user/store/user.reducer';
+import { User } from '../../../pages/user/user.model';
 import * as fromApp from '../../../store/app.reducers';
 
 @Component({
@@ -11,7 +10,7 @@ import * as fromApp from '../../../store/app.reducers';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  user: fromUser.State;
+  user: User;
   constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {

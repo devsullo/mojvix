@@ -6,8 +6,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { SeanceService } from '../seance.service';
 import { map } from 'rxjs/operators';
+import { Seance } from '../seance.model';
 
-import * as fromSeance from '../../seance/store/seance.reducer';
 import * as fromApp from '../../../store/app.reducers';
 
 @Component({
@@ -17,7 +17,7 @@ import * as fromApp from '../../../store/app.reducers';
 })
 export class PostBlurbComponent implements OnInit, AfterViewInit, OnDestroy {
   blurbForm: FormGroup;
-  seance: fromSeance.State;
+  seance: Seance;
   constructor(
     private seanceService: SeanceService,
     private fb: FormBuilder,
@@ -25,19 +25,17 @@ export class PostBlurbComponent implements OnInit, AfterViewInit, OnDestroy {
     private location: Location,
     private routeService: RouteService,
     private store: Store<fromApp.AppState>
-  ) {
-  }
-
+  ) {}
 
   ngOnInit() {
     this.blurbForm = this.fb.group({
       content: ['', Validators.required],
       color: ['GREEN', Validators.required]
     });
-    this.store.select('seance').subscribe(s => this.seance = s);
+    this.store.select('seance').subscribe(s => (this.seance = s));
   }
 
-  ngOnDestroy() { }
+  ngOnDestroy() {}
 
   ngAfterViewInit() {
     this.seanceService.scrollBottom();

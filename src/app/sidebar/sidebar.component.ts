@@ -1,8 +1,8 @@
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Component, OnInit, HostListener } from '@angular/core';
 
-import * as fromNavigation from '../sidebar/header/navigation/store/navigation.reducer';
+import * as fromApp from '../store/app.reducers';
+import { Navigation } from './header/navigation/navigation.model';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,14 +10,14 @@ import * as fromNavigation from '../sidebar/header/navigation/store/navigation.r
   styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent implements OnInit {
-  navigationState: Observable<fromNavigation.State>;
+  navigationState: Navigation;
   scrollHeight: number;
-  constructor(
-    private store: Store<fromNavigation.State>
-  ) {}
+  constructor(private store: Store<fromApp.AppState>) {}
 
   ngOnInit() {
-    this.navigationState = this.store.select('navigation');
+    this.store.select('navigation').subscribe(state => {
+      this.navigationState = state;
+    });
     this.calcScrollHeight();
   }
 

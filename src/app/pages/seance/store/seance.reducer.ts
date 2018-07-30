@@ -1,11 +1,7 @@
 import * as seanceActions from './seance.actions';
+import { Seance } from '../seance.model';
 
-export interface State {
-  id: number;
-  slug: string;
-}
-
-const initialState: State = null;
+const initialState: Seance = null;
 
 export function seanceReducer(state = initialState, action: seanceActions.seanceActions) {
   switch (action.type) {

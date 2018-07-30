@@ -1,22 +1,9 @@
+import { User } from '../user.model';
 import * as userActions from './user.actions';
 
-export interface State {
-  id: number;
-  email?: string;
-  status: string;
-  vixname: string;
-  info: {
-    age: string;
-    sex: string;
-  };
-  exp: number;
-  iat: number;
-  avatar?: string;
-}
+const initialState: User = null;
 
-const initialState: State = null;
-
-export function seanceReducer(
+export function userReducer(
   state = initialState,
   action: userActions.userActions
 ) {

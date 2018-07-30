@@ -1,23 +1,23 @@
 <app-sidebar-header></app-sidebar-header>
 <section id="right-content">
   <app-chat-index
-    [hidden]="(navigationState | async).activeTab !== 'chat'"
+    [hidden]="navigationState.activeTab !== 'chat'"
     [scrollHeight]="scrollHeight"
-    *ngIf="(navigationState | async).tabs[0].inited">
+    *ngIf="navigationState.tabs[0].inited">
   </app-chat-index>
   <app-blurbs-index
-    [hidden]="(navigationState | async).activeTab !== 'blurbs'"
+    [hidden]="navigationState.activeTab !== 'blurbs'"
     [scrollHeight]="scrollHeight"
-    *ngIf="(navigationState | async).tabs[1].inited">
+    *ngIf="navigationState.tabs[1].inited">
   </app-blurbs-index>
   <app-notifications-index
-    [hidden]="(navigationState | async).activeTab !== 'notifications'"
+    [hidden]="navigationState.activeTab !== 'notifications'"
     [scrollHeight]="scrollHeight"
-    *ngIf="(navigationState | async).tabs[2].inited">
+    *ngIf="navigationState.tabs[2].inited">
   </app-notifications-index>
   <app-navigation-index
-    [hidden]="(navigationState | async).activeTab !== 'navigation'"
+    [hidden]="navigationState.activeTab !== 'navigation'"
     [scrollHeight]="scrollHeight"
-    *ngIf="(navigationState | async).tabs[3].inited">
+    *ngIf="navigationState.tabs[3].inited">
   </app-navigation-index>
 </section>

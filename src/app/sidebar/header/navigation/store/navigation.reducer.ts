@@ -1,37 +1,23 @@
 import * as navigationActions from './navigation.actions';
+import { Navigation, Tab } from '../navigation.model';
 
-
-export interface State {
-  tabs: {
-    name: string;
-    notifications: number;
-    inited: boolean;
-    disabled: boolean;
-  }[];
-  activeTab: string;
-  deactivatedTab: string;
-}
-
-const initialState: State = {
-  tabs: [
-    { name: 'chat', notifications: 0, inited: false, disabled: true },
-    { name: 'blurbs', notifications: 0, inited: true, disabled: false },
-    { name: 'notifications', notifications: 0, inited: false, disabled: false },
-    { name: 'navigation', notifications: 0, inited: false, disabled: false }
-  ],
-  activeTab: 'blurbs',
-  deactivatedTab: null
-};
+const initialState: Navigation = new Navigation(
+  [
+    new Tab('chat', 0, false, true),
+    new Tab('blurbs', 0, true, false),
+    new Tab('notifications', 0, false, false),
+    new Tab('navigation', 0, false, false),
+  ], 'blurbs', null
+);
 
 export function navigationReducer(state = initialState, action: navigationActions.navigationActions) {
   switch (action.type) {
     case navigationActions.CHANGE_NAV_TAB:
       const tabName = action.payload;
-      const tabObj = state.tabs.find(tab => tab.name === tabName);
+      const oldTabState = state.tabs;
+      const tabObj = oldTabState.find(tab => tab.name === tabName);
       tabObj.inited = true;
-      const newTabState = state.tabs.map(
-        tab => (tab.name === tabName ? tabObj : tab)
-      );
+      const newTabState = oldTabState.map(tab => (tab.name === tabName ? tabObj : tab));
 
       if (state.activeTab === 'navigation' && tabName === 'navigation') {
         return {

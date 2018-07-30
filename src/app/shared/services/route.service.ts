@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { take } from 'rxjs/operators';
+import { User } from '../../pages/user/user.model';
 
-import * as fromUser from '../../pages/user/store/user.reducer';
 import * as fromApp from '../../store/app.reducers';
 import * as RouterActions from '../../store/router/router.actions';
 import { IMovie } from '../../pages/movies/movie';
@@ -11,7 +10,7 @@ import { IMovie } from '../../pages/movies/movie';
 @Injectable()
 export class RouteService {
   pageUrl = [];
-  user: fromUser.State;
+  user: User;
 
   constructor(private router: Router, private store: Store<fromApp.AppState>) {
     this.store.select('user').subscribe(user => (this.user = user));

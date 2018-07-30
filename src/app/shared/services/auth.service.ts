@@ -2,9 +2,9 @@ import { Store } from '@ngrx/store';
 import { RouteService } from './route.service';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from '../../pages/user/user.model';
 
 import * as UserActions from './../../pages/user/store/user.actions';
-import * as fromUser from '../../pages/user/store/user.reducer';
 import * as NavigationActions from './../../sidebar/header/navigation/store/navigation.actions';
 
 @Injectable()
@@ -12,7 +12,7 @@ export class AuthService {
   constructor(
     private routeService: RouteService,
     private jwtHelperService: JwtHelperService,
-    private store: Store<fromUser.State>
+    private store: Store<User>
   ) {
     this.isAuthenticated()
       ? this.store.dispatch(new UserActions.SetUser(this.user))
@@ -23,7 +23,7 @@ export class AuthService {
     return localStorage.getItem('token') || null;
   }
 
-  get user(): fromUser.State {
+  get user(): User {
     return this.jwtHelperService.decodeToken(this.token);
   }
 
