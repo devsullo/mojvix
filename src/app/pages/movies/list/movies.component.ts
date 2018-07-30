@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, FormArray } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, FormControl, AbstractControl } from '@angular/forms';
 import { Helper } from './../../../shared/helper';
 import { BlurbsService } from './../../../sidebar/blurbs/blurbs.service';
 import { element } from 'protractor';
@@ -48,17 +48,28 @@ export class MoviesComponent implements OnInit {
     return this.sortFilterForm.get('sortName').value;
   }
 
+  get hashtagFilter(): AbstractControl {
+    return this.sortFilterForm.get('hashtagFilter');
+  }
+
   ngOnInit() {
     this.sortFilterForm = this.fb.group({
       sortName: [this.MOVIE_SORTS[0]],
-      moodFilters: [[]]
+      moodFilters: [[]],
+      hashtagFilter: ['']
     });
 
-    this.sortFilterForm.get('sortName').valueChanges.subscribe(v => {
-      setTimeout(() => {
-        this.onSortFilterForm();
-      }, 1);
+    this.moviesService.$hashtagFilterSub.subscribe(hashtag => {
+      this.hashtagFilter.setValue(hashtag);
     });
+
+    this.sortFilterForm.get('sortName').valueChanges.subscribe(() => {
+      this.onSortFilterForm();
+    });
+
+    this.hashtagFilter.valueChanges.subscribe(() =>
+      this.onSortFilterForm()
+    );
 
     this.moviesService
       .getMovies()
@@ -104,13 +115,19 @@ export class MoviesComponent implements OnInit {
   }
 
   onSortFilterForm() {
-    const formValue = this.sortFilterForm.value;
-    console.log(formValue);
-    this.showChooseMoods = false;
+    setTimeout(() => {
+      const formValue = this.sortFilterForm.value;
+      console.log(formValue);
+      this.showChooseMoods = false;
+    }, 1);
   }
 
   onChooseMoods() {
     this.showChooseMoods = true;
+  }
+
+  onHashtagFilterClose() {
+    this.moviesService.setHashtagFilter('');
   }
 
   onExpandMovie(i: number): void {
@@ -150,7 +167,7 @@ export class MoviesComponent implements OnInit {
   }
 
   closeAllExpandAreas(): void {
-    this.expandArea.forEach(el => el.close());
+    this.expandArea.forEach(el => el.onClose());
   }
 
   detectExpandArea(i: number, length: number): boolean {

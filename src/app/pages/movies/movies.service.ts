@@ -2,28 +2,25 @@ import { Injectable } from '@angular/core';
 import { IMoviesResponse } from './movie';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
-import { Observable } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { ApolloQueryResult } from 'apollo-client';
 
 @Injectable()
 export class MoviesService {
-  constructor(private apollo: Apollo) {
-  }
+  hashtagFilterSub = new BehaviorSubject<string>('');
+  $hashtagFilterSub = this.hashtagFilterSub.asObservable();
+  constructor(private apollo: Apollo) {}
 
   getMovies(): Observable<ApolloQueryResult<IMoviesResponse>> {
     const QUERY = gql`
       query getMovies(
-        $orderBy: SQLOrderBy,
-        $take: Int,
-        $skip: Int,
-        $bOrderBy: SQLOrderBy,
+        $orderBy: SQLOrderBy
+        $take: Int
+        $skip: Int
+        $bOrderBy: SQLOrderBy
         $bTake: Int
       ) {
-        movies(
-          orderBy: $orderBy,
-          take: $take,
-          skip: $skip
-        ) {
+        movies(orderBy: $orderBy, take: $take, skip: $skip) {
           id
           slug
           title
@@ -36,17 +33,23 @@ export class MoviesService {
             threeD
             colored
           }
-          links { name, url }
+          links {
+            name
+            url
+          }
           directorNames
           actorNames
           genreNames
           tagNames
           mood
-          blurbs(orderBy:$bOrderBy, take:$bTake) {
+          blurbs(orderBy: $bOrderBy, take: $bTake) {
             id
             color
             content
-            creator { email vixname }
+            creator {
+              email
+              vixname
+            }
           }
         }
       }
@@ -61,5 +64,9 @@ export class MoviesService {
         bTake: 1
       }
     });
+  }
+
+  setHashtagFilter(hashtag: string) {
+    this.hashtagFilterSub.next(hashtag);
   }
 }

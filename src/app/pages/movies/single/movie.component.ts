@@ -3,6 +3,7 @@ import { BlurbsService } from './../../../sidebar/blurbs/blurbs.service';
 import { IMovie } from './../movie';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ScrollService } from '../../../shared/services/scroll.service';
+import { MoviesService } from '../movies.service';
 
 
 @Component({
@@ -19,7 +20,8 @@ export class MovieComponent implements OnInit, AfterViewInit {
   constructor(
     private scrollService: ScrollService,
     private blurbsService: BlurbsService,
-    private routeService: RouteService
+    private routeService: RouteService,
+    private moviesService: MoviesService
   ) {}
 
   ngOnInit() {}
@@ -58,7 +60,7 @@ export class MovieComponent implements OnInit, AfterViewInit {
     this.playerIsReady = true;
   }
 
-  close(getBlurbs?: boolean): void {
+  onClose(getBlurbs?: boolean): void {
     if (getBlurbs) {
       this.blurbsService.getBlurbs();
     }
@@ -67,7 +69,11 @@ export class MovieComponent implements OnInit, AfterViewInit {
     this.scrollService.scrollSelectors['#box-office'].update();
   }
 
-  attendToShow(movie: IMovie) {
+  onSetHashtagFilter(hashtag: string) {
+    this.moviesService.setHashtagFilter(hashtag);
+  }
+
+  onAttendToShow(movie: IMovie) {
     this.routeService.goToSeance(movie);
   }
 }

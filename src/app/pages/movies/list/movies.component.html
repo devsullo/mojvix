@@ -9,6 +9,7 @@
               <label for="{{ sort }}-inp" [ngClass]="{'active': sortName == sort}" class="link">{{ sort }}</label>
               <input id="{{ sort }}-inp" formControlName="sortName" [value]="sort" type="radio">
             </ng-container>
+            <span *ngIf="hashtagFilter.value" (click)="onHashtagFilterClose()" class="hashtagFilter">{{ hashtagFilter.value }}</span>
             <label (click)="onChooseMoods()" class="choose-mood link">Choose Moods</label>
             <div [ngClass]="{'hideEl': !showChooseMoods}" class="mood-change-cont">
               <div class="mood-icons">
