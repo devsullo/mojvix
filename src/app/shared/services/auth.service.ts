@@ -28,9 +28,10 @@ export class AuthService {
   }
 
   logIn(token: string) {
+    const user = this.user;
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(this.user));
-    this.store.dispatch(new UserActions.SetUser(this.user));
+    localStorage.setItem('user', JSON.stringify(user));
+    this.store.dispatch(new UserActions.SetUser(user));
     this.routeService.navigateSeanceOrMain('');
   }
 

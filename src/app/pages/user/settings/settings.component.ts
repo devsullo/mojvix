@@ -8,8 +8,8 @@ const SETTINGS = window['VIX_SETTINGS'] || {};
   styleUrls: ['./settings.component.scss']
 })
 export class SettingsComponent implements OnInit {
-  AGEOPTIONS = SETTINGS.AGEOPTIONS;
-  SEXOPTIONS = SETTINGS.SEXOPTIONS;
+  AGE_OPTIONS = SETTINGS.AGE_OPTIONS;
+  SEX_OPTIONS = SETTINGS.SEX_OPTIONS;
   generalForm: FormGroup;
   emailForm: FormGroup;
   formsState = {

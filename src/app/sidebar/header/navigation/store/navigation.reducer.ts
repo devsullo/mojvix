@@ -3,7 +3,7 @@ import { Navigation, Tab } from '../navigation.model';
 
 const initialState: Navigation = new Navigation(
   [
-    new Tab('chat', 0, false, true),
+    new Tab('chat', 0, false, false),
     new Tab('blurbs', 0, true, false),
     new Tab('notifications', 0, false, false),
     new Tab('navigation', 0, false, false),
