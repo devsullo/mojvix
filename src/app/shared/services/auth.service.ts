@@ -39,7 +39,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.store.dispatch(new UserActions.UnsetUser());
-    this.store.dispatch(new NavigationActions.ChangeNavTab('blurbs'));
+    this.store.dispatch(new NavigationActions.ChangeNavTab(1));
     this.routeService.navigateSeanceOrMain('join');
   }
 

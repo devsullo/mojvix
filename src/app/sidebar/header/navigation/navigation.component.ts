@@ -19,7 +19,7 @@ export class NavigationComponent implements OnInit {
     this.navigationState = this.store.select('navigation');
   }
 
-  changeNavigationTab(tab: string) {
-    this.store.dispatch(new NavigationActions.ChangeNavTab(tab));
+  changeNavigationTab(index: number) {
+    this.store.dispatch(new NavigationActions.ChangeNavTab(index));
   }
 }

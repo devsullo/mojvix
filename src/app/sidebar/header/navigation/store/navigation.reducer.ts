@@ -3,7 +3,7 @@ import { Navigation, Tab } from '../navigation.model';
 
 const initialState: Navigation = new Navigation(
   [
-    new Tab('chat', 0, false, false),
+    new Tab('chat', 0, false, true),
     new Tab('blurbs', 0, true, false),
     new Tab('notifications', 0, false, false),
     new Tab('navigation', 0, false, false),
@@ -13,11 +13,10 @@ const initialState: Navigation = new Navigation(
 export function navigationReducer(state = initialState, action: navigationActions.navigationActions) {
   switch (action.type) {
     case navigationActions.CHANGE_NAV_TAB:
-      const tabName = action.payload;
-      const oldTabState = state.tabs;
-      const tabObj = oldTabState.find(tab => tab.name === tabName);
-      tabObj.inited = true;
-      const newTabState = oldTabState.map(tab => (tab.name === tabName ? tabObj : tab));
+      const chTab = state.tabs[action.payload];
+      chTab.inited = true;
+      const tabName = chTab.name;
+      const newTabState = state.tabs.map(tab => (tab.name === tabName ? chTab : tab));
 
       if (state.activeTab === 'navigation' && tabName === 'navigation') {
         return {
@@ -37,6 +36,20 @@ export function navigationReducer(state = initialState, action: navigationAction
           activeTab: tabName
         }
       };
+
+    case navigationActions.ENABLE_NAV_TAB:
+      const eTab = state.tabs[action.payload];
+      eTab.disabled = false;
+      const eTabs = [...state.tabs];
+      eTabs[action.payload] = eTab;
+      return { ...state, tabs: eTabs };
+
+    case navigationActions.DISABLE_NAV_TAB:
+      const dTab = state.tabs[action.payload];
+      dTab.disabled = true;
+      const dTabs = [...state.tabs];
+      dTabs[action.payload] = dTab;
+      return { ...state, tabs: dTabs };
     default:
       return state;
   }

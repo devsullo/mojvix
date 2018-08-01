@@ -30,7 +30,7 @@ export class IndexComponent implements OnInit {
 
   getOneBlurb(id: number) {
     this.blurbsService.getBlurbs(`id:${id}`).subscribe(() => {
-      this.store.dispatch(new NavigationActions.ChangeNavTab('blurbs'));
+      this.store.dispatch(new NavigationActions.ChangeNavTab(1));
     });
   }
 }

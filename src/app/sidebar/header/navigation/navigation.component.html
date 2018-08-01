@@ -5,10 +5,10 @@
   <div class="left nav-wrapper">
     <div id="profile-nav" class="right-nav">
       <div class="left-cont">
-        <ng-container *ngFor="let nav of (navigationState | async).tabs">
+        <ng-container *ngFor="let nav of (navigationState | async).tabs; index as i">
           <a
             *ngIf="!nav.disabled"
-            (click)="changeNavigationTab(nav.name)"
+            (click)="changeNavigationTab(i)"
             [ngClass]="{'active': (navigationState | async).activeTab === nav.name}"
             class="icon icon-{{ nav.name }} nav-{{ nav.name }}">
           </a>
