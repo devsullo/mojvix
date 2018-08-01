@@ -3,52 +3,49 @@ import { Navigation, Tab } from '../navigation.model';
 
 const initialState: Navigation = new Navigation(
   [
-    new Tab('chat', 0, false, true),
-    new Tab('blurbs', 0, true, false),
-    new Tab('notifications', 0, false, false),
-    new Tab('navigation', 0, false, false),
-  ], 'blurbs', null
+    new Tab('chat', 0, false, false),
+    new Tab('blurbs', 0, true, true),
+    new Tab('notifications', 0, false, true),
+    new Tab('navigation', 0, false, true),
+  ], 1, -1
 );
 
 export function navigationReducer(state = initialState, action: navigationActions.navigationActions) {
   switch (action.type) {
     case navigationActions.CHANGE_NAV_TAB:
-      const chTab = state.tabs[action.payload];
-      chTab.inited = true;
-      const tabName = chTab.name;
-      const newTabState = state.tabs.map(tab => (tab.name === tabName ? chTab : tab));
-
-      if (state.activeTab === 'navigation' && tabName === 'navigation') {
+      const tabIndex = action.payload;
+      if (state.activeTab === 3 && action.payload === 3) {
         return {
           ...state,
-          ...{
-            tabs: newTabState,
-            activeTab: state.deactivatedTab,
-            deactivatedTab: tabName
-          }
+          activeTab: state.deactivatedTab,
+          deactivatedTab: tabIndex
         };
       }
       return {
         ...state,
-        ...{
-          tabs: newTabState,
-          deactivatedTab: state.activeTab,
-          activeTab: tabName
-        }
+        deactivatedTab: state.activeTab,
+        activeTab: tabIndex
       };
+
+    case navigationActions.LOAD_NAV_TAB:
+      const lTab = state.tabs[action.payload.index];
+      lTab.load = action.payload.load;
+      const lTabs = [...state.tabs];
+      lTabs[action.payload.index] = lTab;
+      return { ...state, tabs: lTabs };
 
     case navigationActions.ENABLE_NAV_TAB:
       const eTab = state.tabs[action.payload];
-      eTab.disabled = false;
+      eTab.enabled = true;
       const eTabs = [...state.tabs];
       eTabs[action.payload] = eTab;
       return { ...state, tabs: eTabs };
 
     case navigationActions.DISABLE_NAV_TAB:
-      const dTab = state.tabs[action.payload];
-      dTab.disabled = true;
+      const dTab = state.tabs[action.payload.index];
+      dTab.enabled = false;
       const dTabs = [...state.tabs];
-      dTabs[action.payload] = dTab;
+      dTabs[action.payload.index] = dTab;
       return { ...state, tabs: dTabs };
     default:
       return state;

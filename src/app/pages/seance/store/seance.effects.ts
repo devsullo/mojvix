@@ -20,10 +20,19 @@ export class SeanceEffects {
       return [
         new seanceActions.InitializeSeance(r.params),
         new chatActions.InitializeChat({
-          'rooms': [{'name': 'General', 'newActivity': false, 'newMsgs': 0, 'slug': ''}],
-          'ActiveRoomIndex': 0
+          rooms: [
+            { name: 'General', newActivity: false, newMsgs: 0, slug: '' }
+          ],
+          ActiveRoomIndex: 0
         })
       ];
+    })
+  );
+
+  @Effect()
+  seanceDest = this.actions$.ofType(seanceActions.DESTROY_SEANCE).pipe(
+    map((action: seanceActions.DestroySeance) => {
+      return new chatActions.DestroyChat();
     })
   );
 
