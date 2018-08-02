@@ -30,4 +30,7 @@ export interface IBlurb {
   totalDisagree: number;
   totalComments: number;
   comments?: IBlurbComment[];
+  viewer: {
+    vote: string;
+  };
 }

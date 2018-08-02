@@ -16,6 +16,9 @@ const fragments = {
       totalAgree
       totalDisagree
       totalComments
+      viewer {
+        vote
+      }
       creator {
         vixname
       }

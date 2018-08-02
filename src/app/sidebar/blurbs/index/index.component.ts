@@ -42,9 +42,11 @@ export class BlurbsComponent implements OnInit, OnChanges {
     });
   }
 
-  voteBlurb(action: string, blurbId: number) {
+  voteBlurb(action: string, blurb: IBlurb) {
+    let voteAction;
+    action === blurb.viewer.vote ? (voteAction = 'NONE') : (voteAction = action);
     this.blurbsService
-      .voteBlurb(action, blurbId)
+      .voteBlurb(voteAction, blurb.id)
       .pipe(map(res => res.data.voteBlurb))
       .subscribe(data => {
         console.log(data);

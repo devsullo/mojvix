@@ -21,11 +21,11 @@
         </div>
       </div>
       <div ng-if="user.isLogged" class="blurb-footer">
-        <a (click)="voteBlurb('AGREE', blurb.id)" class="trigger-agree left">
+        <a [ngClass]="{'active': blurb.viewer?.vote === 'AGREE'}" (click)="voteBlurb('AGREE', blurb)" class="trigger-agree left">
           <span class="num">{{ blurb.totalAgree }}</span>
           <span class="text">{{ 'blurb-wall-agree' | trans }}</span>
         </a>
-        <a (click)="voteBlurb('DISAGREE', blurb.id)" class="trigger-disagree left">
+        <a [ngClass]="{'active': blurb.viewer?.vote === 'DISAGREE'}" (click)="voteBlurb('DISAGREE', blurb)" class="trigger-disagree left">
           <span class="num">{{ blurb.totalDisagree }}</span>
           <span class="text">{{ 'blurb-wall-disagree' | trans }}</span>
         </a>

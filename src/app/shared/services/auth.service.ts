@@ -6,16 +6,19 @@ import { User } from '../../pages/user/user.model';
 
 import * as UserActions from './../../pages/user/store/user.actions';
 import * as NavigationActions from './../../sidebar/header/navigation/store/navigation.actions';
+import { UserService } from '../../pages/user/user.service';
 
 @Injectable()
 export class AuthService {
+  _user: User;
   constructor(
     private routeService: RouteService,
     private jwtHelperService: JwtHelperService,
-    private store: Store<User>
+    private store: Store<User>,
+    private userService: UserService
   ) {
     this.isAuthenticated()
-      ? this.store.dispatch(new UserActions.SetUser(this.user))
+      ? this.store.dispatch(new UserActions.SetUser(this.userService.user))
       : this.store.dispatch(new UserActions.UnsetUser());
   }
 
@@ -23,21 +26,15 @@ export class AuthService {
     return localStorage.getItem('token') || null;
   }
 
-  get user(): User {
-    return this.jwtHelperService.decodeToken(this.token);
-  }
-
   logIn(token: string) {
-    const user = this.user;
     localStorage.setItem('token', token);
-    localStorage.setItem('user', JSON.stringify(user));
+    const user = this.jwtHelperService.decodeToken(this.token);
     this.store.dispatch(new UserActions.SetUser(user));
     this.routeService.navigateSeanceOrMain('');
   }
 
   logOut() {
     localStorage.removeItem('token');
-    localStorage.removeItem('user');
     this.store.dispatch(new UserActions.UnsetUser());
     this.store.dispatch(new NavigationActions.ChangeNavTab(1));
     this.routeService.navigateSeanceOrMain('join');

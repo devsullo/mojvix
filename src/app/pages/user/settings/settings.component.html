@@ -6,38 +6,40 @@
         <div [ngClass]="{'opened': formsState.generalForm}" class="section icon-hover">
           <div class="toggle" (click)="changeFormState('generalForm')">
             <span class="key">General</span>
-            <span class="value">user.firstname user.lastname, user.age, user.sex</span>
+            <span class="value">{{ user.info.firstName }} {{ user.info.lastName }} {{ user.info.age }} {{ user.info.sex }}</span>
             <span class="edit-section">
               Edit
               <i class="icon-a pencil-c"></i>
             </span>
           </div>
           <div class="section-content">
-            <form (ngSubmit)="updateMeta()" [formGroup]="generalForm" class="form-style-a light">
-              <div class="inp-group">
-                <label for="inp-1">First Name:</label>
-                <input id="inp-1" formControlName="firstname" class="ex-sm" type="text" placeholder="First Name">
+            <form (ngSubmit)="OnUpdateInfo()" [formGroup]="generalForm" class="form-style-a light">
+              <div formGroupName="info">
+                <div class="inp-group">
+                  <label for="inp-1">First Name:</label>
+                  <input id="inp-1" formControlName="firstName" class="ex-sm" type="text" placeholder="First Name">
+                </div>
+                <div class="inp-group">
+                  <label for="inp-2">Last Name:</label>
+                  <input id="inp-2" formControlName="lastName" class="ex-sm" type="text" placeholder="Last Name">
+                </div>
+                <div class="inp-group">
+                  <label for="inp-3">Age:</label>
+                  <select formControlName="age" id="inp-3">
+                    <option *ngFor="let age of AGE_OPTIONS" [value]="age">{{ age }}</option>
+                  </select>
+                </div>
+                <div class="inp-group">
+                  <label for="inp-4">Sex:</label>
+                  <select formControlName="sex" id="inp-4">
+                    <option *ngFor="let sex of SEX_OPTIONS" [value]="sex">{{ sex }}</option>
+                  </select>
+                </div>
+                <!-- <div class="inp-group">
+                  <label for="inp-5">Bio:</label>
+                  <textarea id="inp-5" formControlName="bio" class="ex-sm" placeholder="Bio"></textarea>
+                </div> -->
               </div>
-              <div class="inp-group">
-                <label for="inp-2">Last Name:</label>
-                <input id="inp-2" formControlName="lastname" class="ex-sm" type="text" placeholder="Last Name">
-              </div>
-              <div class="inp-group">
-                <label for="inp-3">Age:</label>
-                <select formControlName="age" id="inp-3">
-                  <option *ngFor="let age of AGE_OPTIONS" [value]="age">{{ age }}</option>
-                </select>
-              </div>
-              <div class="inp-group">
-                <label for="inp-4">Sex:</label>
-                <select formControlName="sex" id="inp-4">
-                  <option *ngFor="let sex of SEX_OPTIONS" [value]="sex">{{ sex }}</option>
-                </select>
-              </div>
-              <!-- <div class="inp-group">
-                <label for="inp-5">Bio:</label>
-                <textarea id="inp-5" formControlName="bio" class="ex-sm" placeholder="Bio"></textarea>
-              </div> -->
               <button (click)="changeFormState('generalForm')" class="btn btn-cancel sm right gray-b">Cancel</button>
               <button type="submit" class="btn btn-save sm right ">Save</button>
             </form>
@@ -46,14 +48,14 @@
         <div [ngClass]="{'opened': formsState.emailForm}" class="section icon-hover">
           <div class="toggle" (click)="changeFormState('emailForm')">
             <span class="key">E-mail</span>
-            <span class="value">user.email</span>
+            <span class="value">{{ user.email }}</span>
             <span class="edit-section">
               Edit
               <i class="icon-a pencil-c"></i>
             </span>
           </div>
           <div class="section-content">
-            <form (ngSubmit)="updateEmail()" [formGroup]="emailForm" class="form-style-a light">
+            <form (ngSubmit)="OnUpdateEmail()" [formGroup]="emailForm" class="form-style-a light">
               <div class="inp-group">
                 <label for="inp-6">E-mail:</label>
                 <input id="inp-6" formControlName="email" class="ex-sm" type="email" placeholder="Email address">

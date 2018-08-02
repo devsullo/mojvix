@@ -38,6 +38,9 @@ export class MoviesService {
           moods {
             mood
           }
+          color
+          totalGreen
+          copyright
           blurbs(orderBy: $bOrderBy, take: $bTake) {
             id
             color

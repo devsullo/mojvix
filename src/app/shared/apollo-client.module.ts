@@ -33,6 +33,9 @@ export class ApolloClientModule {
         });
       }
       if (networkError) {
+        networkError.error.errors.map(({ message, locations, path }) => {
+          console.warn(`[GraphQL error]: Message: ${message}, Path: ${path}, Location: ${JSON.stringify(locations)}`);
+        });
         console.warn(`[GraphQL networkError]: name: ${networkError.name}, message: ${networkError.message}`);
       }
     });
