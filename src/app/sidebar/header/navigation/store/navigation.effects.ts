@@ -1,7 +1,7 @@
 import { Store } from '@ngrx/store';
 import { Effect, Actions } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { map, withLatestFrom, flatMap } from 'rxjs/operators';
+import { map, withLatestFrom, mergeMap } from 'rxjs/operators';
 
 import * as navigationActions from './navigation.actions';
 import * as fromStore from '../../../../store/app.reducers';
@@ -26,16 +26,14 @@ export class NavigationEffects {
       return action.payload;
     }),
     withLatestFrom(this.store.select('navigation')),
-    map(([payload, state]) => {
-      if (payload.index === state.activeTab) {
-        return new navigationActions.ChangeNavTab(payload.changeTabTo);
-      } else {
-        return new navigationActions.ChangeNavTab(state.activeTab);
-      }
+    mergeMap(([payload, state]) => {
+      let tab;
+      payload.index === state.activeTab ? tab = payload.changeTabTo : tab = -1;
+      return [
+        new navigationActions.ChangeNavTab(tab),
+        new navigationActions.LoadNavTab({ index: payload.index, load: false }),
+      ];
     }),
-    map(() => {
-      return new navigationActions.LoadNavTab({ index: 0, load: false });
-    })
   );
 
   constructor(

@@ -14,7 +14,10 @@ export function navigationReducer(state = initialState, action: navigationAction
   switch (action.type) {
     case navigationActions.CHANGE_NAV_TAB:
       const tabIndex = action.payload;
-      if (state.activeTab === 3 && action.payload === 3) {
+      if (tabIndex === -1) {
+        return state;
+      }
+      if (state.activeTab === 3 && tabIndex === 3) {
         return {
           ...state,
           activeTab: state.deactivatedTab,
@@ -28,10 +31,14 @@ export function navigationReducer(state = initialState, action: navigationAction
       };
 
     case navigationActions.LOAD_NAV_TAB:
-      const lTab = state.tabs[action.payload.index];
+      const index = action.payload.index;
+      if (index === -1) {
+        return state;
+      }
+      const lTab = state.tabs[index];
       lTab.load = action.payload.load;
       const lTabs = [...state.tabs];
-      lTabs[action.payload.index] = lTab;
+      lTabs[index] = lTab;
       return { ...state, tabs: lTabs };
 
     case navigationActions.ENABLE_NAV_TAB:
