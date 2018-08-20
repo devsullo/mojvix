@@ -12,10 +12,11 @@ import { map } from 'rxjs/operators';
 })
 export class BlurbsComponent implements OnInit, OnChanges {
   blurbs: IBlurb[] = [];
+  oneBlurb: IBlurb;
   blurbIds: number[];
   scrollEl: any;
-  @Input() scrollHeight: number;
-  @ViewChildren('comments') comments: QueryList<CommentsComponent>;
+  @Input()
+  scrollHeight: number;
 
   constructor(
     private blurbsService: BlurbsService,
@@ -23,17 +24,29 @@ export class BlurbsComponent implements OnInit, OnChanges {
   ) {}
 
   ngOnInit() {
-    this.blurbsService.getBlurbsSounce$.subscribe(blarbsObserver => {
-      blarbsObserver.pipe(map(res => res.data.blurbs)).subscribe(blurbs => {
-        console.log(blurbs);
-        this.blurbs = blurbs;
-        const newblurbIds = blurbs.map(bl => bl.id);
-        if (this.blurbIds !== newblurbIds) {
-          this.blurbIds = newblurbIds;
-          this.blurbsService.subscribeToUpdateBlurb(this.blurbIds);
-        }
-        this.scrollService.update('#blurbs-list');
-      });
+    this.blurbsService.getBlurbsSounce$.subscribe(blurbsObserver => {
+      console.log(blurbsObserver);
+      if (!blurbsObserver.hightlight) {
+        blurbsObserver.observable
+          .pipe(map(res => res.data.blurbs))
+          .subscribe(blurbs => {
+            console.log(blurbs);
+            this.blurbs = blurbs;
+            const newblurbIds = blurbs.map(bl => bl.id);
+            if (this.blurbIds !== newblurbIds) {
+              this.blurbIds = newblurbIds;
+              this.blurbsService.subscribeToUpdateBlurb(this.blurbIds);
+            }
+            this.scrollService.update('#blurbs-list');
+          });
+      } else {
+        blurbsObserver.observable
+          .pipe(map(res => res.data.blurbs))
+          .subscribe(blurb => {
+            this.oneBlurb = blurb[0];
+            this.scrollService.update('#blurbs-list');
+          });
+      }
     });
     this.blurbsService.getBlurbs();
 
@@ -42,19 +55,8 @@ export class BlurbsComponent implements OnInit, OnChanges {
     });
   }
 
-  voteBlurb(action: string, blurb: IBlurb) {
-    let voteAction;
-    action === blurb.viewer.vote ? (voteAction = 'NONE') : (voteAction = action);
-    this.blurbsService
-      .voteBlurb(voteAction, blurb.id)
-      .pipe(map(res => res.data.voteBlurb))
-      .subscribe(data => {
-        console.log(data);
-      });
-  }
-
-  focusOnCommentInput(i: number) {
-    this.comments.toArray()[i].focusOnCommentInput();
+  onCloseBlurb() {
+    this.oneBlurb = null;
   }
 
   ngOnChanges() {

@@ -5,7 +5,13 @@ import gql from 'graphql-tag';
 import { IBlurbsResponse, IBlurb } from './blurb';
 import { Injectable } from '@angular/core';
 import { FetchResult } from 'apollo-link';
+import { Store } from '@ngrx/store';
+
+import * as fromApp from '../../store/app.reducers';
+import * as NavigationActions from '../header/navigation/store/navigation.actions';
+
 const SETTINGS = window['VIX_SETTINGS'] || {};
+
 const fragments = {
   blurbs: gql`
     fragment blurbFields on Blurb {
@@ -26,19 +32,25 @@ const fragments = {
   `
 };
 
+export interface IBlurbSource {
+  hightlight: boolean;
+  observable: Observable<ApolloQueryResult<IBlurbsResponse>>;
+}
+
 @Injectable()
 export class BlurbsService {
-  private getBlurbsSounce = new Subject<
-    Observable<ApolloQueryResult<IBlurbsResponse>>
-  >();
+  private getBlurbsSounce = new Subject<IBlurbSource>();
   getBlurbsSounce$ = this.getBlurbsSounce.asObservable();
   blurbsQuery: QueryRef<any>;
   newBlurbSub: any;
   updateBlurbsSub: any;
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, private store: Store<fromApp.AppState>) {}
 
-  getBlurbs(where: string = ''): Observable<ApolloQueryResult<IBlurbsResponse>> {
+  getBlurbs(
+    where: string = '',
+    hightlight: boolean = false
+  ): Observable<ApolloQueryResult<IBlurbsResponse>> {
     const QUERY = gql`
       query getBlurbs(
         $orderBy: SQLOrderBy
@@ -52,7 +64,7 @@ export class BlurbsService {
       }
       ${fragments.blurbs}
     `;
-    this.blurbsQuery = this.apollo.watchQuery({
+    const apolloWatchQuery: QueryRef<any> = this.apollo.watchQuery({
       query: QUERY,
       variables: {
         orderBy: { column: 'totalAgree', order: 'DESC' },
@@ -62,8 +74,14 @@ export class BlurbsService {
       },
       fetchPolicy: 'network-only'
     });
-    this.getBlurbsSounce.next(this.blurbsQuery.valueChanges);
-    return this.blurbsQuery.valueChanges;
+    if (!hightlight) {
+      this.blurbsQuery = apolloWatchQuery;
+    }
+    this.getBlurbsSounce.next({
+      hightlight: hightlight,
+      observable: apolloWatchQuery.valueChanges
+    });
+    return apolloWatchQuery.valueChanges;
   }
 
   fetchMoreBlurbs(skip: number) {
@@ -81,6 +99,7 @@ export class BlurbsService {
       }
     });
   }
+
 
   subscribeToNewBlurbs(movieId: number) {
     const SUBSCRIPTION = gql`

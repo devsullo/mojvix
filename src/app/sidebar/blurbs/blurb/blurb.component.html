@@ -1,0 +1,43 @@
+<div [ngClass]="{'dark-highlight': highlight }" class="single-blurb-wrapper">
+  <!-- <div class="number">
+    <i>{{ blurb.id }}</i>
+    <span class="icon icon-arrow-down"></span>
+  </div> -->
+  <a *ngIf="highlight" (click)="onCloseBlurb()" class="close-blurb">
+    <span class="icon-a close"></span>
+  </a>
+  <div class="blurb-style-a">
+    <img class="cover" *ngIf="blurb.cover" [src]="blurb.cover" src="">
+    <div class="blurb-body left-bordered {{ blurb.color | lowercase }}">
+      <div class="plain-text">
+        {{ blurb.content }}
+      </div>
+      <div class="info">
+        <abbr>&nbsp;</abbr>
+        <div class="mojvixer right">
+          <span class="prefix">-</span>
+          <img class="profile-pic" src="/assets/images/profile/profile1.jpg">
+          <span class="mojvixer-name">{{ blurb.creator.vixname }}</span>
+        </div>
+      </div>
+    </div>
+    <div ng-if="user.isLogged" class="blurb-footer">
+      <a [ngClass]="{'active': blurb.viewer?.vote === 'AGREE'}" (click)="voteBlurb('AGREE', blurb)" class="trigger-agree left">
+        <span class="num">{{ blurb.totalAgree }}</span>
+        <span class="text">{{ 'blurb-wall-agree' | trans }}</span>
+      </a>
+      <a [ngClass]="{'active': blurb.viewer?.vote === 'DISAGREE'}" (click)="voteBlurb('DISAGREE', blurb)" class="trigger-disagree left">
+        <span class="num">{{ blurb.totalDisagree }}</span>
+        <span class="text">{{ 'blurb-wall-disagree' | trans }}</span>
+      </a>
+      <a (click)="focusOnCommentInput()" class="trigger-blurb left">
+        <span class="num">{{ blurb.totalComments}}</span>
+        <span class="text">{{ 'blurb-wall-comment' | trans }}</span>
+      </a>
+      <!-- <a class="trigger-menu" left>
+          <span class="icon icon-nav icon-nav-menu"></span>
+        </a> -->
+    </div>
+    <app-blurb-comments #comments [blurbId]="blurb.id" [totalComments]="blurb.totalComments"></app-blurb-comments>
+  </div>
+</div>

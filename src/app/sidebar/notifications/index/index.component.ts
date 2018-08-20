@@ -29,7 +29,7 @@ export class IndexComponent implements OnInit {
   ngOnInit() {}
 
   getOneBlurb(id: number) {
-    this.blurbsService.getBlurbs(`id:${id}`).subscribe(() => {
+    this.blurbsService.getBlurbs(`id:${id}`, true).subscribe(() => {
       this.store.dispatch(new NavigationActions.ChangeNavTab(1));
     });
   }

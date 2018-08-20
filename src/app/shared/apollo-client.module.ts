@@ -33,20 +33,23 @@ export class ApolloClientModule {
         });
       }
       if (networkError) {
-        networkError.error.errors.map(({ message, locations, path }) => {
-          console.warn(`[GraphQL error]: Message: ${message}, Path: ${path}, Location: ${JSON.stringify(locations)}`);
-        });
-        console.warn(`[GraphQL networkError]: name: ${networkError.name}, message: ${networkError.message}`);
+        if (networkError.error) {
+          networkError.error.errors.map(({ message, locations, path }) => {
+            console.warn(`[GraphQL error]: Message: ${message}, Path: ${path}, Location: ${JSON.stringify(locations)}`);
+          });
+        } else {
+          console.warn(`[GraphQL networkError]: name: ${networkError.name}, message: ${networkError.message}`);
+        }
       }
     });
     const wsLink = new WebSocketLink({
       uri: environment.wsUrl,
       options: {
-        reconnect: true
-      },
-      connectionParams: {
-        authToken: this.authService.isAuthenticated
-      },
+        reconnect: true,
+        connectionParams: {
+          authToken: this.authService.token
+        },
+      }
     });
 
     const link = split(// split based on operation type

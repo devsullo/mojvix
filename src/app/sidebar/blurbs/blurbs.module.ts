@@ -5,6 +5,7 @@ import { CommentsComponent } from './comments/comments.component';
 import { SharedModule } from '../../shared/shared.module';
 import { CommentsService } from './comments/comments.service';
 import { ComponentsModule } from '../../components/components.module';
+import { BlurbComponent } from './blurb/blurb.component';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { ComponentsModule } from '../../components/components.module';
   ],
   declarations: [
     BlurbsComponent,
-    CommentsComponent
+    CommentsComponent,
+    BlurbComponent
   ],
   providers: [BlurbsService, CommentsService]
 })
