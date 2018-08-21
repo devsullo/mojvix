@@ -1,3 +1,4 @@
+import { RouteService } from './../../../shared/services/route.service';
 import { BlurbsService } from './../blurbs.service';
 import { Component, OnInit, Input, ViewChild, EventEmitter, Output } from '@angular/core';
 import { IBlurb } from '../blurb';
@@ -16,7 +17,8 @@ export class BlurbComponent implements OnInit {
   @ViewChild('comments') comments: CommentsComponent;
 
   constructor(
-    private blurbsService: BlurbsService
+    private blurbsService: BlurbsService,
+    private routeService: RouteService
   ) { }
 
   ngOnInit() {
@@ -27,6 +29,10 @@ export class BlurbComponent implements OnInit {
   }
 
   voteBlurb(action: string, blurb: IBlurb) {
+    if (!blurb.viewer) {
+      this.routeService.navigateSeanceOrMain('join');
+      return;
+    }
     let voteAction;
     action === blurb.viewer.vote ? (voteAction = 'NONE') : (voteAction = action);
     this.blurbsService
