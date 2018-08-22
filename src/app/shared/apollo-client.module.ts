@@ -1,5 +1,5 @@
 import { RouteService } from './services/route.service';
-import { NgModule, Injectable } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { HttpLink, HttpLinkModule } from 'apollo-angular-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import { ApolloLink, split } from 'apollo-link';
@@ -15,7 +15,6 @@ import { AuthService } from './services/auth.service';
   exports: [ApolloModule, HttpLinkModule]
 })
 
-@Injectable()
 export class ApolloClientModule {
   constructor(
     private apollo: Apollo,
@@ -31,11 +30,7 @@ export class ApolloClientModule {
     const errorLink = onError(({ graphQLErrors, networkError }) => {
       if (graphQLErrors) {
         graphQLErrors.map(({ message, locations, path }) => {
-          console.warn(
-            `[GraphQL error]: Message: ${message}, Path: ${path}, Location: ${JSON.stringify(
-              locations
-            )}`
-          );
+          debug.warn(`[GraphQL error]: Message: ${message}, Path: ${path}, Location: ${JSON.stringify(locations)}`);
           // Temp
           if (message === 'Forbidden') {
             this.routeService.navigateSeanceOrMain('join');
@@ -45,18 +40,10 @@ export class ApolloClientModule {
       if (networkError) {
         if (networkError.error) {
           networkError.error.errors.map(({ message, locations, path }) => {
-            console.warn(
-              `[GraphQL error]: Message: ${message}, Path: ${path}, Location: ${JSON.stringify(
-                locations
-              )}`
-            );
+            debug.warn(`[GraphQL error]: Message: ${message}, Path: ${path}, Location: ${JSON.stringify(locations)}`);
           });
         } else {
-          console.warn(
-            `[GraphQL networkError]: name: ${networkError.name}, message: ${
-              networkError.message
-            }`
-          );
+          debug.warn(`[GraphQL networkError]: name: ${networkError.name}, message: ${networkError.message}`);
         }
       }
     });
@@ -64,11 +51,11 @@ export class ApolloClientModule {
     const wsLink = new WebSocketLink(wsClient);
 
     wsClient.onConnected(() => {
-      console.log('Ws connected');
+      debug.log('Ws connected');
     });
 
     wsClient.onDisconnected(() => {
-      console.warn('Ws disconnected');
+      debug.warn('Ws disconnected');
     });
 
     this.authService.reconnectWsLink$.subscribe(() => {

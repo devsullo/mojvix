@@ -39,7 +39,7 @@ export class BlurbComponent implements OnInit {
       .voteBlurb(voteAction, blurb.id)
       .pipe(map(res => res.data.voteBlurb))
       .subscribe(data => {
-        console.log(data);
+        debug.log(data);
       });
   }
 

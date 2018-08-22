@@ -35,7 +35,7 @@ export class MovieComponent implements OnInit, AfterViewInit {
   }
 
   onPlayerStateChange(event) {
-    // console.log('player state', event.data);
+    // debug.log('player state', event.data);
   }
 
   show(i: number, calls: number, movie: IMovie): void {

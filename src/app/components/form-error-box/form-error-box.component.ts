@@ -19,7 +19,7 @@ export class FormErrorBoxComponent implements OnInit {
     setTimeout(() => {
       this.animation = true;
       this.errorBox = true;
-      console.log(data.error.error);
+      debug.log(data.error.error);
       this.errorBoxMsg = this.transPipe.transform(data.error.error, 'error');
     });
   }

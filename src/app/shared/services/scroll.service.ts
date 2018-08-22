@@ -17,7 +17,7 @@ export class ScrollService {
   scrollBottom(selector: string, update = false) {
     const scrollSelector = this.scrollSelectors[selector];
     if (!scrollSelector) {
-      console.warn(`Scroll selector ${selector} does't exists`);
+      debug.warn(`Scroll selector ${selector} does't exists`);
       return;
     }
     if (update) {
@@ -33,7 +33,7 @@ export class ScrollService {
   scrollTop(selector: string, update = false) {
     const scrollSelector = this.scrollSelectors[selector];
     if (!scrollSelector) {
-      console.warn(`Scroll selector ${selector} does't exists`);
+      debug.warn(`Scroll selector ${selector} does't exists`);
       return;
     }
     if (update) {
@@ -46,7 +46,7 @@ export class ScrollService {
   update(selector: string) {
     const scrollSelector = this.scrollSelectors[selector];
     if (!scrollSelector) {
-      console.warn(`Scroll selector ${selector} does't exists`);
+      debug.warn(`Scroll selector ${selector} does't exists`);
       return;
     }
     setTimeout(() => {

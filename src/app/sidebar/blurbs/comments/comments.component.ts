@@ -47,7 +47,7 @@ export class CommentsComponent implements OnInit {
         .createComment(this.blurbId, this.mComment)
         .pipe(map(res => res.data.createComment))
         .subscribe(data => {
-          console.log(data);
+          debug.log(data);
           this.mComment = '';
         });
       return false;

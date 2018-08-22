@@ -25,12 +25,11 @@ export class BlurbsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.blurbsService.getBlurbsSounce$.subscribe(blurbsObserver => {
-      console.log(blurbsObserver);
       if (!blurbsObserver.hightlight) {
         blurbsObserver.observable
           .pipe(map(res => res.data.blurbs))
           .subscribe(blurbs => {
-            console.log(blurbs);
+            debug.log(blurbs);
             this.blurbs = blurbs;
             const newblurbIds = blurbs.map(bl => bl.id);
             if (this.blurbIds !== newblurbIds) {

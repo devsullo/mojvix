@@ -9,6 +9,12 @@ interface Element {
 interface Window {
   __REDUX_DEVTOOLS_EXTENSION_COMPOSE__: any;
 }
+declare var debug: {
+  log: any;
+  error: any;
+  info: any;
+  warn: any;
+}
 interface Number {
   pad(): string;
 }

@@ -23,7 +23,7 @@ export class PermissionService {
       !this.hasDefined(permission.toLocaleLowerCase())
     ) {
       this._permissionStore.push(permission.toLocaleLowerCase());
-      console.log(this._permissionStore);
+      debug.log(this._permissionStore);
       this._permissionStoreChange.emit(null);
     }
   }

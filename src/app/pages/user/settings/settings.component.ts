@@ -70,7 +70,7 @@ export class SettingsComponent implements OnInit {
         alert('Settings changed');
       }, error => {
         alert(error);
-        console.log(error);
+        debug.log(error);
       });
   }
 
@@ -84,7 +84,7 @@ export class SettingsComponent implements OnInit {
         alert('Email changed');
       }, error => {
         alert(error);
-        console.log(error);
+        debug.log(error);
       });
   }
 

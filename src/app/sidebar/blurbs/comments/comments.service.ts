@@ -87,7 +87,7 @@ export class CommentsService {
           return prev;
         }
         const data = { ...prev, ...{ comments: [...prev.comments, ...fetchMoreResult.comments] } };
-        console.log(data);
+        debug.log(data);
         return data;
       }
     });
@@ -117,7 +117,7 @@ export class CommentsService {
           }
           const newComment: IBlurbComment = subscriptionData.data.commentAdded;
           const data = { ...prev, ...{ comments: [newComment, ...prev.comments] } };
-          console.log(data);
+          debug.log(data);
           return data;
         }
       }

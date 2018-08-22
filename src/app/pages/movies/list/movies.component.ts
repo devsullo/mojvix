@@ -75,7 +75,7 @@ export class MoviesComponent implements OnInit {
       .getMovies()
       .pipe(map(res => res.data.movies))
       .subscribe(movies => {
-        console.log(movies);
+        debug.log(movies);
         this.movies = movies;
       });
 
@@ -117,7 +117,7 @@ export class MoviesComponent implements OnInit {
   onSortFilterForm() {
     setTimeout(() => {
       const formValue = this.sortFilterForm.value;
-      console.log(formValue);
+      debug.log(formValue);
       this.showChooseMoods = false;
     }, 1);
   }

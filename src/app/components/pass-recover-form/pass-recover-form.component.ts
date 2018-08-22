@@ -44,6 +44,6 @@ export class PassRecoverFormComponent implements OnInit {
   }
 
   passRecover() {
-    console.log(this.passRecoverForm);
+    debug.log(this.passRecoverForm);
   }
 }
