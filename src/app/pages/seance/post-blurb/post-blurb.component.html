@@ -5,32 +5,32 @@
         <form [formGroup]="blurbForm" (ngSubmit)="postBlurb()" class="post-blurb-form">
           <textarea formControlName="content" class="post-blurb-input" placeholder="Type here your blurb"></textarea>
           <div class="rate-movie">
-            <span>Rate this movie</span>
+            <span>{{ 'post-blurb-title' | trans }}</span>
             <input type="radio" id="rate-good" value="GREEN" formControlName="color">
-            <label for="rate-good">Good</label>
+            <label for="rate-good">{{ 'post-blurb-rate-good' | trans }}</label>
             <input type="radio" id="rate-normal" value="YELLOW" formControlName="color">
-            <label for="rate-normal">Normal</label>
+            <label for="rate-normal">{{ 'post-blurb-rate-normal' | trans }}</label>
             <input type="radio" id="rate-bad" value="RED" formControlName="color">
-            <label for="rate-bad">Bad</label>
+            <label for="rate-bad">{{ 'post-blurb-rate-bad' | trans }}</label>
           </div>
           <!-- <div class="seance-gallary">
             <img ng-repeat="img in movieData.gallery.images" img-url="{{img}}" ng-src="{{ config.mediaUrl + img }}">
           </div> -->
           <div class="controls">
-            <a (click)="cancel()" class="btn blurb-btn btn-cancel">Cancel</a>
-            <button type="submit" [disabled]="!blurbForm.valid" class="btn blurb-btn btn-blue">Post Blurb</button>
+            <a (click)="cancel()" class="btn blurb-btn btn-cancel">{{ 'button-cancel' | trans }}</a>
+            <button type="submit" [disabled]="!blurbForm.valid" class="btn blurb-btn btn-blue">{{ 'button-postBlurb' | trans }}</button>
           </div>
         </form>
         <div class="analytics">
           <div class="blurb-seance-nums">
             <div class="blurb-posted indicator">
               <span class="num">25</span>
-              <span class="label">Blurbs posted</span>
+              <span class="label">{{ 'post-blurb-blurbsPosted' | trans }}</span>
             </div>
             <div class="divider"></div>
             <div class="Seance-watched indicator">
               <span class="num">259</span>
-              <span class="label">Seance Watched</span>
+              <span class="label">{{ 'post-blurb-seanceWatched' | trans }}</span>
             </div>
           </div>
         </div>

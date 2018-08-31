@@ -5,7 +5,7 @@
     </div>
     <div class="right">
       <!-- <a ng-click="template = templates[0]" class="btn btn-nav buy">Buy ticket on this movie</a> -->
-      <a (click)="postBlurb()" class="btn btn-nav more">More</a>
+      <a (click)="postBlurb()" class="btn btn-nav more">{{ 'button-more' | trans }}</a>
     </div>
   </header>
   <section [style.height.px]="pageHeight" id="seance-body-area">

@@ -1,9 +1,9 @@
 <div class="right upcoming">
   <p>
-    Upcoming show
+    {{ 'upcoming-show-title' | trans }}
     <span class="at">@{{ upcomingShow.time }}</span> in
     <span class="time"> <span [ngClass]="{'vis-hide': min}">:</span>{{ upcomingShow.remain }}
-      <i>min</i>
+      <i>{{ 'upcoming-show-min' | trans }}</i>
     </span>
   </p>
 </div>

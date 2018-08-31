@@ -69,7 +69,7 @@ export class CommentsService {
         findBy: { blurbId: blurbId },
         orderBy: { column: 'id', order: 'DESC' },
         skip: 0,
-        take: SETTINGS.BLURBCOMMENTSTAKE
+        take: SETTINGS.BLURB_COMMENTS_TAKE
       }
       // fetchPolicy: 'network-only'
     });

@@ -14,8 +14,8 @@
       <i class="icon-a pencil-a"></i>
     </span>
     <div class="profile-actions">
-      <a class="btn sm btn-blue">Send Message</a>
-      <a class="btn sm btn-green">Follow</a>
+      <a class="btn sm btn-blue">{{ 'page-profile-sendMessage' | trans }}</a>
+      <a class="btn sm btn-green">{{ 'page-profile-follow' | trans }}</a>
     </div>
     <div class="profile-info">
       <div class="page-padding">
@@ -27,15 +27,15 @@
         </div>
         <div class="right">
           <span class="meta">
-            MOVIES
+            {{ 'page-profile-meta-movies' | trans }}
             <i>0</i>
           </span>
           <span class="meta">
-            BLURBS
+            {{ 'page-profile-meta-blurbs' | trans }}
             <i>0</i>
           </span>
           <span class="meta">
-            FOLLOWERS
+            {{ 'page-profile-meta-followers' | trans }}
             <i>0</i>
           </span>
         </div>
@@ -58,13 +58,13 @@
       <img src="/assets/images/profile/laurel/laurel.png">
     </div> -->
     <div class="tag-cloud block-section">
-      <h2>Tag Cloud</h2>
+      <h2>{{ 'page-profile-tagCloudTitle' | trans }}</h2>
       <div class="tags">
         <a>tag</a>
       </div>
     </div>
     <div class="recenty-movies block-section" id="box-office">
-      <h2 class="center-t">Recently watched movies</h2>
+      <h2 class="center-t">{{ 'page-profile-recentlyMoviesTitle' | trans }}</h2>
       <div class="movies sort-3">
         <div class="movie">
           <div class="movie-wrapper">
@@ -77,11 +77,11 @@
               <h5 class="hover-genre">movie.genre</h5>
               <ul>
                 <li>
-                  <span>Direcor: </span>
+                  <span>{{ 'movies-props-director' | trans }}: </span>
                   <a href="#">J Blakeson</a>
                 </li>
                 <li>
-                  <span>Stars: </span>
+                  <span>{{ 'movies-props-stars' | trans }}: </span>
                   <a href="#">Chloë Grace Moretz</a>,
                   <a href="#">Liev Schreiber</a>,
                   <a href="#">Maika Monroe</a>

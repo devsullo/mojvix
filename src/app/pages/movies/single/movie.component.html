@@ -25,16 +25,16 @@
         <i class="value">{{ movie.properties.resolution }}</i>
       </li>
       <li>
-        <i class="key">Runtime:</i>
+        <i class="key">{{ 'movies-props-duration' | trans }}:</i>
         <i class="value">{{ movie.properties.duration }}</i>
         <i class="key">Min</i>
       </li>
       <li class="{{ movie.properties.soundQuality }}"></li>
       <li *ngIf="movie.properties.threeD">
-        <i class="value">3D</i>
+        <i class="value">{{ 'movies-props-threeD' | trans }}</i>
       </li>
       <li *ngIf="movie.properties.colored">
-        <i class="value">Colored</i>
+        <i class="value">{{ 'movies-props-colored' | trans }}</i>
       </li>
     </ul>
     <p class="story">
@@ -42,15 +42,15 @@
     </p>
     <div class="cast">
       <div class="own-line">
-        <div class="key">Director:</div>
+        <div class="key">{{ 'movies-props-director' | trans }}:</div>
         <div class="value">{{ movie.directorNames.join(', ') }}</div>
       </div>
       <div class="own-line">
-        <div class="key">Stars:</div>
+        <div class="key">{{ 'movies-props-stars' | trans }}:</div>
         <div class="value">{{ movie.actorNames.join(', ') }}</div>
       </div>
     </div>
-    <a (click)="onAttendToShow(movie)" class="attend-to-show btn btn-sky-blue">Attend To Show</a>
+    <a (click)="onAttendToShow(movie)" class="attend-to-show btn btn-sky-blue">{{ 'button-attendToShow' | trans }}</a>
     <div class="bottom-meta">
       <div class="divider"></div>
       <div class="left">
@@ -59,7 +59,7 @@
             <a target="_blank" [href]="link.url"></a>
           </li>
         </ul>
-        <span class="copy">movie.copy</span>
+        <span class="copy">{{ movie.copyright }}</span>
       </div>
       <div class="right">
         <ul class="mood-icons">

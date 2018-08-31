@@ -70,7 +70,7 @@ export class BlurbsService {
         orderBy: { column: 'totalAgree', order: 'DESC' },
         where: { eq: [where] },
         skip: 0,
-        take: SETTINGS.BLURBSTAKE
+        take: SETTINGS.BLURBS_TAKE
       },
       fetchPolicy: 'network-only'
     });

@@ -1,35 +1,35 @@
 <section [style.height.px]="scrollHeight" id="sidebar-navigation-section">
   <section id="profile-updates">
-    <h3 class="section-title">Profile Updates</h3>
+    <h3 class="section-title">{{ 'tab-navigation-section1-title' | trans }}</h3>
     <div class="menu-cont">
       <a>
         <span class="icon icon-menu icon-cup"></span>
-        <b>Archivements</b>
+        <b>{{ 'tab-navigation-link-achivements' | trans }}</b>
       </a>
       <a>
         <span class="icon icon-menu icon-ticket"></span>
-        <b>Tickets</b>
+        <b>{{ 'tab-navigation-link-tickets' | trans }}</b>
       </a>
       <a>
         <span class="icon icon-menu icon-referals"></span>
-        <b>Referals</b>
+        <b>{{ 'tab-navigation-link-referals' | trans }}</b>
       </a>
     </div>
   </section>
   <section id="other">
-    <h3 class="section-title">Others</h3>
+    <h3 class="section-title">{{ 'tab-navigation-section2-title' | trans }}</h3>
     <div class="menu-cont">
       <a [routerLink]="['/user']">
         <span class="icon icon-menu icon-profile"></span>
-        <b>My Profile</b>
+        <b>{{ 'tab-navigation-link-myProfile' | trans }}</b>
       </a>
       <a [routerLink]="['/user/settings']">
         <span class="icon icon-menu icon-settings"></span>
-        <b>Settings</b>
+        <b>{{ 'tab-navigation-link-settings' | trans }}</b>
       </a>
       <a (click)="logOut()">
         <span class="icon icon-menu icon-signout"></span>
-        <b>Sign Out</b>
+        <b>{{ 'tab-navigation-link-signOut' | trans }}</b>
       </a>
     </div>
   </section>

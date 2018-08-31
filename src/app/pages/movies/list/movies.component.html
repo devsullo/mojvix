@@ -2,7 +2,7 @@
   <header class="box-office-header center-area-cont">
     <div id="first-header">
       <div class="left">
-        <h2>Discover</h2>
+        <h2>{{ 'page-movies-title' | trans }}</h2>
         <form [formGroup]="sortFilterForm" (ngSubmit)="onSortFilterForm()" class="sort">
           <div class="radio hide-input">
             <ng-container *ngFor="let sort of MOVIE_SORTS">
@@ -10,7 +10,7 @@
               <input id="{{ sort }}-inp" formControlName="sortName" [value]="sort" type="radio">
             </ng-container>
             <span *ngIf="hashtagFilter.value" (click)="onHashtagFilterClose()" class="hashtagFilter">{{ hashtagFilter.value }}</span>
-            <label (click)="onChooseMoods()" class="choose-mood link">Choose Moods</label>
+            <label (click)="onChooseMoods()" class="choose-mood link">{{ 'page-movies-moods' | trans }}</label>
             <div [ngClass]="{'hideEl': !showChooseMoods}" class="mood-change-cont">
               <div class="mood-icons">
                 <ng-container *ngFor="let mood of MOVIE_MOODS;">
@@ -27,7 +27,7 @@
         <a class="search-btn"></a>
       </div>
     </div>
-    <div id="search-area">
+    <!-- <div id="search-area">
       <div class="form-style-a light">
         <div class="inp-group">
           <a class="back-home">Back to home
@@ -56,7 +56,7 @@
           <a>Director</a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </header>
   <div id="box-office" [style.height.px]="pageHeight">
     <div class="movies center-area-cont sort-{{ colls }}">
@@ -75,11 +75,11 @@
               </h5>
               <ul>
                 <li>
-                  <span>Direcor: </span>
+                  <span>{{ 'movies-props-director' | trans }}: </span>
                   <a href="#">{{ movie.directorNames.join(', ') }}</a>
                 </li>
                 <li>
-                  <span>Stars: </span>
+                  <span>{{ 'movies-props-stars' | trans }}: </span>
                   <a href="#">{{ movie.actorNames.join(', ') }}</a>
                 </li>
               </ul>

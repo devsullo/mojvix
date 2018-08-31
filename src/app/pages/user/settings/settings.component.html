@@ -2,13 +2,13 @@
   <section class="center-area-cont">
     <div class="page-wrap light page-padding">
       <section id="settings">
-        <h2>SETTINGS</h2>
+        <h2>{{ 'page-settings-title' | trans }}</h2>
         <div [ngClass]="{'opened': formsState.generalForm}" class="section icon-hover">
           <div class="toggle" (click)="changeFormState('generalForm')">
-            <span class="key">General</span>
+            <span class="key">{{ 'page-settings-sectionGeneral' | trans }}</span>
             <span class="value">{{ user.info.firstName }} {{ user.info.lastName }} {{ user.info.age }} {{ user.info.sex }}</span>
             <span class="edit-section">
-              Edit
+              {{ 'page-settings-editLink' | trans }}
               <i class="icon-a pencil-c"></i>
             </span>
           </div>
@@ -16,21 +16,21 @@
             <form (ngSubmit)="OnUpdateInfo()" [formGroup]="generalForm" class="form-style-a light">
               <div formGroupName="info">
                 <div class="inp-group">
-                  <label for="inp-1">First Name:</label>
-                  <input id="inp-1" formControlName="firstName" class="ex-sm" type="text" placeholder="First Name">
+                  <label for="inp-1">{{ 'input-first-name' | trans }}:</label>
+                  <input id="inp-1" formControlName="firstName" class="ex-sm" type="text" placeholder="{{ 'input-first-name' | trans }}">
                 </div>
                 <div class="inp-group">
-                  <label for="inp-2">Last Name:</label>
-                  <input id="inp-2" formControlName="lastName" class="ex-sm" type="text" placeholder="Last Name">
+                  <label for="inp-2">{{ 'input-last-name' | trans }}:</label>
+                  <input id="inp-2" formControlName="lastName" class="ex-sm" type="text" placeholder="{{ 'input-last-name' | trans }}">
                 </div>
                 <div class="inp-group">
-                  <label for="inp-3">Age:</label>
+                  <label for="inp-3">{{ 'input-age' | trans }}:</label>
                   <select formControlName="age" id="inp-3">
                     <option *ngFor="let age of AGE_OPTIONS" [value]="age">{{ age }}</option>
                   </select>
                 </div>
                 <div class="inp-group">
-                  <label for="inp-4">Sex:</label>
+                  <label for="inp-4">{{ 'input-sex' | trans }}:</label>
                   <select formControlName="sex" id="inp-4">
                     <option *ngFor="let sex of SEX_OPTIONS" [value]="sex">{{ sex }}</option>
                   </select>
@@ -40,32 +40,32 @@
                   <textarea id="inp-5" formControlName="bio" class="ex-sm" placeholder="Bio"></textarea>
                 </div> -->
               </div>
-              <button (click)="changeFormState('generalForm')" class="btn btn-cancel sm right gray-b">Cancel</button>
-              <button type="submit" class="btn btn-save sm right ">Save</button>
+              <button (click)="changeFormState('generalForm')" class="btn btn-cancel sm right gray-b">{{ 'button-cancel' | trans }}</button>
+              <button type="submit" class="btn btn-save sm right ">{{ 'button-save' | trans }}</button>
             </form>
           </div>
         </div>
         <div [ngClass]="{'opened': formsState.emailForm}" class="section icon-hover">
           <div class="toggle" (click)="changeFormState('emailForm')">
-            <span class="key">E-mail</span>
+            <span class="key">{{ 'page-settings-sectionEmail' | trans }}</span>
             <span class="value">{{ user.email }}</span>
             <span class="edit-section">
-              Edit
+              {{ 'page-settings-editLink' | trans }}
               <i class="icon-a pencil-c"></i>
             </span>
           </div>
           <div class="section-content">
             <form (ngSubmit)="OnUpdateEmail()" [formGroup]="emailForm" class="form-style-a light">
               <div class="inp-group">
-                <label for="inp-6">E-mail:</label>
-                <input id="inp-6" formControlName="email" class="ex-sm" type="email" placeholder="Email address">
+                <label for="inp-6">{{ 'input-email' | trans }}:</label>
+                <input id="inp-6" formControlName="email" class="ex-sm" type="email" placeholder="{{ 'input-email' | trans }}">
               </div>
               <div class="inp-group">
-                <label for="inp-7">Password:</label>
-                <input id="inp-7" formControlName="password" class="ex-sm" type="password" placeholder="Your password">
+                <label for="inp-7">{{ 'input-password' | trans }}:</label>
+                <input id="inp-7" formControlName="password" class="ex-sm" type="password" placeholder="{{ 'input-password' | trans }}">
               </div>
-              <button (click)="changeFormState('emailForm')" class="btn btn-cancel sm right gray-b">Cancel</button>
-              <button type="submit" class="btn btn-save sm right ">Save</button>
+              <button (click)="changeFormState('emailForm')" class="btn btn-cancel sm right gray-b">{{ 'button-cancel' | trans }}</button>
+              <button type="submit" class="btn btn-save sm right ">{{ 'button-save' | trans }}</button>
             </form>
           </div>
         </div>
