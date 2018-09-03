@@ -14,7 +14,7 @@ export class ScrollService {
     return this.scrollSelectors[selector];
   }
 
-  scrollBottom(selector: string, update = false) {
+  scrollBottom(selector: string, update = false, timeout = 50) {
     const scrollSelector = this.scrollSelectors[selector];
     if (!scrollSelector) {
       debug.warn(`Scroll selector ${selector} does't exists`);
@@ -27,10 +27,10 @@ export class ScrollService {
     const top = el.scrollHeight;
     setTimeout(() => {
       el.scrollTo({ top: top, behavior: 'smooth' });
-    }, 50);
+    }, timeout);
   }
 
-  scrollTop(selector: string, update = false) {
+  scrollTop(selector: string, update = false, timeout = 0) {
     const scrollSelector = this.scrollSelectors[selector];
     if (!scrollSelector) {
       debug.warn(`Scroll selector ${selector} does't exists`);
@@ -40,10 +40,12 @@ export class ScrollService {
       scrollSelector.update();
     }
     const el = scrollSelector.element;
-    el.scrollTo({ top: 0 });
+    setTimeout(() => {
+      el.scrollTo({ top: 0 });
+    }, timeout);
   }
 
-  update(selector: string) {
+  update(selector: string, timeout = 50) {
     const scrollSelector = this.scrollSelectors[selector];
     if (!scrollSelector) {
       debug.warn(`Scroll selector ${selector} does't exists`);
@@ -51,7 +53,7 @@ export class ScrollService {
     }
     setTimeout(() => {
       scrollSelector.update();
-    }, 50);
+    }, timeout);
   }
 
   loadMore(scrollEl: any, scrollHeight: number, cb: any) {

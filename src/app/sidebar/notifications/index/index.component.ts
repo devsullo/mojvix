@@ -31,6 +31,7 @@ export class IndexComponent implements OnInit {
   getOneBlurb(id: number) {
     this.blurbsService.getBlurbs(`id:${id}`, true).subscribe(() => {
       this.store.dispatch(new NavigationActions.ChangeNavTab(1));
+      this.scrollService.scrollTop('#blurbs-list', false, 100);
     });
   }
 }
