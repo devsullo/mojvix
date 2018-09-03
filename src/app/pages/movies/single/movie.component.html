@@ -63,7 +63,7 @@
       </div>
       <div class="right">
         <ul class="mood-icons">
-          <li *ngFor="let mood of movie.moods" class="icon-{{ mood }}"></li>
+          <li *ngFor="let mood of movie.moods" class="icon-{{ mood.mood | lowercase }}"></li>
         </ul>
       </div>
     </div>

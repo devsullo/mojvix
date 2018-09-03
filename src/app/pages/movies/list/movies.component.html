@@ -63,7 +63,7 @@
       <div *ngFor="let movie of movies; let i = index">
         <div class="movie" (click)="onExpandMovie(i)">
           <div class="movie-wrapper">
-            <i class="movie-status" data-toggle="tooltip" data-placement="right" title="FirstDay"></i>
+            <i class="movie-status {{  movie.color | lowercase }}" data-toggle="tooltip" title="Top blurb color"></i>
             <img class="poster" [src]="'assets/images/movie/'+ movie.poster">
           </div>
           <div class="hover_1 hover">

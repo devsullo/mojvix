@@ -7,6 +7,9 @@ export interface IMovie {
   slug: string;
   title: string;
   story: string;
+  color: string;
+  totalGreen: number;
+  copyright: string;
   poster: string;
   videoSrc: string;
   genreNames: string[];
@@ -25,6 +28,6 @@ export interface IMovie {
     name: string;
     url: string;
   }[];
-  moods: string[];
+  moods: any[];
   blurbs: IBlurb[];
 }
