@@ -11,7 +11,7 @@
   </header>
   <section [style.height.px]="pageHeight" id="user-body-area">
     <div class="center-area-cont">
-      <router-outlet></router-outlet>
+      <router-outlet  (activate)='onActivateOutlet($event)'></router-outlet>
     </div>
   </section>
 </section>

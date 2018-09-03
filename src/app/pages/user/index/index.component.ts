@@ -34,4 +34,10 @@ export class IndexComponent implements OnInit {
   goBack(): void {
     this.routeService.navigateBack();
   }
+
+  onActivateOutlet(e: any) {
+    if (this.scroll) {
+      this.scroll.update();
+    }
+  }
 }
