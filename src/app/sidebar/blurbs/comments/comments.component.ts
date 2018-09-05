@@ -2,6 +2,7 @@ import { CommentsService } from './comments.service';
 import { IBlurbComment } from './../blurb';
 import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { map } from 'rxjs/operators';
+import { ScrollService } from '../../../shared/services/scroll.service';
 
 const SETTINGS = window['VIX_SETTINGS'] || {};
 
@@ -14,10 +15,15 @@ export class CommentsComponent implements OnInit {
   comments: IBlurbComment[] = [];
   @Input() blurbId: number;
   @Input() totalComments: number;
+  @Input() scrollSelector: string;
   @ViewChild('commentInput') commentInput: ElementRef;
   SETTINGS = SETTINGS;
   _mComment: string;
-  constructor(private commentsService: CommentsService) {}
+
+  constructor(
+    private commentsService: CommentsService,
+    private scroll: ScrollService
+  ) {}
 
   ngOnInit() {
     this.commentsService
@@ -25,6 +31,7 @@ export class CommentsComponent implements OnInit {
       .pipe(map(res => res.data))
       .subscribe(res => {
         this.comments = res.comments;
+        this.scroll.update(this.scrollSelector);
       });
     const commentTypeContent = this.commentsService.commentTypeStore[this.blurbId];
     if (commentTypeContent) {
