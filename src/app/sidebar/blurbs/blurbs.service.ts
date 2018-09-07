@@ -93,9 +93,11 @@ export class BlurbsService {
         if (!fetchMoreResult) {
           return prev;
         }
-        return Object.assign({}, prev, {
+        const blurbs = Object.assign({}, prev, {
           blurbs: [...prev.blurbs, ...fetchMoreResult.blurbs]
         });
+        debug.warn(fetchMoreResult.blurbs);
+        return blurbs;
       }
     });
   }

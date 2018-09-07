@@ -1,3 +1,6 @@
+import {
+  LoadMoreService,
+} from './../../../shared/services/load-more.service';
 import { CommentsComponent } from './../comments/comments.component';
 import { ScrollService } from './../../../shared/services/scroll.service';
 import { BlurbsService } from './../blurbs.service';
@@ -20,17 +23,23 @@ export class BlurbsComponent implements OnInit, OnChanges {
 
   constructor(
     private blurbsService: BlurbsService,
-    private scrollService: ScrollService
+    private scrollService: ScrollService,
+    private loadMoreService: LoadMoreService
   ) {}
 
   ngOnInit() {
     this.blurbsService.getBlurbsSounce$.subscribe(blurbsObserver => {
+      // Set load more
+      this.loadMoreService.init(this.scrollEl, this.scrollHeight, () => {
+        this.blurbsService.fetchMoreBlurbs(this.blurbs.length);
+      });
       if (!blurbsObserver.hightlight) {
         blurbsObserver.observable
           .pipe(map(res => res.data.blurbs))
           .subscribe(blurbs => {
             debug.log(blurbs);
             this.blurbs = blurbs;
+            this.loadMoreService.setCompItemLength(this.blurbs.length);
             const newblurbIds = blurbs.map(bl => bl.id);
             if (this.blurbIds !== newblurbIds) {
               this.blurbIds = newblurbIds;
@@ -48,10 +57,6 @@ export class BlurbsComponent implements OnInit, OnChanges {
       }
     });
     this.blurbsService.getBlurbs();
-
-    this.scrollService.loadMore(this.scrollEl, this.scrollHeight, () => {
-      this.blurbsService.fetchMoreBlurbs(this.blurbs.length);
-    });
   }
 
   onCloseBlurb() {

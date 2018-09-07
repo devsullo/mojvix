@@ -55,15 +55,4 @@ export class ScrollService {
       scrollSelector.update();
     }, timeout);
   }
-
-  loadMore(scrollEl: any, scrollHeight: number, cb: any) {
-    scrollEl.element.addEventListener('ps-scroll-down', () => {
-      const maxOffsetTop = scrollEl.contentHeight - scrollHeight;
-      const currentOffsetTop = scrollEl.scrollbarYRail.offsetTop;
-      const currentOffsetTopPercent = (currentOffsetTop * 100) / maxOffsetTop;
-      if (currentOffsetTopPercent > 60) {
-        cb();
-      }
-    });
-  }
 }

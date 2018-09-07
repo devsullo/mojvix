@@ -1,6 +1,7 @@
 window.VIX_SETTINGS = {
   BLURBS_TAKE: 6,
   BLURB_COMMENTS_TAKE: 3,
+  FETCH_MORE_PERCENT: 60,
   VIXNAME_PATTERN: '^[a-zA-Z0-9]{3,15}$',
   AGE_OPTIONS: ['13-17', '18-23', '24+'],
   SEX_OPTIONS: ['Male', 'Female'],
