@@ -11,18 +11,21 @@ import { CommentsComponent } from '../comments/comments.component';
   styleUrls: ['./blurb.component.scss']
 })
 export class BlurbComponent implements OnInit {
-  @Input() blurb: IBlurb;
-  @Input() highlight: boolean;
-  @Output() closeBlurb = new EventEmitter<boolean>();
-  @ViewChild('comments') comments: CommentsComponent;
+  @Input()
+  blurb: IBlurb;
+  @Input()
+  highlight: boolean;
+  @Output()
+  closeBlurb = new EventEmitter<boolean>();
+  @ViewChild('comments')
+  comments: CommentsComponent;
 
   constructor(
     private blurbsService: BlurbsService,
     private routeService: RouteService
-  ) { }
+  ) {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onCloseBlurb() {
     this.closeBlurb.emit(true);
@@ -34,7 +37,18 @@ export class BlurbComponent implements OnInit {
       return;
     }
     let voteAction;
-    action === blurb.viewer.vote ? (voteAction = 'NONE') : (voteAction = action);
+    const viewerVote = blurb.viewer.vote;
+    if (action === viewerVote) {
+      voteAction = 'NONE';
+      blurb[this.getActionName(action)] -= 1;
+    } else {
+      voteAction = action;
+      blurb[this.getActionName(action)] += 1;
+      if (viewerVote !== 'NONE') {
+        blurb[this.getContActionName(action)] -= 1;
+      }
+    }
+    blurb.viewer.vote = voteAction;
     this.blurbsService
       .voteBlurb(voteAction, blurb.id)
       .pipe(map(res => res.data.voteBlurb))
@@ -43,8 +57,21 @@ export class BlurbComponent implements OnInit {
       });
   }
 
+  getActionName(action: string): string {
+    let actionName = action.toLowerCase();
+    actionName =
+      'total' + actionName.charAt(0).toUpperCase() + actionName.slice(1);
+    return actionName;
+  }
+
+  getContActionName(action: string): string {
+    if (action === 'AGREE') {
+      return this.getActionName('DISAGREE');
+    }
+    return this.getActionName('AGREE');
+  }
+
   focusOnCommentInput() {
     this.comments.focusOnCommentInput();
   }
-
 }

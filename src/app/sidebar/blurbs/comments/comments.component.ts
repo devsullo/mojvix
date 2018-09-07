@@ -1,6 +1,6 @@
 import { CommentsService } from './comments.service';
 import { IBlurbComment } from './../blurb';
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Output, EventEmitter } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { ScrollService } from '../../../shared/services/scroll.service';
 
@@ -54,7 +54,7 @@ export class CommentsComponent implements OnInit {
         .createComment(this.blurbId, this.mComment)
         .pipe(map(res => res.data.createComment))
         .subscribe(data => {
-          debug.log(data);
+          debug.warn(data);
           this.mComment = '';
         });
       return false;

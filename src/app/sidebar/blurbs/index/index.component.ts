@@ -38,7 +38,8 @@ export class BlurbsComponent implements OnInit, OnChanges {
           .pipe(map(res => res.data.blurbs))
           .subscribe(blurbs => {
             debug.log(blurbs);
-            this.blurbs = blurbs;
+            // Temp solution for immutable data
+            this.blurbs = JSON.parse(JSON.stringify(blurbs));
             this.loadMoreService.setCompItemLength(this.blurbs.length);
             const newblurbIds = blurbs.map(bl => bl.id);
             if (this.blurbIds !== newblurbIds) {

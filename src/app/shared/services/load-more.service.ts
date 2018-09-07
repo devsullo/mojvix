@@ -21,7 +21,7 @@ export class LoadMoreService {
       const maxOffsetTop = scrollEl.contentHeight - scrollHeight;
       const currentOffsetTop = scrollEl.scrollbarYRail.offsetTop;
       const currentOffsetTopPercent = (currentOffsetTop * 100) / maxOffsetTop;
-      debug.info(this.initItemLength, this.compItemLenght);
+      // debug.info(this.initItemLength, this.compItemLenght);
       if (currentOffsetTopPercent >= SETTINGS.FETCH_MORE_PERCENT) {
         if (this.compItemLenght > this.initItemLength) {
           this.initItemLength = this.compItemLenght;
