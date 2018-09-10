@@ -39,6 +39,7 @@ export interface IBlurbSource {
 
 @Injectable()
 export class BlurbsService {
+
   private getBlurbsSounce = new Subject<IBlurbSource>();
   getBlurbsSounce$ = this.getBlurbsSounce.asObservable();
   blurbsQuery: QueryRef<any>;
@@ -101,7 +102,6 @@ export class BlurbsService {
       }
     });
   }
-
 
   subscribeToNewBlurbs(movieId: number) {
     const SUBSCRIPTION = gql`

@@ -1,3 +1,4 @@
+import { CommentsService } from './../comments/comments.service';
 import {
   LoadMoreService,
 } from './../../../shared/services/load-more.service';
@@ -24,7 +25,8 @@ export class BlurbsComponent implements OnInit, OnChanges {
   constructor(
     private blurbsService: BlurbsService,
     private scrollService: ScrollService,
-    private loadMoreService: LoadMoreService
+    private loadMoreService: LoadMoreService,
+    private commentsService: CommentsService
   ) {}
 
   ngOnInit() {
@@ -52,12 +54,17 @@ export class BlurbsComponent implements OnInit, OnChanges {
         blurbsObserver.observable
           .pipe(map(res => res.data.blurbs))
           .subscribe(blurb => {
-            this.oneBlurb = blurb[0];
+            this.oneBlurb = JSON.parse(JSON.stringify(blurb[0]));
             this.scrollService.update('#blurbs-list');
           });
       }
     });
     this.blurbsService.getBlurbs();
+
+    this.commentsService.blurbCommentCount$.subscribe(blurbId => {
+      const blurb = this.blurbs.find(bl => bl.id === blurbId);
+      blurb.totalComments += 1;
+    });
   }
 
   onCloseBlurb() {

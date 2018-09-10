@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import {
   IBlurbCreateCommentResponse,
   IBlurbComment,
@@ -28,6 +28,9 @@ export class CommentsService {
   commentQuerys = [];
   commentSubscriptions = [];
   commentTypeStore = {};
+  private blurbCommentCount = new Subject<number>();
+  blurbCommentCount$ = this.blurbCommentCount.asObservable();
+
   constructor(private apollo: Apollo) {}
 
   createComment(
@@ -118,6 +121,7 @@ export class CommentsService {
           const newComment: IBlurbComment = subscriptionData.data.commentAdded;
           const data = { ...prev, ...{ comments: [newComment, ...prev.comments] } };
           debug.log(data);
+          this.blurbCommentCount.next(blurbId);
           return data;
         }
       }
